@@ -5,7 +5,7 @@
     <!-- We can't use a normal button element here, as it would become the target of the label. -->
     <div class="select-button">
       <!-- Display the filename if a file has been selected. -->
-      <span v-if="value">Selected File: {{value.name}}</span>
+      <span v-if="fileTitle">Selected File: {{fileTitle}}</span>
       <span v-else>Select File</span>
     </div>
     <!-- Now, the file input that we hide. -->
@@ -20,16 +20,30 @@ export default {
   props: {
     // Using value here allows us to be v-model compatible.
     // value: File
-    value: File,
+    value: Array,
+  },
+  data() {
+    return {
+      fileTitle: null,
+    };
   },
   methods: {
-    handleFileChange(e) {
-      // const file = ev.target.files[0];
-      // const reader = new FileReader();
+    handleFileChange(ev) {
+      const file = ev.target.files[0];
+      const reader = new FileReader();
       console.log('Input change');
-      this.$emit('input', e.target.files[0]);
-      // reader.onload = e => {this.$emit("load", e.target.result);console.log("onload event!");};
-      // reader.readAsText(file);
+      const mainScope = this;
+      reader.onload = function (e) {
+        console.log('onload event!');
+        try {
+          const JSONFile = JSON.parse(e.target.result);
+          mainScope.$emit('input', JSONFile);
+          mainScope.fileTitle = file.name;
+        } catch (err) {
+          console.log('Error during parsing');
+        }
+      };
+      reader.readAsText(file);
     },
   },
 };

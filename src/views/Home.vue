@@ -2,7 +2,7 @@
   <div class="home">
     <div>
     <input-form v-model="fileContent"></input-form>
-    <div>{{fileContent}}</div>
+    <!-- <div>{{fileContent}}</div> -->
     </div>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -26,8 +26,8 @@ export default {
   },
   watch: {
     // whenever fileContent changes, this function will run
-    fileContent(newfileContent) {
-      console.log(newfileContent);
+    fileContent(val) {
+      console.log(val);
     },
   },
 };
