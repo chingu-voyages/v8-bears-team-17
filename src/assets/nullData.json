@@ -18,6 +18,11 @@
         "network": "Twitter",
         "username": "john",
         "url": "http://twitter.com/john"
+      },
+      {
+        "network": "Chingu",
+        "username": "john",
+        "url": "http://Chingu.com/john"
       }]
     },
     "work": [{
@@ -28,7 +33,7 @@
       "endDate": "2014-01-01",
       "summary": "Description...",
       "highlights": [
-        "Started the company"
+        {"highlight":"Started the company"},{"highlight":"Watching TV all the day"}
       ]
     }],
     "volunteer": [{
@@ -39,7 +44,7 @@
       "endDate": "2013-01-01",
       "summary": "Description...",
       "highlights": [
-        "Awarded 'Volunteer of the Month'"
+        {"highlight":"Started the company"},{"highlight":"Watching TV all the day"}
       ]
     }],
     "education": [{
@@ -50,7 +55,7 @@
       "endDate": "2013-01-01",
       "gpa": "4.0",
       "courses": [
-        "DB1101 - Basic SQL"
+        {"course":"DB1101 - Basic SQL"},{"course":"Javascript"}
       ]
     }],
     "awards": [{
@@ -70,9 +75,9 @@
       "name": "Web Development",
       "level": "Master",
       "keywords": [
-        "HTML",
-        "CSS",
-        "Javascript"
+        {"keyword":"HTML"},
+        {"keyword":"CSS"},
+        {"keyword":"Javascript"}
       ]
     }],
     "languages": [{
@@ -82,8 +87,8 @@
     "interests": [{
       "name": "Wildlife",
       "keywords": [
-        "Ferrets",
-        "Unicorns"
+        {"keyword":"Ferrets"},
+        {"keyword":"Unicorns"}
       ]
     }],
     "references": [{
