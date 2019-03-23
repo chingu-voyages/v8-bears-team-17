@@ -1,33 +1,41 @@
 <template>
   <div class="home">
     <div>
-    <input-form v-model="fileContent"></input-form>
-    <!-- <div>{{fileContent}}</div> -->
+    <JSONUploader v-model="fileContent"></JSONUploader>
+    <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </div>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-import InputForm from '@/components/InputForm.vue';
+import JSONUploader from '@/components/JSONUploader.vue';
+import nullData from '@/assets/nullData.json';
+import UserInputForm from '@/components/UserInputForm.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld, InputForm,
+    JSONUploader, UserInputForm,
   },
   data() {
     return {
       fileContent: null,
+      mainUserData: nullData,
+      keys: Array,
     };
+  },
+  methods: {
+    testFun() {
+      this.mainUserData.personalData.name = 'Luca Gessi';
+      this.keys = Object.keys(this.mainUserData);
+    },
   },
   watch: {
     // whenever fileContent changes, this function will run
     fileContent(val) {
       console.log(val);
+      // Parse fileContent to match userData format
     },
   },
 };

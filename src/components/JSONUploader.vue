@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'InputForm',
+  name: 'JSONUploader',
   props: {
     // Using value here allows us to be v-model compatible.
     // value: File
