@@ -1,7 +1,15 @@
 <template>
   <div class="home">
     <div>
-    <JSONUploader v-model="fileContent"></JSONUploader>
+    <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
+    <!-- FOR JSON FİLE -->
+    <!-- <DownloadJSONFile :download-data="mainUserData"
+            file-type="json"
+            file-name="Periyodik Tablo - Bazı Elementler"
+            class="periodic_table color-3"
+            button-text="Download Period Table As JSON"/> -->
+    <DownloadJSONFile ButtonText="Download json file"
+    fileName="userdata" :downloadData="mainUserData"></DownloadJSONFile>
     <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </div>
   </div>
@@ -12,11 +20,12 @@
 import JSONUploader from '@/components/JSONUploader.vue';
 import nullData from '@/assets/nullData.json';
 import UserInputForm from '@/components/UserInputForm.vue';
+import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
 
 export default {
   name: 'home',
   components: {
-    JSONUploader, UserInputForm,
+    JSONUploader, UserInputForm, DownloadJSONFile,
   },
   data() {
     return {
@@ -35,7 +44,7 @@ export default {
     // whenever fileContent changes, this function will run
     fileContent(val) {
       console.log(val);
-      // Parse fileContent to match userData format
+      this.mainUserData = this.fileContent;
     },
   },
 };
