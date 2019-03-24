@@ -97,7 +97,10 @@
 </div>
     <div id="work">
     <h2>Work experiences</h2>
-    <div v-for="(item,index) in userdata.work" :key="index" class="workExperience">
+    <p><a href="" @click="addWork">Add work</a></p>
+    <div v-for="(item,work_index) in userdata.work" :key="work_index" class="workExperience">
+        <h3>Work {{work_index+1}}
+            <a href="" @click="removeWork($event,work_index)">X</a></h3>
         <p>
             <label for="company">Company</label>
             <input class="company" v-model="item.company"
@@ -131,10 +134,13 @@
         <p>
             <label for="summary">Summary</label>
             <textarea class="summary" v-model="item.summary"
-            name="userdata.work.summary"></textarea>
+            name="summary"></textarea>
         </p>
-        <p v-for="(subitem,key,index) in item.highlights" :key="index">
-            <label for="highlights">Highlight: </label>
+        <p><a href="" @click="addWorkHighlight($event,work_index)">Add highlight</a></p>
+        <p v-for="(subitem,highlight_index) in item.highlights" :key="highlight_index">
+            <label for="highlights"><a href=""
+            @click="removeWorkHighlight($event,work_index,highlight_index)"
+            >X</a> Highlight: </label>
             <input type="text" class="highlights" v-model="subitem.highlight"
             name="highlights">
         </p>
@@ -399,7 +405,35 @@ export default {
     };
   },
   methods: {
-
+    addWorkHighlight(e, index) {
+      e.preventDefault();
+      this.userdata.work[index].highlights.push({ highlight: '' });
+      console.log('Aggiungo highlight');
+    },
+    removeWorkHighlight(e, index, subindex) {
+      e.preventDefault();
+      console.log(`Index: ${index}`);
+      console.log(`Subindex: ${subindex}`);
+      this.userdata.work[index].highlights.splice(subindex, 1);
+    },
+    addWork(e) {
+      e.preventDefault();
+      this.userdata.work.push(
+        {
+          company: '',
+          position: '',
+          website: '',
+          startDate: '',
+          endDate: '',
+          summary: '',
+          highlights: [],
+        },
+      );
+    },
+    removeWork(e, index) {
+      e.preventDefault();
+      this.userdata.work.splice(index, 1);
+    },
   },
 };
 </script>

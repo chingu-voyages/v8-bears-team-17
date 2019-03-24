@@ -43,7 +43,9 @@ export default {
   watch: {
     // whenever fileContent changes, this function will run
     fileContent(val) {
-      console.log(val);
+      console.log(`name object: ${typeof val}`);
+      console.log(`name basics: ${typeof val.basics}`);
+      console.log(`name type: ${typeof val.basics.name}`);
       this.mainUserData = this.fileContent;
     },
   },
