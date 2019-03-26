@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <form  > <!--@submit="checkForm">-->
+  <div>
+  <form> <!--@submit="checkForm">-->
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -74,7 +74,10 @@
     <!-- Profiles -->
   <div class="profiles">
     <h3>Social profiles</h3>
+    <p><a href="" @click="addSocialProfile">Add social profile</a></p>
     <div v-for="(item,index) in userdata.basics.profiles" :key="index" class="social-profile">
+      <h3>Social profile {{index+1}}
+          <a href="" @click="removeSocialProfile($event,index)">X</a></h3>
     <p>
         <label for="network">Network</label>
         <input class="network" v-model="item.network"
@@ -150,7 +153,12 @@
     <!-- Volunteer -->
    <div id="volunteer">
     <h2>Volunteer</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.volunteer[0],userdata.volunteer
+        )">Add volunteer</a></p>
     <div v-for="(item,index) in userdata.volunteer" :key="index" class="volunteer">
+        <h3>Volunteer {{index+1}}
+            <a href="" @click="removeVolunteer($event,index)">X</a></h3>
         <p>
             <label for="organization">Organization</label>
             <input class="organization" v-model="item.organization"
@@ -197,7 +205,14 @@
     <!-- Education -->
     <div id="education">
     <h2>Education</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.education[0],userdata.education
+        )">Add education</a></p>
     <div v-for="(item,index) in userdata.education" :key="index" class="education">
+        <h3>Education {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.education
+                )">X</a></h3>
         <p>
             <label for="institution">Institution</label>
             <input class="institution" v-model="item.institution"
@@ -245,6 +260,9 @@
     <!-- Awards -->
     <div id="awards">
     <h2>Awards</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.awards[0],userdata.awards
+        )">Add award</a></p>
     <div v-for="(item,index) in userdata.awards" :key="index" class="award">
         <p>
             <label for="title">Title</label>
@@ -275,6 +293,9 @@
     <!-- Publications -->
     <div id="publications">
     <h2>Publications</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.publications[0],userdata.publications
+        )">Add publication</a></p>
     <div v-for="(item,index) in userdata.publications" :key="index" class="publication">
         <p>
             <label for="name">Name</label>
@@ -311,6 +332,9 @@
     <!-- Skills -->
     <div id="skills">
     <h2>Skills</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.skills[0],userdata.skills
+        )">Add skill</a></p>
     <div v-for="(item,index) in userdata.skills" :key="index" class="skills">
         <p>
             <label for="name">Name</label>
@@ -335,6 +359,9 @@
     <!-- Languages -->
     <div id="languages">
     <h2>Languages</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.languages[0],userdata.languages
+        )">Add language</a></p>
     <div v-for="(item,index) in userdata.languages" :key="index" class="languages">
         <p>
             <label for="language">Language</label>
@@ -353,7 +380,10 @@
     <!-- End languages -->
     <!-- Interests -->
     <div id="interests">
-    <h2>Skills</h2>
+    <h2>Interests</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.interests[0],userdata.interests
+        )">Add interest</a></p>
     <div v-for="(item,index) in userdata.interests" :key="index" class="interests">
         <p>
             <label for="name">Name</label>
@@ -368,10 +398,13 @@
         </p>
     </div>
     </div>
-    <!-- End skills -->
+    <!-- End interests -->
     <!-- References -->
     <div id="references">
     <h2>References</h2>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.references[0],userdata.references
+        )">Add reference</a></p>
     <div v-for="(item,index) in userdata.references" :key="index" class="references">
         <p>
             <label for="name">Name</label>
@@ -393,6 +426,9 @@
 </template>
 
 <script>
+import templeateData from '@/assets/templeateData.json';
+
+
 export default {
   props: {
     userdata: {
@@ -402,6 +438,7 @@ export default {
   data() {
     return {
       errors: [],
+      newEmptyData: templeateData,
     };
   },
   methods: {
@@ -418,21 +455,56 @@ export default {
     },
     addWork(e) {
       e.preventDefault();
-      this.userdata.work.push(
-        {
-          company: '',
-          position: '',
-          website: '',
-          startDate: '',
-          endDate: '',
-          summary: '',
-          highlights: [],
-        },
-      );
+      const newData = {};// new Object();
+      Object.assign(newData, this.newEmptyData.work[0]);
+      this.userdata.work.push(newData);
     },
     removeWork(e, index) {
       e.preventDefault();
       this.userdata.work.splice(index, 1);
+    },
+    addSocialProfile(e) {
+      e.preventDefault();
+      const newData = {};
+      Object.assign(newData, this.newEmptyData.basics.profiles[0]);
+      this.userdata.basics.profiles.push(newData);
+    },
+    removeSocialProfile(e, index) {
+      e.preventDefault();
+      this.userdata.basics.profiles.splice(index, 1);
+    },
+    addVolunteer(e) {
+      e.preventDefault();
+      const newData = {};
+      Object.assign(newData, this.newEmptyData.volunteer[0]);
+      this.userdata.volunteer.push(newData);
+    },
+    removeVolunteer(e, index) {
+      e.preventDefault();
+      this.userdata.volunteer.splice(index, 1);
+    },
+    // Generic add item
+    addItem(e, source, target) {
+      e.preventDefault();
+      const newData = {};
+      Object.assign(newData, source);
+      target.push(newData);
+    },
+    // Generic remove item
+    removeItem(e, index, target) {
+      e.preventDefault();
+      target.splice(index, 1);
+    },
+
+    addEducation(e) {
+      e.preventDefault();
+      const newData = {};
+      Object.assign(newData, this.newEmptyData.education[0]);
+      this.userdata.education.push(newData);
+    },
+    removeEducation(e, index) {
+      e.preventDefault();
+      this.userdata.volunteer.splice(index, 1);
     },
   },
 };
