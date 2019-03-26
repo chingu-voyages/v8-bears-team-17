@@ -1,0 +1,91 @@
+{
+    "basics": {
+      "name": "alphabetic",
+      "label": "alphabetic",
+      "picture": "url",
+      "email": "email",
+      "phone": "phone",
+      "website": "url",
+      "summary": "alphanumeric",
+      "location": {
+        "address": "address",
+        "postalCode": "postalcode",
+        "city": "alphanumeric",
+        "countryCode": "countryCode",
+        "region": "region"
+      },
+      "profiles": [{
+        "network": "alphanumeric",
+        "username": "alphabetic",
+        "url": "url"
+      }]
+    },
+    "work": [{
+      "company": "alphanumeric",
+      "position": "alphanumeric",
+      "website": "url",
+      "startDate": "date",
+      "endDate": "date",
+      "summary": "alphanumeric",
+      "highlights": [
+        {"highlight":"alphanumeric"}
+      ]
+    }],
+    "volunteer": [{
+      "organization": "alphanumeric",
+      "position": "alphanumeric",
+      "website": "url",
+      "startDate": "date",
+      "endDate": "date",
+      "summary": "alphanumeric",
+      "highlights": [
+        {"highlight":"alphanumeric"}
+      ]
+    }],
+    "education": [{
+      "institution": "alphanumeric",
+      "area": "alphanumeric",
+      "studyType": "alphanumeric",
+      "startDate": "date",
+      "endDate": "date",
+      "gpa": "alphanumeric",
+      "courses": [
+        {"course":"alphanumeric"}
+      ]
+    }],
+    "awards": [{
+      "title": "alphanumeric",
+      "date": "date",
+      "awarder": "alphanumeric",
+      "summary": "alphanumeric"
+    }],
+    "publications": [{
+      "name": "alphanumeric",
+      "publisher": "alphanumeric",
+      "releaseDate": "date",
+      "website": "url",
+      "summary": "alphanumeric"
+    }],
+    "skills": [{
+      "name": "alphanumeric",
+      "level": "alphanumeric",
+      "keywords": [
+        {"keyword":"alphanumeric"}
+      ]
+    }],
+    "languages": [{
+      "language": "alphanumeric",
+      "fluency": "alphanumeric"
+    }],
+    "interests": [{
+      "name": "alphabetic",
+      "keywords": [
+        {"keyword":"alphanumeric"}
+      ]
+    }],
+    "references": [{
+      "name": "alphabetic",
+      "reference": "alphanumeric"
+    }]
+  }
+  
