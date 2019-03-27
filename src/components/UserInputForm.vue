@@ -74,10 +74,15 @@
     <!-- Profiles -->
   <div class="profiles">
     <h3>Social profiles</h3>
-    <p><a href="" @click="addSocialProfile">Add social profile</a></p>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.basics.profiles[0],userdata.basics.profiles
+        )">Add social profiles</a></p>
     <div v-for="(item,index) in userdata.basics.profiles" :key="index" class="social-profile">
       <h3>Social profile {{index+1}}
-          <a href="" @click="removeSocialProfile($event,index)">X</a></h3>
+          <a href=""
+            @click="removeItem($event,index,userdata.basics.profiles)"
+            >X</a></h3>
+          <!-- <a href="" @click="removeSocialProfile($event,index)">X</a></h3> -->
     <p>
         <label for="network">Network</label>
         <input class="network" v-model="item.network"
@@ -100,10 +105,14 @@
 </div>
     <div id="work">
     <h2>Work experiences</h2>
-    <p><a href="" @click="addWork">Add work</a></p>
+    <p><a href="" @click="addItem(
+        $event,newEmptyData.work[0],userdata.work
+        )">Add work</a></p>
     <div v-for="(item,work_index) in userdata.work" :key="work_index" class="workExperience">
         <h3>Work {{work_index+1}}
-            <a href="" @click="removeWork($event,work_index)">X</a></h3>
+            <a href=""
+            @click="removeItem($event,work_index,userdata.work)"
+            >X</a></h3>
         <p>
             <label for="company">Company</label>
             <input class="company" v-model="item.company"
@@ -139,10 +148,13 @@
             <textarea class="summary" v-model="item.summary"
             name="summary"></textarea>
         </p>
-        <p><a href="" @click="addWorkHighlight($event,work_index)">Add highlight</a></p>
+        <!-- <p><a href="" @click="addWorkHighlight($event,work_index)">Add highlight</a></p> -->
+        <p><a href="" @click="addItem(
+            $event, {highlight:''} ,userdata.work[work_index].highlights
+            )">Add highlight</a></p>
         <p v-for="(subitem,highlight_index) in item.highlights" :key="highlight_index">
             <label for="highlights"><a href=""
-            @click="removeWorkHighlight($event,work_index,highlight_index)"
+            @click="removeItem($event,highlight_index,userdata.work[work_index].highlights)"
             >X</a> Highlight: </label>
             <input type="text" class="highlights" v-model="subitem.highlight"
             name="highlights">
@@ -158,7 +170,9 @@
         )">Add volunteer</a></p>
     <div v-for="(item,index) in userdata.volunteer" :key="index" class="volunteer">
         <h3>Volunteer {{index+1}}
-            <a href="" @click="removeVolunteer($event,index)">X</a></h3>
+        <a href=""
+            @click="removeItem($event,index,userdata.volunteer)"
+            >X</a></h3>
         <p>
             <label for="organization">Organization</label>
             <input class="organization" v-model="item.organization"
@@ -194,8 +208,13 @@
             <textarea class="summary" v-model="item.summary"
             name="userdata.work.summary"></textarea>
         </p>
-        <p v-for="(subitem,key,index) in item.highlights" :key="index">
-            <label for="highlights">Highlight: </label>
+        <p><a href="" @click="addItem(
+            $event, {highlight:''} ,userdata.volunteer[index].highlights
+            )">Add highlight</a></p>
+        <p v-for="(subitem,key,sub_index) in item.highlights" :key="sub_index">
+            <label for="highlights"><a href=""
+            @click="removeItem($event,sub_index,userdata.volunteer[index].highlights)"
+            >X</a> Highlight: </label>
             <input type="text" class="highlights" v-model="subitem.highlight"
             name="highlights">
         </p>
@@ -249,8 +268,13 @@
             type="date"
             name="endDate">
         </p>
-        <p v-for="(subitem,key,index) in item.courses" :key="index">
-            <label for="courses">Course: </label>
+        <p><a href="" @click="addItem(
+            $event, {course:''} ,userdata.education[index].courses
+            )">Add course</a></p>
+        <p v-for="(subitem,sub_index) in item.courses" :key="sub_index">
+            <label for="courses"><a href="" @click="removeItem(
+                $event,sub_index,userdata.education[index].courses
+                )">X</a> Course: </label>
             <input type="text" class="courses" v-model="subitem.course"
             name="courses">
         </p>
@@ -264,6 +288,10 @@
         $event,newEmptyData.awards[0],userdata.awards
         )">Add award</a></p>
     <div v-for="(item,index) in userdata.awards" :key="index" class="award">
+        <h3>Award {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.awards
+                )">X</a></h3>
         <p>
             <label for="title">Title</label>
             <input class="title" v-model="item.title"
@@ -297,6 +325,10 @@
         $event,newEmptyData.publications[0],userdata.publications
         )">Add publication</a></p>
     <div v-for="(item,index) in userdata.publications" :key="index" class="publication">
+        <h3>Publication {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.publications
+                )">X</a></h3>
         <p>
             <label for="name">Name</label>
             <input class="name" v-model="item.name"
@@ -336,6 +368,10 @@
         $event,newEmptyData.skills[0],userdata.skills
         )">Add skill</a></p>
     <div v-for="(item,index) in userdata.skills" :key="index" class="skills">
+        <h3>Skill {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.skills
+                )">X</a></h3>
         <p>
             <label for="name">Name</label>
             <input class="name" v-model="item.name"
@@ -348,9 +384,14 @@
             type="text"
             name="level">
         </p>
-        <p v-for="(subitem,key,index) in item.keywords" :key="index">
-            <label for="keywords">Keyword: </label>
-            <input type="text" class="courses" v-model="subitem.keyword"
+        <p><a href="" @click="addItem(
+            $event, {keyword:''} ,userdata.skills[index].keywords
+            )">Add keyword</a></p>
+        <p v-for="(subitem,key,sub_index) in item.keywords" :key="sub_index">
+            <label for="keywords"><a href="" @click="removeItem(
+                $event,sub_index,userdata.skills[index].keywords
+                )">X</a>Keyword: </label>
+            <input type="text" class="keywords" v-model="subitem.keyword"
             name="keywords">
         </p>
     </div>
@@ -363,6 +404,10 @@
         $event,newEmptyData.languages[0],userdata.languages
         )">Add language</a></p>
     <div v-for="(item,index) in userdata.languages" :key="index" class="languages">
+        <h3>Language {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.languages
+                )">X</a></h3>
         <p>
             <label for="language">Language</label>
             <input class="language" v-model="item.language"
@@ -385,15 +430,24 @@
         $event,newEmptyData.interests[0],userdata.interests
         )">Add interest</a></p>
     <div v-for="(item,index) in userdata.interests" :key="index" class="interests">
+        <h3>Interest {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.interests
+                )">X</a></h3>
         <p>
             <label for="name">Name</label>
             <input class="name" v-model="item.name"
             type="text"
             name="name">
         </p>
-        <p v-for="(subitem,key,index) in item.keywords" :key="index">
-            <label for="keywords">Keyword: </label>
-            <input type="text" class="courses" v-model="subitem.keyword"
+        <p><a href="" @click="addItem(
+            $event, {keyword:''} ,item.keywords
+            )">Add keyword</a></p>
+        <p v-for="(subitem,sub_index) in item.keywords" :key="sub_index">
+            <label for="keywords"><a href="" @click="removeItem(
+                $event,sub_index,userdata.interests[index].keywords
+                )">X</a>Keyword: </label>
+            <input type="text" class="keywords" v-model="subitem.keyword"
             name="keywords">
         </p>
     </div>
@@ -406,6 +460,10 @@
         $event,newEmptyData.references[0],userdata.references
         )">Add reference</a></p>
     <div v-for="(item,index) in userdata.references" :key="index" class="references">
+        <h3>Reference {{index+1}}
+            <a href="" @click="removeItem(
+                $event,index,userdata.references
+                )">X</a></h3>
         <p>
             <label for="name">Name</label>
             <input class="name" v-model="item.name"
@@ -442,69 +500,22 @@ export default {
     };
   },
   methods: {
-    addWorkHighlight(e, index) {
-      e.preventDefault();
-      this.userdata.work[index].highlights.push({ highlight: '' });
-      console.log('Aggiungo highlight');
-    },
-    removeWorkHighlight(e, index, subindex) {
-      e.preventDefault();
-      console.log(`Index: ${index}`);
-      console.log(`Subindex: ${subindex}`);
-      this.userdata.work[index].highlights.splice(subindex, 1);
-    },
-    addWork(e) {
-      e.preventDefault();
-      const newData = {};// new Object();
-      Object.assign(newData, this.newEmptyData.work[0]);
-      this.userdata.work.push(newData);
-    },
-    removeWork(e, index) {
-      e.preventDefault();
-      this.userdata.work.splice(index, 1);
-    },
-    addSocialProfile(e) {
-      e.preventDefault();
-      const newData = {};
-      Object.assign(newData, this.newEmptyData.basics.profiles[0]);
-      this.userdata.basics.profiles.push(newData);
-    },
-    removeSocialProfile(e, index) {
-      e.preventDefault();
-      this.userdata.basics.profiles.splice(index, 1);
-    },
-    addVolunteer(e) {
-      e.preventDefault();
-      const newData = {};
-      Object.assign(newData, this.newEmptyData.volunteer[0]);
-      this.userdata.volunteer.push(newData);
-    },
-    removeVolunteer(e, index) {
-      e.preventDefault();
-      this.userdata.volunteer.splice(index, 1);
-    },
     // Generic add item
     addItem(e, source, target) {
       e.preventDefault();
-      const newData = {};
-      Object.assign(newData, source);
-      target.push(newData);
+      target.push(JSON.parse(JSON.stringify(source)));
     },
     // Generic remove item
     removeItem(e, index, target) {
       e.preventDefault();
       target.splice(index, 1);
     },
-
-    addEducation(e) {
+    test(e, v1, v2, v3, v4) {
       e.preventDefault();
-      const newData = {};
-      Object.assign(newData, this.newEmptyData.education[0]);
-      this.userdata.education.push(newData);
-    },
-    removeEducation(e, index) {
-      e.preventDefault();
-      this.userdata.volunteer.splice(index, 1);
+      console.log(`v1: ${v1}`);
+      console.log(`v2: ${v2}`);
+      console.log(`v3: ${v3}`);
+      console.log(`v4: ${v4}`);
     },
   },
 };
