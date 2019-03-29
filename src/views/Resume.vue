@@ -26,7 +26,7 @@ import UserInputForm from '@/components/UserInputForm.vue';
 import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
 
 export default {
-  name: 'home',
+  name: 'resume',
   components: {
     JSONUploader,
     UserInputForm,

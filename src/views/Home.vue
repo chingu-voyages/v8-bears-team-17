@@ -1,9 +1,19 @@
 <template>
   <div>
-    <h1>Hey there</h1>
+    <HeroSection/>
+    <Features/>
   </div>
 </template>
 
 <script>
-export default {};
+import HeroSection from '../components/HeroSection.vue';
+import Features from '../components/Features.vue';
+
+export default {
+  name: 'Home',
+  components: {
+    HeroSection,
+    Features,
+  },
+};
 </script>
