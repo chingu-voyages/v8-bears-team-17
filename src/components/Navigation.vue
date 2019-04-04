@@ -47,8 +47,6 @@ export default {
       drawer: false,
       links: [
         { icon: 'home', text: 'Home', route: '/' },
-        { icon: 'info', text: 'About', route: '/about' },
-        { icon: 'email', text: 'Contact', route: '/contact' },
         { icon: 'dashboard', text: 'Get started', route: '/resume' },
       ],
     };

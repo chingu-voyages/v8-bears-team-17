@@ -12,7 +12,7 @@
           Resume builder lets you build your resume from a
           form or JSON file and personalize it through themes.
         </div>
-        <v-btn color="success get-started">Get started</v-btn>
+        <v-btn to="/resume" color="success get-started">Get started</v-btn>
       </article>
     </v-layout>
   </section>
