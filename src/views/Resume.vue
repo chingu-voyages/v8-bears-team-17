@@ -13,37 +13,37 @@
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
-      <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
+      <UserInputForm1 v-bind:userdata="mainUserData"></UserInputForm1>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import JSONUploader from '@/components/JSONUploader.vue';
-import nullData from '@/assets/nullData.json';
-import UserInputForm from '@/components/UserInputForm.vue';
-import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
+import JSONUploader from "@/components/JSONUploader.vue";
+import nullData from "@/assets/nullData.json";
+import UserInputForm1 from "@/components/UserInputForm1.vue";
+import DownloadJSONFile from "@/components/DownloadJSONFile.vue";
 
 export default {
-  name: 'resume',
+  name: "resume",
   components: {
     JSONUploader,
-    UserInputForm,
-    DownloadJSONFile,
+    UserInputForm1,
+    DownloadJSONFile
   },
   data() {
     return {
       fileContent: null,
       mainUserData: nullData,
-      keys: Array,
+      keys: Array
     };
   },
   methods: {
     testFun() {
-      this.mainUserData.personalData.name = 'Luca Gessi';
+      this.mainUserData.personalData.name = "Luca Gessi";
       this.keys = Object.keys(this.mainUserData);
-    },
+    }
   },
   watch: {
     // whenever fileContent changes, this function will run
@@ -52,7 +52,7 @@ export default {
       console.log(`name basics: ${typeof val.basics}`);
       console.log(`name type: ${typeof val.basics.name}`);
       this.mainUserData = this.fileContent;
-    },
-  },
+    }
+  }
 };
 </script>
