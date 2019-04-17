@@ -1,21 +1,20 @@
 <template>
-  <div class="home">
-    <div>
+  <v-layout column>
+    <v-flex>
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
-      <!-- FOR JSON FİLE -->
-      <!-- <DownloadJSONFile :download-data="mainUserData"
-            file-type="json"
-            file-name="Periyodik Tablo - Bazı Elementler"
-            class="periodic_table color-3"
-      button-text="Download Period Table As JSON"/>-->
+    </v-flex>
+
+    <v-flex>
+      <UserInputForm1 v-bind:userdata="mainUserData"></UserInputForm1>
+    </v-flex>
+    <v-flex>
       <DownloadJSONFile
         ButtonText="Download json file"
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
-      <UserInputForm1 v-bind:userdata="mainUserData"></UserInputForm1>
-    </div>
-  </div>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

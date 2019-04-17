@@ -588,7 +588,7 @@
                   type="text"
                   label="Fluency"
                   name="fluency"
-                  v-model="item.language"
+                  v-model="item.fluency"
                 ></v-text-field>
                 <v-divider></v-divider>
               </div>
@@ -648,7 +648,6 @@
 
 <script>
 import templeateData from "@/assets/templeateData.json";
-
 export default {
   props: {
     userdata: {
