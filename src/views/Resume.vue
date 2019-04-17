@@ -1,5 +1,6 @@
 <template>
-  <v-layout column>
+  <v-layout column align-center>
+    <h1>Upload or input your resume here</h1>
     <v-flex>
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
     </v-flex>

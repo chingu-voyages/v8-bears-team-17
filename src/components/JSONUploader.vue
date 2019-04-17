@@ -1,7 +1,10 @@
 <template>
   <div>
     <!--triggers ref on input element so we display a button -->
-    <v-btn class="teal dark" v-on:click="$refs.JSONFile.click()">{{ButtonText}}</v-btn>
+    <v-btn class="teal white--text" v-on:click="$refs.JSONFile.click()">
+      {{ButtonText}}
+      <v-icon right small color="white">cloud_upload</v-icon>
+    </v-btn>
     <!-- Now, the file input that we hide. -->
     <input ref="JSONFile" type="file" @change="handleFileChange">
 
