@@ -2,7 +2,7 @@
   <v-form>
     <!--@submit="checkForm">-->
     <!--error handling, not sure if the snackbar thing works!
-    Actually this shouldn't be in this component, I think-->
+    Actually this shouldn't be in this component, I think, but rather the resume.vue?-->
 
     <v-snackbar v-if="errors.length">
       <b>Please correct the following error(s):</b>
@@ -11,12 +11,13 @@
       </ul>
     </v-snackbar>
 
-    <v-container>
-      <v-layout row wrap>
+    <v-container xs12>
+      <v-layout column justify-center align-center>
         <!-- Basics -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Personal data</v-card-title>
+
             <v-text-field
               outline
               name="name"
@@ -79,7 +80,7 @@
           </v-card>
         </v-flex>
         <!--Location-->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Location</v-card-title>
             <v-text-field
@@ -126,9 +127,10 @@
         </v-flex>
         <!-- End basics -->
         <!-- Profiles -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Social profiles</v-card-title>
+            <v-btn block @click="addItem()">Add profile</v-btn>
             <div
               v-for="(item,index) in userdata.basics.profiles"
               :key="index"
@@ -165,7 +167,7 @@
         <!-- End Profiles -->
 
         <!-- Work -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Work</v-card-title>
             <v-btn
@@ -275,7 +277,7 @@
         </v-flex>
         <!-- End Work -->
         <!-- Volunteer -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Volunteer</v-card-title>
             <v-btn
@@ -340,7 +342,7 @@
                 v-model="item.summary"
               ></v-textarea>
               <template>
-                <v-card-title class="subhead">Heighlights:</v-card-title>
+                <v-card-title class="subheading">Highlights:</v-card-title>
                 <v-btn
                   @click="addItem(
                   $event, {highlight:''} ,userdata.volunteer[index].highlights
@@ -376,7 +378,7 @@
         </v-flex>
         <!-- End Volunteer -->
         <!-- Education -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Education</v-card-title>
             <v-btn
@@ -428,26 +430,57 @@
                 placeholder="..."
                 v-model="item.endDate"
               ></v-text-field>
-              <v-list>
-                <v-list-tile v-for="(subitem,key,index) in item.courses" :key="index">
-                  <v-text-field
-                    name="courses"
-                    label="Course"
-                    placeholder="..."
-                    type="text"
-                    v-model="subitem.course"
-                  ></v-text-field>
-                </v-list-tile>
-              </v-list>
+
+              <template>
+                <v-card-title class="subheading">Courses:</v-card-title>
+                <v-btn
+                  @click="addItem(
+                  $event, {course:''} ,userdata.education[index].courses
+                  )"
+                >
+                  Add course
+                  <v-icon right>library_add</v-icon>
+                </v-btn>
+
+                <v-list>
+                  <v-list-tile v-for="(item,index) in item.courses" :key="index">
+                    <v-text-field
+                      name="course"
+                      label="course name"
+                      placeholder="..."
+                      v-model="item.course"
+                    ></v-text-field>
+                    <v-btn
+                      icon
+                      small
+                      @click="removeItem(
+                        $event,index,userdata.education[index].courses)"
+                    >
+                      <v-icon>delete</v-icon>
+                    </v-btn>
+                  </v-list-tile>
+                </v-list>
+              </template>
+
+              <v-divider></v-divider>
+
+              <v-btn block @click="removeItem($event,index,userdata.education)">
+                Education {{index+1}}
+                <v-icon right>delete</v-icon>
+              </v-btn>
             </div>
           </v-card>
         </v-flex>
         <!-- End Education -->
 
         <!-- Awards -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Awards</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
+
             <div
               v-for="(item,index) in userdata.awards"
               :key="index"
@@ -487,9 +520,12 @@
         </v-flex>
         <!-- End Awards -->
         <!-- Publications -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Publications</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
             <v-list v-for="(item,index) in userdata.publications" :key="index">
               <div class="grey lighten-2 pa-2 ma-1">
                 <v-text-field
@@ -533,9 +569,12 @@
         </v-flex>
         <!-- End publications -->
         <!-- Skills -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Skills</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
             <v-list v-for="(item,index) in userdata.skills" :key="index">
               <div class="grey lighten-2 pa-2 ma-1">
                 <v-text-field
@@ -571,9 +610,12 @@
         </v-flex>
         <!-- End skills -->
         <!-- Languages -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Languages</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
             <v-list v-for="(item,index) in userdata.languages" :key="index">
               <div class="grey lighten-2 pa-2 ma-1">
                 <v-text-field
@@ -597,9 +639,12 @@
         </v-flex>
         <!-- End languages -->
         <!-- Interests -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Interests</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
             <div
               v-for="(item,index) in userdata.interests"
               :key="index"
@@ -626,9 +671,12 @@
         <!-- End skills -->
 
         <!-- References -->
-        <v-flex xs12 sm6 md4>
+        <v-flex xs12>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">References</v-card-title>
+            <v-btn block @click="addItem( )">
+              <v-icon>library_add</v-icon>
+            </v-btn>
             <div
               v-for="(item,index) in userdata.references"
               :key="index"
@@ -648,6 +696,7 @@
 
 <script>
 import templeateData from "@/assets/templeateData.json";
+
 export default {
   props: {
     userdata: {
@@ -676,4 +725,6 @@ export default {
 </script>
 
 <style scoped>
+.card {
+}
 </style>

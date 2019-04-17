@@ -1,26 +1,29 @@
 {
-    "basics": {
-      "name": "",
-      "label": "",
-      "picture": "",
-      "email": "",
-      "phone": "",
-      "website": "",
-      "summary": "",
-      "location": {
-        "address": "",
-        "postalCode": "",
-        "city": "",
-        "countryCode": "",
-        "region": ""
-      },
-      "profiles": [{
+  "basics": {
+    "name": "",
+    "label": "",
+    "picture": "",
+    "email": "",
+    "phone": "",
+    "website": "",
+    "summary": "",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "region": ""
+    },
+    "profiles": [
+      {
         "network": "",
         "username": "",
         "url": ""
-      }]
-    },
-    "work": [{
+      }
+    ]
+  },
+  "work": [
+    {
       "company": "",
       "position": "",
       "website": "",
@@ -28,8 +31,10 @@
       "endDate": "",
       "summary": "",
       "highlights": []
-    }],
-    "volunteer": [{
+    }
+  ],
+  "volunteer": [
+    {
       "organization": "",
       "position": "",
       "website": "",
@@ -37,8 +42,10 @@
       "endDate": "",
       "summary": "",
       "highlights": []
-    }],
-    "education": [{
+    }
+  ],
+  "education": [
+    {
       "institution": "",
       "area": "",
       "studyType": "",
@@ -46,36 +53,48 @@
       "endDate": "",
       "gpa": "",
       "courses": []
-    }],
-    "awards": [{
+    }
+  ],
+  "awards": [
+    {
       "title": "",
       "date": "",
       "awarder": "",
       "summary": ""
-    }],
-    "publications": [{
+    }
+  ],
+  "publications": [
+    {
       "name": "",
       "publisher": "",
       "releaseDate": "",
       "website": "",
       "summary": ""
-    }],
-    "skills": [{
+    }
+  ],
+  "skills": [
+    {
       "name": "",
       "level": "",
       "keywords": []
-    }],
-    "languages": [{
+    }
+  ],
+  "languages": [
+    {
       "language": "",
       "fluency": ""
-    }],
-    "interests": [{
+    }
+  ],
+  "interests": [
+    {
       "name": "",
       "keywords": []
-    }],
-    "references": [{
+    }
+  ],
+  "references": [
+    {
       "name": "",
       "reference": ""
-    }]
-  }
-  
+    }
+  ]
+}
