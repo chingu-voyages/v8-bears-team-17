@@ -6,84 +6,95 @@
             <p class="location"></p>
 
             <section class="contact-details">
-                <p class="phone-number"></p>
-                <p class="email-address"></p>
-                <p class="website-address"></p>
+                <p class="contact"></p>
             </section>
 
             <section class="social-profiles">
-                <p class="twitter"></p>
-                <p class="github"></p>
-                <p class="chingu"></p>
+                <p class="profile"></p>
             </section>
         </section>
 
         <section class="work-volunteer-experience">
-            <p class="position"></p>
-            <p class="duration"></p>
-            <section class="company-details">
-                <p class="company-name"></p>
-                <p class="company-website"></p>
-            </section>
-            <p class="summary-of-responsibilities"></p>
-            <ul class="job-highlights">
-                <li class="job-hightlight"></li>
-            </ul>
+            <article class="experience">
+                <p class="position"></p>
+                <p class="duration"></p>
+                <section class="company-details">
+                    <p class="company-name"></p>
+                    <p class="company-website"></p>
+                </section>
+                <p class="summary-of-responsibilities"></p>
+                <ul class="job-highlights">
+                    <li class="job-hightlight"></li>
+                </ul>
+            </article>
         </section>
 
-        <section class="education">
-            <p class="institution"></p>
-            <p class="area"></p>
-            <p class="study-type"></p>
-            <p class="gpa"></p>
-            <p class="duration"></p>
+        <section class="relevant-education">
+            <article class="education">
+                <p class="institution"></p>
+                <p class="area"></p>
+                <p class="study-type"></p>
+                <p class="gpa"></p>
+                <p class="duration"></p>
 
-            <ul class="courses">
-                <li class="course"></li>
-            </ul>
+                <ul class="courses">
+                    <li class="course"></li>
+                </ul>
+            </article>
         </section>
 
         <section class="awards">
-            <p class="title"></p>
-            <p class="date"></p>
-            <p class="awarder"></p>
-            <p class="summary"></p>
+            <article class="award">
+                <p class="title"></p>
+                <p class="date"></p>
+                <p class="awarder"></p>
+                <p class="summary"></p>
+            </article>
         </section>
 
         <section class="publications">
-            <p class="name"></p>
-            <section class="publisher-details">
-                <p class="publisher-name"></p>
-                <p class="publisher-website"></p>
-            </section>
-            <p class="release-date"></p>
-            <p class="summary"></p>
+            <article class="publication">
+                <p class="name"></p>
+                <section class="publisher-details">
+                    <p class="publisher-name"></p>
+                    <p class="publisher-website"></p>
+                </section>
+                <p class="release-date"></p>
+                <p class="summary"></p>
+            </article>
         </section>
 
         <section class="skills">
-            <p class="skill"></p>
-            <p class="skill-level"></p>
-            <ul class="keywords">
-                <li class="keyword"></li>
-            </ul>
-        </section>
-
-        <section class="languages">
-            <p class="language"></p>
-            <p class="fluency"></p>
-        </section>
-
-        <section class="interests">
-            <p class="name-of-interest">
+            <article class="skill">
+                <p class="skill"></p>
+                <p class="skill-level"></p>
                 <ul class="keywords">
                     <li class="keyword"></li>
                 </ul>
-            </p>
+            </article>
+        </section>
+
+        <section class="languages">
+            <article class="language">
+                <p class="language-name"></p>
+                <p class="language-fluency"></p>
+            </article>
+        </section>
+
+        <section class="interests">
+            <article class="interest">
+                <p class="name-of-interest"></p>
+                <ul class="keywords">
+                    <li class="keyword"></li>
+                </ul>
+            </article>
         </section>
 
         <section class="references">
-            <p class="name-of-reference"></p>
-            <p class="contact-of-reference"></p>
+            <article class="reference">
+                <p class="name-of-reference"></p>
+                <p class="contact-of-reference"></p>
+            </article>
         </section>
     </div>
 </template>
