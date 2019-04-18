@@ -1,71 +1,74 @@
 <template>
-    <div>
-    <label class="file-select">
-    <!-- https://alligator.io/vuejs/file-select-component/ -->
-    <!-- We can't use a normal button element here, as it would become the target of the label. -->
-    <div class="select-button">
+  <div>
+    <!--triggers ref on input element so we display a button -->
+    <v-btn class="teal white--text" v-on:click="$refs.JSONFile.click()">
+      {{ButtonText}}
+      <v-icon right small color="white">cloud_upload</v-icon>
+    </v-btn>
+    <!-- Now, the file input that we hide. -->
+    <input ref="JSONFile" type="file" @change="handleFileChange">
+
+    <!-- displaying errors/filename-->
+    <label class="selected">
+      <!-- https://alligator.io/vuejs/file-select-component/  > used ref instead!!!-->
+      <!-- We can't use a normal button element here, as it would become the target of the label. -->
+
       <!-- Display the filename if a file has been selected. -->
       <span v-if="fileTitle">Uploaded file: {{fileTitle}}</span>
-      <span v-else>{{ButtonText}}</span>
-    </div>
-    <!-- Now, the file input that we hide. -->
-    <input type="file" @change="handleFileChange"/>
-  </label>
+      <span v-else></span>
+    </label>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'JSONUploader',
+  name: "JSONUploader",
   props: {
     // Using value here allows us to be v-model compatible.
     // value: File
     // uploadedData: Object,
-    ButtonText: String,
+    ButtonText: String
   },
   data() {
     return {
-      fileTitle: null,
+      fileTitle: null
     };
   },
   methods: {
     handleFileChange(ev) {
-      console.log('On handleFileChange');
+      console.log("On handleFileChange");
       const file = ev.target.files[0];
       const reader = new FileReader();
       const mainScope = this;
-      reader.onload = function (e) {
-        console.log('onload event!');
+      reader.onload = function(e) {
+        console.log("onload event!");
         try {
           const JSONFile = JSON.parse(e.target.result);
-          mainScope.$emit('input', JSONFile);
+          mainScope.$emit("input", JSONFile);
           mainScope.fileTitle = file.name;
           // mainScope.rawData = JSONFile;
         } catch (err) {
-          console.log('Error during parsing');
+          console.log("Error during parsing");
         }
       };
       reader.readAsText(file);
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.file-select > .select-button {
+.selected {
   padding: 1rem;
 
-  color: white;
-  background-color: #2EA169;
-
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 
   text-align: center;
   font-weight: bold;
 }
 
 /* Don't forget to hide the original file input! */
-.file-select > input[type="file"] {
+input {
   display: none;
 }
 </style>

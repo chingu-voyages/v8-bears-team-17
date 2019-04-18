@@ -1,8 +1,10 @@
 <template>
-    <a :href="convertData"
-       :download="`${fileName}.json`">
-        {{ButtonText}}
-    </a>
+  <div>
+    <v-btn color="teal dark">
+      <a :href="convertData" :download="`${fileName}.json`">{{ButtonText}}</a>
+      <v-icon right color="white">cloud_download</v-icon>
+    </v-btn>
+  </div>
 </template>
 
 <script>
@@ -37,5 +39,8 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+  text-decoration: none;
+  color: white;
+}
 </style>
