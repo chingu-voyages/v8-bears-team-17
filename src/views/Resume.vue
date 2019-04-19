@@ -13,6 +13,7 @@
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
+      <PreviewResume ButtonText="Preview resume"></PreviewResume>
       <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </div>
   </div>
@@ -24,6 +25,7 @@ import JSONUploader from '@/components/JSONUploader.vue';
 import nullData from '@/assets/nullData.json';
 import UserInputForm from '@/components/UserInputForm.vue';
 import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
+import PreviewResume from '@/components/PreviewResume.vue';
 
 export default {
   name: 'resume',
@@ -31,6 +33,7 @@ export default {
     JSONUploader,
     UserInputForm,
     DownloadJSONFile,
+    PreviewResume,
   },
   data() {
     return {
