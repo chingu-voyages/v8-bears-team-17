@@ -28,8 +28,9 @@ export default new Router({
     },
     {
       path: '/basicTheme',
-      name: 'Basic Theme',
+      name: 'Basic',
       component: () => import('./themes/Basic.vue'),
+      props: true,
     },
   ],
 });

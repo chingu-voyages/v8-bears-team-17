@@ -96,16 +96,30 @@
                 <p class="contact-of-reference"></p>
             </article>
         </section>
+        <section>
+
+        </section>
     </div>
 </template>
 
 <script>
 
 export default {
-
+  props: {
+    previewData: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    test() {
+      const dData = JSON.stringify(this.previewData, null, 2);
+      console.log(dData);
+      return dData;
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

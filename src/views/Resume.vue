@@ -13,7 +13,7 @@
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
-      <PreviewResume ButtonText="Preview resume"></PreviewResume>
+      <PreviewResume ButtonText="Preview resume" :previewData="mainUserData"></PreviewResume>
       <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </div>
   </div>

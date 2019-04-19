@@ -2,7 +2,8 @@
     <!-- <a :href="loadBasicTheme">
         {{ButtonText}}
     </a> -->
-    <v-btn to="/basicTheme" color="success get-started">Preview resume</v-btn>
+    <v-btn :to="{ name: 'Basic', params: { previewData } }"
+    color="success get-started">Preview resume</v-btn>
 </template>
 
 <script>
@@ -13,10 +14,13 @@ export default {
       type: String,
       required: true,
     },
+    previewData: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
 
 <style scoped>
-
 </style>
