@@ -1,7 +1,8 @@
 <template>
-    <a>
+    <!-- <a :href="loadBasicTheme">
         {{ButtonText}}
-    </a>
+    </a> -->
+    <v-btn to="/basicTheme" color="success get-started">Preview resume</v-btn>
 </template>
 
 <script>
