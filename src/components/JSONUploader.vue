@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--triggers ref on input element so we display a button -->
-    <v-btn class="teal white--text" v-on:click="$refs.JSONFile.click()">
+    <v-btn dark color="#24a4b3" v-on:click="$refs.JSONFile.click()">
       {{ButtonText}}
       <v-icon right small color="white">cloud_upload</v-icon>
     </v-btn>

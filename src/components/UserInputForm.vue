@@ -12,135 +12,150 @@
     </v-snackbar>
 
     <v-container xs12>
-      <v-layout column align-center>
+      <v-layout row wrap>
         <!-- Basics -->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2">
             <v-card-title class="headline">Personal data</v-card-title>
-
-            <v-text-field
-              outline
-              name="name"
-              label="Name"
-              type="text"
-              placeholder="Your Name"
-              v-model="userdata.basics.name"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="label"
-              label="Label"
-              type="text"
-              placeholder="e.g. Humble Rockstar"
-              v-model="userdata.basics.label"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="picture"
-              label="Picture"
-              type="file"
-              placeholder="Your Profile picture"
-              v-model="userdata.basics.picture"
-            ></v-text-field>
-            <v-btn block>
-              <v-icon left>cloud_upload</v-icon>Upload!
-            </v-btn>
-            <v-text-field
-              outline
-              name="email"
-              label="email"
-              type="email"
-              placeholder="Your@email.com"
-              v-model="userdata.basics.email"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="phone"
-              label="phone"
-              type="tel"
-              placeholder="Your phone number"
-              v-model="userdata.basics.phone"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="website"
-              label="Website"
-              type="url"
-              placeholder="www.yourwebsite.com"
-              v-model="userdata.basics.website"
-            ></v-text-field>
-            <v-textarea
-              outline
-              name="summary"
-              label="Summary"
-              type="text"
-              placeholder="Your summary"
-              v-model="userdata.basics.summary"
-            ></v-textarea>
+            <div class="teal lighten-5 pa-2 ma-1">
+              <v-text-field
+                name="name"
+                label="Name"
+                type="text"
+                placeholder="Your Name"
+                v-model="userdata.basics.name"
+              ></v-text-field>
+              <v-text-field
+                name="label"
+                label="Label"
+                type="text"
+                placeholder="e.g. Humble Rockstar"
+                v-model="userdata.basics.label"
+              ></v-text-field>
+              <v-text-field
+                name="picture"
+                label="Picture"
+                type="file"
+                placeholder="Your Profile picture"
+                v-model="userdata.basics.picture"
+              ></v-text-field>
+              <v-btn block>
+                <v-icon left>cloud_upload</v-icon>Upload!
+              </v-btn>
+              <v-text-field
+                name="email"
+                label="email"
+                type="email"
+                placeholder="Your@email.com"
+                v-model="userdata.basics.email"
+              ></v-text-field>
+              <v-text-field
+                name="phone"
+                label="phone"
+                type="tel"
+                placeholder="Your phone number"
+                v-model="userdata.basics.phone"
+              ></v-text-field>
+              <v-text-field
+                name="website"
+                label="Website"
+                type="url"
+                placeholder="www.yourwebsite.com"
+                v-model="userdata.basics.website"
+              ></v-text-field>
+              <v-textarea
+                name="summary"
+                label="Summary"
+                type="text"
+                placeholder="Your summary"
+                v-model="userdata.basics.summary"
+              ></v-textarea>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem()">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
+            </div>
           </v-card>
         </v-flex>
         <!--Location-->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2" height="100%">
             <v-card-title class="headline">Location</v-card-title>
-            <v-text-field
-              outline
-              name="address"
-              label="Address"
-              type="text"
-              placeholder="e.g. Appelstreet 2"
-              v-model="userdata.basics.location.address"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="postalcode"
-              label="Postal Code"
-              type="text"
-              placeholder="e.g."
-              v-model="userdata.basics.location.postalcode"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="city"
-              label="City"
-              type="text"
-              placeholder="e.g. Copenhagen"
-              v-model="userdata.basics.location.city"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="countrycode"
-              label="Country Code"
-              type="text"
-              placeholder="e.g. "
-              v-model="userdata.basics.location.countrycode"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="region"
-              label="Region"
-              type="text"
-              placeholder="e.g."
-              v-model="userdata.basics.location.region"
-            ></v-text-field>
+            <div class="teal lighten-5 pa-2 ma-1">
+              <v-text-field
+                name="address"
+                label="Address"
+                type="text"
+                placeholder="e.g. Appelstreet 2"
+                v-model="userdata.basics.location.address"
+              ></v-text-field>
+              <v-text-field
+                name="postalcode"
+                label="Postal Code"
+                type="text"
+                placeholder="e.g."
+                v-model="userdata.basics.location.postalcode"
+              ></v-text-field>
+              <v-text-field
+                name="city"
+                label="City"
+                type="text"
+                placeholder="e.g. Copenhagen"
+                v-model="userdata.basics.location.city"
+              ></v-text-field>
+              <v-text-field
+                name="countrycode"
+                label="Country Code"
+                type="text"
+                placeholder="e.g. "
+                v-model="userdata.basics.location.countrycode"
+              ></v-text-field>
+              <v-text-field
+                name="region"
+                label="Region"
+                type="text"
+                placeholder="e.g."
+                v-model="userdata.basics.location.region"
+              ></v-text-field>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem()">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
+            </div>
           </v-card>
         </v-flex>
         <!-- End basics -->
         <!-- Profiles -->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Social profiles</v-card-title>
-            <v-btn
-              block
-              @click="addItem($event,newEmptyData.basics.profiles[0],userdata.basics.profiles)"
-            >Add profile</v-btn>
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2">
+            <v-card-title class="headline">
+              <span>Social profiles</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.basics.profiles[0],userdata.basics.profiles)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <div
               v-for="(item,index) in userdata.basics.profiles"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
-                outline
                 name="network"
                 label="Social media"
                 type="text"
@@ -148,32 +163,31 @@
                 v-model="item.network"
               ></v-text-field>
               <v-text-field
-                outline
                 name="username"
                 label="User name"
                 type="text"
                 placeholder="..."
                 v-model="item.network.username"
               ></v-text-field>
-              <v-text-field
-                outline
-                name="url"
-                label="Url"
-                type="url"
-                placeholder="..."
-                v-model="item.url"
-              ></v-text-field>
-              <v-btn @click="removeItem($event,index,userdata.basics.profiles)">
-                <v-icon>delete</v-icon>
-              </v-btn>
-              <v-divider></v-divider>
+              <v-text-field name="url" label="Url" type="url" placeholder="..." v-model="item.url"></v-text-field>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn
+                  dark
+                  color="#24a4b3"
+                  @click="removeItem($event,index,userdata.basics.profiles)"
+                >
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Profiles -->
 
         <!-- Work -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Work</v-card-title>
             <v-btn
@@ -283,7 +297,7 @@
         </v-flex>
         <!-- End Work -->
         <!-- Volunteer -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Volunteer</v-card-title>
             <v-btn
@@ -384,7 +398,7 @@
         </v-flex>
         <!-- End Volunteer -->
         <!-- Education -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Education</v-card-title>
             <v-btn
@@ -480,7 +494,7 @@
         <!-- End Education -->
 
         <!-- Awards -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Awards</v-card-title>
             <v-btn
@@ -536,7 +550,7 @@
         </v-flex>
         <!-- End Awards -->
         <!-- Publications -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Publications</v-card-title>
             <v-btn
@@ -595,7 +609,7 @@
         </v-flex>
         <!-- End publications -->
         <!-- Skills -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Skills</v-card-title>
             <v-btn block @click="addItem($event, newEmptyData.skills[0],userdata.skills )">
@@ -664,7 +678,7 @@
         </v-flex>
         <!-- End skills -->
         <!-- Languages -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Languages</v-card-title>
             <v-btn block @click="addItem($event,newEmptyData.languages[0],userdata.languages  )">
@@ -696,7 +710,7 @@
         </v-flex>
         <!-- End languages -->
         <!-- Interests -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">Interests</v-card-title>
             <v-btn block @click="addItem( $event,newEmptyData.interests[0],userdata.interests)">
@@ -742,7 +756,7 @@
         <!-- End skills -->
 
         <!-- References -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
             <v-card-title class="headline">References</v-card-title>
             <v-btn block @click="addItem($event, newEmptyData.references[0], userdata.references )">
@@ -803,5 +817,6 @@ export default {
 
 <style scoped>
 .card {
+  align-items: stretch;
 }
 </style>
