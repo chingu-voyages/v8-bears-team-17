@@ -6,7 +6,8 @@
     //TODO: Fix the non functioning remove button -> interests keyword
     //TODO: fix snackbar
     //TODO: Decide id personal data and location should have add buttons
-    //TODO: implement ok/edit button, so that the input values will be shown to user upon click, button changes to edit
+    //TODO: implement ok/edit button, so that the
+    //TODO: input values will be shown to user upon click, button changes to edit
     Actually this shouldn't be in this component, I think, but rather the resume.vue?-->
 
     <v-snackbar v-if="errors.length">
@@ -28,7 +29,11 @@
                 label="Name"
                 type="text"
                 placeholder="Your Name"
-                v-model="userdata.basics.name"
+                v-model="$v.newEmptyData.basics.name"
+                :error-messages="nameErrors"
+                required
+                @input="$v.newEmptyData.basics.name.$touch()"
+                @blur="$v.newEmptyData.basics.name.$touch()"
               ></v-text-field>
               <v-text-field
                 name="label"
@@ -179,7 +184,9 @@
                 placeholder="..."
                 v-model="item.network.username"
               ></v-text-field>
-              <v-text-field name="url" label="Url" type="url" placeholder="..." v-model="item.url"></v-text-field>
+              <v-text-field name="url" label="Url"
+              type="url" placeholder="..."
+              v-model="item.url"></v-text-field>
               <v-layout>
                 <v-spacer></v-spacer>
                 <v-btn
@@ -815,8 +822,10 @@
 
             <v-list v-for="(item,index) in userdata.languages" :key="index">
               <div class="teal lighten-5 pa-2 ma-1">
-                <v-text-field type="text" label="Language" name="language" v-model="item.language"></v-text-field>
-                <v-text-field type="text" label="Fluency" name="fluency" v-model="item.fluency"></v-text-field>
+                <v-text-field type="text" label="Language"
+                name="language" v-model="item.language"></v-text-field>
+                <v-text-field type="text" label="Fluency"
+                name="fluency" v-model="item.fluency"></v-text-field>
                 <!-- button group -->
                 <v-layout>
                   <v-spacer></v-spacer>
@@ -970,8 +979,9 @@
 
 
 <script>
-import templeateData from '@/assets/templeateData.json';
+import templateData from '@/assets/templeateData.json';
 import axios from 'axios';
+import { required, minLength } from 'vuelidate/lib/validators';
 
 export default {
   props: {
@@ -979,12 +989,35 @@ export default {
       type: Object,
     },
   },
+  validations: {
+    newEmptyData: {
+      basics: {
+        name: {
+          required,
+          minLength: minLength(10),
+        },
+      },
+    },
+  },
   data() {
     return {
       errors: ['test', 'hello'],
       selectedImage: null,
-      newEmptyData: templeateData,
+      newEmptyData: templateData,
     };
+  },
+  computed: {
+    nameErrors() {
+      const errors = [];
+      if (!this.$v.newEmptyData.basics.name.$dirty) return errors;
+      if (!this.$v.newEmptyData.basics.name.minLength) {
+        errors.push('Name must be at least 10 characters long');
+      }
+      if (!this.$v.newEmptyData.basics.name.required) {
+        errors.push('Name is required.');
+      }
+      return errors;
+    },
   },
   methods: {
     // Generic add item
