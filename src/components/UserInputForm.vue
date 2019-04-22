@@ -2,6 +2,11 @@
   <v-form>
     <!--@submit="checkForm">-->
     <!--error handling, not sure if the snackbar thing works!
+    //TODO: add height=100% to all cards or find better solution
+    //TODO: Fix the non functioning remove button -> interests keyword
+    //TODO: fix snackbar
+    //TODO: Decide id personal data and location should have add buttons
+    //TODO: implement ok/edit button, so that the input values will be shown to user upon click, button changes to edit
     Actually this shouldn't be in this component, I think, but rather the resume.vue?-->
 
     <v-snackbar v-if="errors.length">
@@ -12,140 +17,159 @@
     </v-snackbar>
 
     <v-container xs12>
-      <v-layout column align-center>
+      <v-layout row wrap>
         <!-- Basics -->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2">
             <v-card-title class="headline">Personal data</v-card-title>
-
-            <v-text-field
-              outline
-              name="name"
-              label="Name"
-              type="text"
-              placeholder="Your Name"
-              v-model="userdata.basics.name"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="label"
-              label="Label"
-              type="text"
-              placeholder="e.g. Humble Rockstar"
-              v-model="userdata.basics.label"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="picture"
-              label="Picture"
-              placeholder="Your Profile picture"
-              v-model="selectedImage"
-              @click="pickImage"
-            ></v-text-field>
-            <input
-              type="file"
-              ref="image"
-              style="display: none"
-              @change="onImageSelected" />
+            <div class="teal lighten-5 pa-2 ma-1">
+              <v-text-field
+                name="name"
+                label="Name"
+                type="text"
+                placeholder="Your Name"
+                v-model="userdata.basics.name"
+              ></v-text-field>
+              <v-text-field
+                name="label"
+                label="Label"
+                type="text"
+                placeholder="e.g. Humble Rockstar"
+                v-model="userdata.basics.label"
+              ></v-text-field>
+              <v-text-field
+                name="picture"
+                label="Picture"
+                type="file"
+                placeholder="Your Profile picture"
+                v-model="selectedImage"
+                @click="pickImage"
+              ></v-text-field>
+              <input
+                type="file"
+                ref="image"
+                style="display: none"
+                @change="onImageSelected" />
             <v-btn @click="onImageUpload" block>
               <v-icon left>cloud_upload</v-icon>Upload!
             </v-btn>
-            <v-text-field
-              outline
-              name="email"
-              label="email"
-              type="email"
-              placeholder="Your@email.com"
-              v-model="userdata.basics.email"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="phone"
-              label="phone"
-              type="tel"
-              placeholder="Your phone number"
-              v-model="userdata.basics.phone"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="website"
-              label="Website"
-              type="url"
-              placeholder="www.yourwebsite.com"
-              v-model="userdata.basics.website"
-            ></v-text-field>
-            <v-textarea
-              outline
-              name="summary"
-              label="Summary"
-              type="text"
-              placeholder="Your summary"
-              v-model="userdata.basics.summary"
-            ></v-textarea>
+              <v-btn @click="onImageUpload" block>
+                <v-icon left>cloud_upload</v-icon>Upload!
+              </v-btn>
+              <v-text-field
+                name="email"
+                label="email"
+                type="email"
+                placeholder="Your@email.com"
+                v-model="userdata.basics.email"
+              ></v-text-field>
+              <v-text-field
+                name="phone"
+                label="phone"
+                type="tel"
+                placeholder="Your phone number"
+                v-model="userdata.basics.phone"
+              ></v-text-field>
+              <v-text-field
+                name="website"
+                label="Website"
+                type="url"
+                placeholder="www.yourwebsite.com"
+                v-model="userdata.basics.website"
+              ></v-text-field>
+              <v-textarea
+                name="summary"
+                label="Summary"
+                type="text"
+                placeholder="Your summary"
+                v-model="userdata.basics.summary"
+              ></v-textarea>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem()">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
+            </div>
           </v-card>
         </v-flex>
         <!--Location-->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2" height="100%">
             <v-card-title class="headline">Location</v-card-title>
-            <v-text-field
-              outline
-              name="address"
-              label="Address"
-              type="text"
-              placeholder="e.g. Appelstreet 2"
-              v-model="userdata.basics.location.address"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="postalcode"
-              label="Postal Code"
-              type="text"
-              placeholder="e.g."
-              v-model="userdata.basics.location.postalcode"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="city"
-              label="City"
-              type="text"
-              placeholder="e.g. Copenhagen"
-              v-model="userdata.basics.location.city"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="countrycode"
-              label="Country Code"
-              type="text"
-              placeholder="e.g. "
-              v-model="userdata.basics.location.countrycode"
-            ></v-text-field>
-            <v-text-field
-              outline
-              name="region"
-              label="Region"
-              type="text"
-              placeholder="e.g."
-              v-model="userdata.basics.location.region"
-            ></v-text-field>
+            <div class="teal lighten-5 pa-2 ma-1">
+              <v-text-field
+                name="address"
+                label="Address"
+                type="text"
+                placeholder="e.g. Appelstreet 2"
+                v-model="userdata.basics.location.address"
+              ></v-text-field>
+              <v-text-field
+                name="postalcode"
+                label="Postal Code"
+                type="text"
+                placeholder="e.g."
+                v-model="userdata.basics.location.postalcode"
+              ></v-text-field>
+              <v-text-field
+                name="city"
+                label="City"
+                type="text"
+                placeholder="e.g. Copenhagen"
+                v-model="userdata.basics.location.city"
+              ></v-text-field>
+              <v-text-field
+                name="countrycode"
+                label="Country Code"
+                type="text"
+                placeholder="e.g. "
+                v-model="userdata.basics.location.countrycode"
+              ></v-text-field>
+              <v-text-field
+                name="region"
+                label="Region"
+                type="text"
+                placeholder="e.g."
+                v-model="userdata.basics.location.region"
+              ></v-text-field>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem()">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
+            </div>
           </v-card>
         </v-flex>
         <!-- End basics -->
         <!-- Profiles -->
-        <v-flex xs12>
-          <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Social profiles</v-card-title>
-            <v-btn
-              block
-              @click="addItem($event,newEmptyData.basics.profiles[0],userdata.basics.profiles)"
-            >Add profile</v-btn>
+        <v-flex xs12 sm6 md4>
+          <v-card class="ma-2 pa-2">
+            <v-card-title class="headline">
+              <span>Social profiles</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.basics.profiles[0],userdata.basics.profiles)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <div
               v-for="(item,index) in userdata.basics.profiles"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
-                outline
                 name="network"
                 label="Social media"
                 type="text"
@@ -153,50 +177,54 @@
                 v-model="item.network"
               ></v-text-field>
               <v-text-field
-                outline
                 name="username"
                 label="User name"
                 type="text"
                 placeholder="..."
                 v-model="item.network.username"
               ></v-text-field>
-              <v-text-field
-                outline
-                name="url"
-                label="Url"
-                type="url"
-                placeholder="..."
-                v-model="item.url"
-              ></v-text-field>
-              <v-btn @click="removeItem($event,index,userdata.basics.profiles)">
-                <v-icon>delete</v-icon>
-              </v-btn>
-              <v-divider></v-divider>
+              <v-text-field name="url" label="Url" type="url" placeholder="..." v-model="item.url"></v-text-field>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn
+                  dark
+                  color="#24a4b3"
+                  @click="removeItem($event,index,userdata.basics.profiles)"
+                >
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Profiles -->
 
         <!-- Work -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Work</v-card-title>
-            <v-btn
-              block
-              @click="addItem(
-              $event,newEmptyData.work[0],userdata.work
-              )"
-            >
-              <v-icon>library_add</v-icon>
-            </v-btn>
-            <v-divider></v-divider>
+            <v-card-title class="headline">
+              <span>Work</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.work[0],userdata.work)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <div
               v-for="(item,work_index) in userdata.work"
               :key="work_index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
-                outline
                 name="company"
                 label="Company"
                 type="text"
@@ -204,7 +232,6 @@
                 v-model="item.company"
               ></v-text-field>
               <v-text-field
-                outline
                 name="postition"
                 label="Position"
                 type="text"
@@ -212,7 +239,6 @@
                 v-model="item.position"
               ></v-text-field>
               <v-text-field
-                outline
                 name="website"
                 label="Website"
                 type="url"
@@ -220,7 +246,6 @@
                 v-model="item.website"
               ></v-text-field>
               <v-text-field
-                outline
                 name="startDate"
                 label="Start date"
                 type="date"
@@ -228,7 +253,6 @@
                 v-model="item.startDate"
               ></v-text-field>
               <v-text-field
-                outline
                 name="endDate"
                 label="End date"
                 type="date"
@@ -236,7 +260,6 @@
                 v-model="item.endDate"
               ></v-text-field>
               <v-textarea
-                outline
                 name="summary"
                 label="Summary"
                 type="text"
@@ -244,15 +267,23 @@
                 v-model="item.summary"
               ></v-textarea>
               <template>
-                <v-card-title class="subheading">Highlights:</v-card-title>
-                <v-btn
-                  @click="addItem(
+                <v-card-title class="subheading">
+                  <span>Highlights:</span>
+                  <v-spacer></v-spacer>
+                  <span>
+                    <v-btn
+                      small
+                      dark
+                      color="#24a4b3"
+                      @click="addItem(
                   $event, {highlight:''} ,userdata.work[work_index].highlights
                   )"
-                >
-                  Add highlight
-                  <v-icon right>library_add</v-icon>
-                </v-btn>
+                    >
+                      Add highlight
+                      <v-icon small right>add</v-icon>
+                    </v-btn>
+                  </span>
+                </v-card-title>
 
                 <v-list>
                   <v-list-tile
@@ -273,39 +304,50 @@
                     >
                       <v-icon>delete</v-icon>
                     </v-btn>
+                    <v-btn icon small>
+                      <v-icon>check_circle_outline</v-icon>
+                    </v-btn>
                   </v-list-tile>
                 </v-list>
               </template>
 
-              <v-divider></v-divider>
-
-              <v-btn block @click="removeItem($event,work_index,userdata.work)">
-                Work {{work_index+1}}
-                <v-icon right>delete</v-icon>
-              </v-btn>
+              <!-- button group -->
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,work_index,userdata.work)">
+                  Delete
+                  <v-icon small right>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Work -->
         <!-- Volunteer -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Volunteer</v-card-title>
-            <v-btn
-              block
-              @click="addItem(
-              $event,newEmptyData.volunteer[0],userdata.volunteer
-              )"
-            >
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>Volunteer</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.volunteer[0],userdata.volunteer)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
             <div
               v-for="(item,index) in userdata.volunteer"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
-                outline
                 name="Organization"
                 label="Organization"
                 type="text"
@@ -313,7 +355,6 @@
                 v-model="item.organization"
               ></v-text-field>
               <v-text-field
-                outline
                 name="postition"
                 label="Position"
                 type="text"
@@ -321,7 +362,6 @@
                 v-model="item.position"
               ></v-text-field>
               <v-text-field
-                outline
                 name="website"
                 label="Website"
                 type="url"
@@ -329,7 +369,6 @@
                 v-model="item.website"
               ></v-text-field>
               <v-text-field
-                outline
                 name="startDate"
                 label="Start date"
                 type="date"
@@ -337,7 +376,6 @@
                 v-model="item.startDate"
               ></v-text-field>
               <v-text-field
-                outline
                 name="endDate"
                 label="End date"
                 type="date"
@@ -345,7 +383,6 @@
                 v-model="item.endDate"
               ></v-text-field>
               <v-textarea
-                outline
                 name="summary"
                 label="Summary"
                 type="text"
@@ -353,15 +390,24 @@
                 v-model="item.summary"
               ></v-textarea>
               <template>
-                <v-card-title class="subheading">Highlights:</v-card-title>
-                <v-btn
-                  @click="addItem(
+                <v-card-title class="subheading">
+                  <span>Highlights:</span>
+                  <v-spacer></v-spacer>
+                  <span>
+                    <v-btn
+                      small
+                      dark
+                      color="#24a4b3"
+                      @click="addItem(
                   $event, {highlight:''} ,userdata.volunteer[index].highlights
                   )"
-                >
-                  Add highlight
-                  <v-icon>library_add</v-icon>
-                </v-btn>
+                    >
+                      Add highlight
+                      <v-icon small right>add</v-icon>
+                    </v-btn>
+                  </span>
+                </v-card-title>
+
                 <v-list>
                   <v-list-tile v-for="(subitem,sub_index) in item.highlights" :key="sub_index">
                     <v-text-field
@@ -377,33 +423,48 @@
                     >
                       <v-icon>delete</v-icon>
                     </v-btn>
+                    <v-btn icon small>
+                      <v-icon>check_circle_outline</v-icon>
+                    </v-btn>
                   </v-list-tile>
                 </v-list>
               </template>
-              <v-btn block @click="removeItem($event,index,userdata.volunteer)">
-                Volunteer {{index+1}}
-                <v-icon right>delete</v-icon>
-              </v-btn>
+              <!-- button group -->
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,index,userdata.volunteer)">
+                  Delete
+                  <v-icon small right>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Volunteer -->
         <!-- Education -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Education</v-card-title>
-            <v-btn
-              block
-              @click="addItem(
-              $event,newEmptyData.education[0],userdata.education
-              )"
-            >
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>Education</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.work[0],userdata.education)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <div
               v-for="(item,index) in userdata.education"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
                 name="institution"
@@ -444,15 +505,23 @@
               ></v-text-field>
 
               <template>
-                <v-card-title class="subheading">Courses:</v-card-title>
-                <v-btn
-                  @click="addItem(
+                <v-card-title class="subheading">
+                  <span>Courses:</span>
+                  <v-spacer></v-spacer>
+                  <span>
+                    <v-btn
+                      small
+                      dark
+                      color="#24a4b3"
+                      @click="addItem(
                   $event, {course:''} ,userdata.education[index].courses
                   )"
-                >
-                  Add course
-                  <v-icon right>library_add</v-icon>
-                </v-btn>
+                    >
+                      Add course
+                      <v-icon small right>add</v-icon>
+                    </v-btn>
+                  </span>
+                </v-card-title>
 
                 <v-list>
                   <v-list-tile v-for="(item,index) in item.courses" :key="index">
@@ -470,38 +539,50 @@
                     >
                       <v-icon>delete</v-icon>
                     </v-btn>
+                    <v-btn icon small>
+                      <v-icon>check_circle_outline</v-icon>
+                    </v-btn>
                   </v-list-tile>
                 </v-list>
               </template>
 
-              <v-divider></v-divider>
-
-              <v-btn block @click="removeItem($event,index,userdata.education)">
-                Education {{index+1}}
-                <v-icon right>delete</v-icon>
-              </v-btn>
+              <!-- button group -->
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,index,userdata.education)">
+                  Education {{index+1}}
+                  <v-icon small right>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Education -->
 
         <!-- Awards -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Awards</v-card-title>
-            <v-btn
-              block
-              @click="addItem(
-        $event,newEmptyData.awards[0],userdata.awards
-        )"
-            >
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>Awards</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.awards[0],userdata.awards)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
 
             <div
               v-for="(item,index) in userdata.awards"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
                 xs12
@@ -532,28 +613,40 @@
                 placeholder="..."
                 v-model="item.summary"
               ></v-textarea>
-              <v-btn @click="removeItem(
-                $event,index,userdata.awards)">
-                {{item.title}}
-                <v-icon right>delete</v-icon>
-              </v-btn>
+              <!-- button group -->
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,index,userdata.awards)">
+                  Delete
+                  <v-icon small right>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
         <!-- End Awards -->
         <!-- Publications -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Publications</v-card-title>
-            <v-btn
-              block
-              @click="addItem($event,newEmptyData.publications[0],userdata.publications
-       )"
-            >
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>Publication</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.publications[0],userdata.publications)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <v-list v-for="(item,index) in userdata.publications" :key="index">
-              <div class="grey lighten-2 pa-2 ma-1">
+              <div class="teal lighten-5 pa-2 ma-1">
                 <v-text-field
                   name="publication"
                   label="Publication"
@@ -589,26 +682,45 @@
                   placeholder="..."
                   v-model="item.summary"
                 ></v-textarea>
-                <v-btn
-                  @click="removeItem($event,newEmptyData.publications[0],userdata.publications
-        )"
-                >
-                  <v-icon>delete</v-icon>
-                </v-btn>
+                <!-- button group -->
+                <v-layout>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    dark
+                    color="#24a4b3"
+                    @click="removeItem($event,newEmptyData.publications[0],userdata.publications)"
+                  >
+                    Delete
+                    <v-icon small right>delete</v-icon>
+                  </v-btn>
+                  <v-btn dark color="#24a4b3">Ok</v-btn>
+                </v-layout>
               </div>
             </v-list>
           </v-card>
         </v-flex>
         <!-- End publications -->
         <!-- Skills -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Skills</v-card-title>
-            <v-btn block @click="addItem($event, newEmptyData.skills[0],userdata.skills )">
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>Skills</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event, newEmptyData.skills[0],userdata.skills)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <v-list v-for="(item,index) in userdata.skills" :key="index">
-              <div class="grey lighten-2 pa-2 ma-1">
+              <div class="teal lighten-5 pa-2 ma-1">
                 <v-text-field
                   name="name"
                   full-width
@@ -627,16 +739,23 @@
                 ></v-text-field>
 
                 <template>
-                  <v-card-title class="subheading">Keywords:</v-card-title>
-                  <v-btn
-                    @click="addItem(
-
-            $event, {keyword:''} ,userdata.skills[index].keywords
+                  <v-card-title class="subheading">
+                    <span>Keywords:</span>
+                    <v-spacer></v-spacer>
+                    <span>
+                      <v-btn
+                        small
+                        dark
+                        color="#24a4b3"
+                        @click="addItem(
+                  $event, {keyword:''} ,userdata.skills[index].keywords
                   )"
-                  >
-                    Add keyword
-                    <v-icon right>library_add</v-icon>
-                  </v-btn>
+                      >
+                        Add course
+                        <v-icon small right>add</v-icon>
+                      </v-btn>
+                    </span>
+                  </v-card-title>
 
                   <v-list>
                     <v-list-tile v-for="(subitem,key,sub_index) in item.keywords" :key="sub_index">
@@ -654,64 +773,95 @@
                       >
                         <v-icon>delete</v-icon>
                       </v-btn>
+                      <v-btn icon small>
+                        <v-icon>check_circle_outline</v-icon>
+                      </v-btn>
                     </v-list-tile>
                   </v-list>
                 </template>
 
-                <v-divider></v-divider>
-
-                <v-btn block @click="removeItem($event,newEmptyData.skills[0],userdata.skills)">
-                  Skill {{index+1}}
-                  <v-icon right>delete</v-icon>
-                </v-btn>
+                <!-- button group -->
+                <v-layout>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    dark
+                    color="#24a4b3"
+                    @click="removeItem($event,newEmptyData.skills[0],userdata.skills)"
+                  >
+                    Delete
+                    <v-icon small right>delete</v-icon>
+                  </v-btn>
+                  <v-btn dark color="#24a4b3">Ok</v-btn>
+                </v-layout>
               </div>
             </v-list>
           </v-card>
         </v-flex>
         <!-- End skills -->
         <!-- Languages -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Languages</v-card-title>
-            <v-btn block @click="addItem($event,newEmptyData.languages[0],userdata.languages  )">
-              <v-icon>library_add</v-icon>
-            </v-btn>
-            <v-list v-for="(item,index) in userdata.languages" :key="index">
-              <div class="grey lighten-2 pa-2 ma-1">
-                <v-text-field
-                  outline
-                  type="text"
-                  label="Language"
-                  name="language"
-                  v-model="item.language"
-                ></v-text-field>
-                <v-text-field
-                  outline
-                  type="text"
-                  label="Fluency"
-                  name="fluency"
-                  v-model="item.fluency"
-                ></v-text-field>
-                <v-divider></v-divider>
-                <v-btn @click="removeItem($event,index , userdata.languages)">
-                  <v-icon>delete</v-icon>
+            <v-card-title class="headline">
+              <span>Languages</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.languages[0],userdata.languages)"
+                >
+                  <v-icon>add</v-icon>
                 </v-btn>
+              </span>
+            </v-card-title>
+
+            <v-list v-for="(item,index) in userdata.languages" :key="index">
+              <div class="teal lighten-5 pa-2 ma-1">
+                <v-text-field type="text" label="Language" name="language" v-model="item.language"></v-text-field>
+                <v-text-field type="text" label="Fluency" name="fluency" v-model="item.fluency"></v-text-field>
+                <!-- button group -->
+                <v-layout>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    dark
+                    color="#24a4b3"
+                    @click="removeItem($event,index , userdata.languages)"
+                  >
+                    Delete
+                    <v-icon small right>delete</v-icon>
+                  </v-btn>
+                  <v-btn dark color="#24a4b3">Ok</v-btn>
+                </v-layout>
               </div>
             </v-list>
           </v-card>
         </v-flex>
         <!-- End languages -->
         <!-- Interests -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">Interests</v-card-title>
-            <v-btn block @click="addItem( $event,newEmptyData.interests[0],userdata.interests)">
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <!-- card title + add button -->
+            <v-card-title class="headline">
+              <span>Interests</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event,newEmptyData.interests[0],userdata.interests)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
             <div
               v-for="(item,index) in userdata.interests"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field
                 name="name"
@@ -720,56 +870,99 @@
                 placeholder="Interest"
                 v-model="item.name"
               ></v-text-field>
-              <v-btn @click="addItem($event, {keyword:''} ,item.keywords)">
-                Add keyword
-                <v-icon right small>library_add</v-icon>
-              </v-btn>
-              <v-list v-for="(subitem,key,index) in item.keywords" :key="index">
-                <v-text-field name="keyword" label="Keyword"
-                type="text" v-model="subitem.keyword"></v-text-field>
+              <template>
+                <v-card-title class="subheading">
+                  <span>Add keyword:</span>
+                  <v-spacer></v-spacer>
+                  <span>
+                    <v-btn
+                      small
+                      dark
+                      color="#24a4b3"
+                      @click="addItem($event, {keyword:''} ,item.keywords)"
+                    >
+                      Add keyword
+                      <v-icon small right>add</v-icon>
+                    </v-btn>
+                  </span>
+                </v-card-title>
 
-                <!-- doesn't work - too tired to figure out now -->
-                <v-btn
-                  @click="removeItem(
-                $event,sub_index,userdata.interests[index].keywords
-                )"
-                >
-                  Remove keyword
-                  <v-icon right small>delete</v-icon>
+                <v-list>
+                  <v-list-tile v-for="(subitem,key,index) in item.keywords" :key="index">
+                    <v-text-field
+                      name="keyword"
+                      label="Keyword"
+                      type="text"
+                      v-model="subitem.keyword"
+                    ></v-text-field>
+
+                    <!-- doesn't work -->
+                    <v-btn
+                      icon
+                      small
+                      @click="removeItem(
+               $event,index,userdata.interests[index].keywords)"
+                    >
+                      <v-icon>delete</v-icon>
+                    </v-btn>
+                    <v-btn icon small>
+                      <v-icon>check_circle_outline</v-icon>
+                    </v-btn>
+                  </v-list-tile>
+                </v-list>
+              </template>
+
+              <!-- button group -->
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,index,userdata.interests)">
+                  Interest {{index+1}}
+                  <v-icon small right>delete</v-icon>
                 </v-btn>
-              </v-list>
-              <v-btn @click="removeItem(
-                $event,index,userdata.interests)">
-                Remove interest
-                <v-icon right small>delete</v-icon>
-              </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
-        <!-- End skills -->
+        <!-- End interests -->
 
         <!-- References -->
-        <v-flex xs12>
+        <v-flex xs12 sm6 md4>
           <v-card class="ma-2 pa-2 card">
-            <v-card-title class="headline">References</v-card-title>
-            <v-btn block @click="addItem($event, newEmptyData.references[0], userdata.references )">
-              <v-icon>library_add</v-icon>
-            </v-btn>
+            <v-card-title class="headline">
+              <span>References</span>
+              <v-spacer></v-spacer>
+              <span>
+                <v-btn
+                  small
+                  block
+                  dark
+                  color="#24a4b3"
+                  @click="addItem($event, newEmptyData.references[0], userdata.references)"
+                >
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </span>
+            </v-card-title>
+
             <div
               v-for="(item,index) in userdata.references"
               :key="index"
-              class="grey lighten-2 pa-2 ma-1"
+              class="teal lighten-5 pa-2 ma-1"
             >
               <v-text-field name="name" label="Name"
               type="text" v-model="item.name"></v-text-field>
               <v-text-field name="reference" label="Reference"
               type="text" v-model="item.reference"></v-text-field>
 
-              <!-- doesn't work - too tired to figure out now -->
-              <v-btn @click="removeItem($event, index, userdata.reference)">
-                Delete reference
-                <v-icon right small>delete</v-icon>
-              </v-btn>
+              <v-layout>
+                <v-spacer></v-spacer>
+                <v-btn dark color="#24a4b3" @click="removeItem($event,index,userdata.references)">
+                  Reference {{index+1}}
+                  <v-icon small right>delete</v-icon>
+                </v-btn>
+                <v-btn dark color="#24a4b3">Ok</v-btn>
+              </v-layout>
             </div>
           </v-card>
         </v-flex>
@@ -832,5 +1025,6 @@ export default {
 
 <style scoped>
 .card {
+  align-items: stretch;
 }
 </style>

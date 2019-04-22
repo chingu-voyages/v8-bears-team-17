@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn color="teal dark">
+    <v-btn color="#24a4b3">
       <a :href="convertData" :download="`${fileName}.json`">{{ButtonText}}</a>
       <v-icon right color="white">cloud_download</v-icon>
     </v-btn>
