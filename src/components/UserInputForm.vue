@@ -40,11 +40,16 @@
               <v-text-field
                 name="picture"
                 label="Picture"
-                type="file"
                 placeholder="Your Profile picture"
-                v-model="userdata.basics.picture"
+                v-model="selectedImage"
+                @click="pickImage"
               ></v-text-field>
-              <v-btn block>
+              <input
+                type="file"
+                ref="image"
+                style="display: none"
+                @change="onImageSelected" />
+              <v-btn @click="onImageUpload" block>
                 <v-icon left>cloud_upload</v-icon>Upload!
               </v-btn>
               <v-text-field
@@ -478,7 +483,8 @@
                 placeholder="..."
                 v-model="item.studyType"
               ></v-text-field>
-              <v-text-field name="gpa" type="text" label="gpa" placeholder="..." v-model="item.gpa"></v-text-field>
+              <v-text-field name="gpa" type="text"
+              label="gpa" placeholder="..." v-model="item.gpa"></v-text-field>
               <v-text-field
                 name="startDate"
                 type="date"
@@ -860,7 +866,6 @@
                 placeholder="Interest"
                 v-model="item.name"
               ></v-text-field>
-
               <template>
                 <v-card-title class="subheading">
                   <span>Add keyword:</span>
@@ -941,8 +946,10 @@
               :key="index"
               class="teal lighten-5 pa-2 ma-1"
             >
-              <v-text-field name="name" label="Name" type="text" v-model="item.name"></v-text-field>
-              <v-text-field name="reference" label="Reference" type="text" v-model="item.reference"></v-text-field>
+              <v-text-field name="name" label="Name"
+              type="text" v-model="item.name"></v-text-field>
+              <v-text-field name="reference" label="Reference"
+              type="text" v-model="item.reference"></v-text-field>
 
               <v-layout>
                 <v-spacer></v-spacer>
@@ -963,18 +970,20 @@
 
 
 <script>
-import templeateData from "@/assets/templeateData.json";
+import templeateData from '@/assets/templeateData.json';
+import axios from 'axios';
 
 export default {
   props: {
     userdata: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
-      errors: ["test", "hello"],
-      newEmptyData: templeateData
+      errors: ['test', 'hello'],
+      selectedImage: null,
+      newEmptyData: templeateData,
     };
   },
   methods: {
@@ -987,8 +996,26 @@ export default {
     removeItem(e, index, target) {
       e.preventDefault();
       target.splice(index, 1);
-    }
-  }
+    },
+    pickImage() {
+      this.$refs.image.click();
+    },
+    onImageSelected({ target: { files } }) {
+      const [image] = files;
+      this.selectedImage = image;
+    },
+    onImageUpload() {
+      const url = 'https://api.cloudinary.com/v1_1/fredhawk/image/upload';
+      const fd = new FormData();
+      fd.append('api_key', process.env.CLOUDINARY_API);
+      fd.append('api_secret', process.env.CLOUDINARY_SECRET);
+      fd.append('file', this.selectedImage);
+      fd.append('upload_preset', 'resume');
+      axios.post(url, fd).then((res) => {
+        this.userdata.basics.picture = res.data.secure_url;
+      });
+    },
+  },
 };
 </script>
 
