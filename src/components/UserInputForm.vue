@@ -40,7 +40,6 @@
               <v-text-field
                 name="picture"
                 label="Picture"
-                type="file"
                 placeholder="Your Profile picture"
                 v-model="selectedImage"
                 @click="pickImage"
@@ -50,9 +49,6 @@
                 ref="image"
                 style="display: none"
                 @change="onImageSelected" />
-            <v-btn @click="onImageUpload" block>
-              <v-icon left>cloud_upload</v-icon>Upload!
-            </v-btn>
               <v-btn @click="onImageUpload" block>
                 <v-icon left>cloud_upload</v-icon>Upload!
               </v-btn>
