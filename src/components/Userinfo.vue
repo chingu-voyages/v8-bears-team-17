@@ -67,7 +67,7 @@ export default {
     },
     onEdit() {
       this.isEdit = !this.isEdit;
-      this.$emit('edit-form', this.isEdit);
+      this.$emit('toggle-edit', this.isEdit);
     },
   },
 };

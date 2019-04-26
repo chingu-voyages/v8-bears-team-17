@@ -6,10 +6,10 @@
     </v-flex>
     <v-flex>
       <Userinfo :userdata="mainUserData"
-      :isEditing="isEditing" @edit-form="editForm"
+      :isEditing="isEditing" @toggle-edit="toggleEdit"
       v-if="isEditing === false"></Userinfo>
       <UserInputForm v-bind:userdata="mainUserData"
-      :isEditing="isEditing" @edit-form="editForm"
+      :isEditing="isEditing" @toggle-edit="toggleEdit"
       @save-form="saveForm" v-if="isEditing === true"></UserInputForm>
     </v-flex>
     <v-flex>
@@ -51,16 +51,11 @@ export default {
       this.mainUserData.personalData.name = 'Luca Gessi';
       this.keys = Object.keys(this.mainUserData);
     },
-    editForm(e) {
+    toggleEdit(e) {
       this.isEditing = e;
       console.log(this.isEditing, 'isEditing in Resume');
     },
-    cancelForm(e) {
-      this.isEditing = e;
-      console.log(this.isEditing, 'isEditing in Resume');
-    },
-    saveForm(e) {
-      this.isEditing = e;
+    saveForm() {
       // Set data here too when saving.
     },
   },

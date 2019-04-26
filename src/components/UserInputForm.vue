@@ -1060,11 +1060,11 @@ export default {
     },
     cancelEdit() {
       this.isEdit = !this.isEdit;
-      this.$emit('edit-form', this.isEdit);
+      this.$emit('toggle-edit', this.isEdit);
     },
     saveEdit() {
       this.isEdit = !this.isEdit;
-      this.$emit('save-form', this.isEdit);
+      this.$emit('toggle-edit', this.isEdit);
     },
   },
 };
