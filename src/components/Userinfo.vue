@@ -1,5 +1,7 @@
 <template>
     <v-container xs12>
+      <v-btn color="info" @click="onEdit"><span>Edit </span>
+      <v-icon>edit</v-icon></v-btn>
       <v-layout row wrap>
         <UserinfoCard
         :info="basicsWithoutLocationProfiles(userdata.basics)"
@@ -43,6 +45,12 @@ export default {
     userdata: {
       type: Object,
     },
+    isEditing: Boolean,
+  },
+  data() {
+    return {
+      isEdit: this.isEditing,
+    };
   },
   methods: {
     basicsWithoutLocationProfiles(data) {
@@ -56,6 +64,10 @@ export default {
           return obj;
         }, {});
       return filtered;
+    },
+    onEdit() {
+      this.isEdit = !this.isEdit;
+      this.$emit('edit-form', this.isEdit);
     },
   },
 };

@@ -19,8 +19,16 @@
 
     <v-container xs12>
       <v-layout row wrap>
-        <!-- Basics -->
         <v-flex xs12 sm6 md4>
+          <v-btn color="info" @click="cancelEdit"><span>Cancel </span>
+      <v-icon>cancel</v-icon></v-btn>
+      <v-btn color="info" @click="saveEdit"><span>Save </span>
+      <v-icon>save</v-icon></v-btn>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <!-- Basics -->
+        <v-flex >
           <v-card class="ma-2 pa-2">
             <v-card-title class="headline">Personal data</v-card-title>
             <div class="teal lighten-5 pa-2 ma-1">
@@ -988,6 +996,7 @@ export default {
     userdata: {
       type: Object,
     },
+    isEditing: Boolean,
   },
   validations: {
     newEmptyData: {
@@ -1004,6 +1013,7 @@ export default {
       errors: ['test', 'hello'],
       selectedImage: null,
       newEmptyData: templateData,
+      isEdit: this.isEditing,
     };
   },
   computed: {
@@ -1047,6 +1057,14 @@ export default {
       axios.post(url, fd).then((res) => {
         this.userdata.basics.picture = res.data.secure_url;
       });
+    },
+    cancelEdit() {
+      this.isEdit = !this.isEdit;
+      this.$emit('edit-form', this.isEdit);
+    },
+    saveEdit() {
+      this.isEdit = !this.isEdit;
+      this.$emit('save-form', this.isEdit);
     },
   },
 };

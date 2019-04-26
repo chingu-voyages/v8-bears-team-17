@@ -5,10 +5,12 @@
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
     </v-flex>
     <v-flex>
-      <Userinfo :userdata="mainUserData"></Userinfo>
-    </v-flex>
-    <v-flex>
-      <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
+      <Userinfo :userdata="mainUserData"
+      :isEditing="isEditing" @edit-form="editForm"
+      v-if="isEditing === false"></Userinfo>
+      <UserInputForm v-bind:userdata="mainUserData"
+      :isEditing="isEditing" @edit-form="editForm"
+      @save-form="saveForm" v-if="isEditing === true"></UserInputForm>
     </v-flex>
     <v-flex>
       <DownloadJSONFile
@@ -41,12 +43,25 @@ export default {
       fileContent: null,
       mainUserData: nullData,
       keys: Array,
+      isEditing: false,
     };
   },
   methods: {
     testFun() {
       this.mainUserData.personalData.name = 'Luca Gessi';
       this.keys = Object.keys(this.mainUserData);
+    },
+    editForm(e) {
+      this.isEditing = e;
+      console.log(this.isEditing, 'isEditing in Resume');
+    },
+    cancelForm(e) {
+      this.isEditing = e;
+      console.log(this.isEditing, 'isEditing in Resume');
+    },
+    saveForm(e) {
+      this.isEditing = e;
+      // Set data here too when saving.
     },
   },
   watch: {
