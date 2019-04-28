@@ -747,7 +747,7 @@
                   $event, {keyword:''} ,userdata.skills[index].keywords
                   )"
                       >
-                        Add course
+                        Add keyword
                         <v-icon small right>add</v-icon>
                       </v-btn>
                     </span>
