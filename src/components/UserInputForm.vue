@@ -884,7 +884,7 @@
                 </v-card-title>
 
                 <v-list>
-                  <v-list-tile v-for="(subitem,key,index) in item.keywords" :key="index">
+                  <v-list-tile v-for="(subitem,key,sub_index) in item.keywords" :key="sub_index">
                     <v-text-field
                       name="keyword"
                       label="Keyword"
@@ -897,7 +897,7 @@
                       icon
                       small
                       @click="removeItem(
-               $event,index,userdata.interests[index].keywords)"
+               $event,sub_index,userdata.interests[index].keywords)"
                     >
                       <v-icon>delete</v-icon>
                     </v-btn>
