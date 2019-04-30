@@ -40,7 +40,6 @@
 
 
 <script>
-// import templateData from '@/assets/templeateData.json';
 import axios from 'axios';
 import UserFormBasics from './UserForm/UserFormBasics.vue';
 import UserFormLocation from './UserForm/UserFormLocation.vue';
@@ -125,11 +124,8 @@ export default {
       this.$emit('toggle-edit', this.isEdit);
     },
     saveEdit() {
-      console.log('errors Form', this.errors);
       this.$validator.validateAll().then((isValid) => {
         if (isValid) {
-          console.log('got here', isValid);
-          // console.log('errors=message', errors-message)
           this.isEdit = !this.isEdit;
           this.$emit('toggle-edit', this.isEdit);
           this.$emit('save-form', this.userFormData);

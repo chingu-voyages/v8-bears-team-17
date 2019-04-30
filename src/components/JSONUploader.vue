@@ -11,7 +11,8 @@
     <!-- displaying errors/filename-->
     <label class="selected">
       <!-- https://alligator.io/vuejs/file-select-component/  > used ref instead!!!-->
-      <!-- We can't use a normal button element here, as it would become the target of the label. -->
+      <!-- We can't use a normal button element here,
+      as it would become the target of the label. -->
 
       <!-- Display the filename if a file has been selected. -->
       <span v-if="fileTitle">Uploaded file: {{fileTitle}}</span>

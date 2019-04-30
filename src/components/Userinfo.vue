@@ -1,5 +1,6 @@
 <template>
     <v-container xs12>
+      <PreviewResume ButtonText="Preview resume" :previewData="userdata"></PreviewResume>
       <v-btn color="info" @click="onEdit"><span>Edit </span>
       <v-icon>edit</v-icon></v-btn>
       <v-layout row wrap>
@@ -35,11 +36,13 @@
 <script>
 import UserinfoCard from './UserinfoCard.vue';
 import UserinfoListCard from './UserinfoListCard.vue';
+import PreviewResume from '@/components/PreviewResume.vue';
 
 export default {
   components: {
     UserinfoCard,
     UserinfoListCard,
+    PreviewResume,
   },
   props: {
     userdata: {

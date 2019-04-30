@@ -29,7 +29,7 @@
         <v-text-field name="reference" label="Reference"
         type="text" v-model="item.reference"
         :error-messages="errors.collect('reference')"
-        v-validate.continues="{required: true, regex: /^[a-zA-Z0-9 ]*$/}"></v-text-field>
+        v-validate.continues="{required: true, regex: /^[a-zA-Z0-9. ]*$/}"></v-text-field>
 
         <v-layout>
           <v-spacer></v-spacer>
