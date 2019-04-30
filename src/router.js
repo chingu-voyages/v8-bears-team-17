@@ -26,5 +26,11 @@ export default new Router({
       name: 'resume',
       component: () => import('./views/Resume.vue'),
     },
+    {
+      path: '/basicTheme',
+      name: 'Basic',
+      component: () => import('./themes/Basic.vue'),
+      props: true,
+    },
   ],
 });
