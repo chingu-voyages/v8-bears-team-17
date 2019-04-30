@@ -1,505 +1,97 @@
 <template>
-  <div>
-  <form> <!--@submit="checkForm">-->
+  <v-form>
+    <!--@submit="checkForm">-->
+    <!--error handling, not sure if the snackbar thing works!
+    //TODO: add height=100% to all cards or find better solution
+    //TODO: Fix the non functioning remove button -> interests keyword
+    //TODO: fix snackbar
+    //TODO: Decide id personal data and location should have add buttons
+    //TODO: implement ok/edit button, so that the
+    //TODO: input values will be shown to user upon click, button changes to edit
+    Actually this shouldn't be in this component, I think, but rather the resume.vue?-->
 
-  <p v-if="errors.length">
-    <b>Please correct the following error(s):</b>
-    <ul>
-      <li >{{ errors }}</li>
-    </ul>
-  </p>
-<!-- Basics -->
-<div id="personalData">
-  <h2>Personal data</h2>
-  <p>
-    <label for="name">Name</label>
-    <input id="name" v-model="userdata.basics.name"
-      type="text"
-      name="name">
-  </p>
-  <p>
-    <label for="label">Label</label>
-    <input id="label" v-model="userdata.basics.label" type="text" name="label">
-  </p>
-  <p>
-    <label for="picture">Picture</label>
-    <input id="picture" v-model="userdata.basics.picture" type="text" name="picture">
-  </p>
-  <p>
-    <label for="email">Email</label>
-    <input id="email" v-model="userdata.basics.email" type="text" name="email">
-  </p>
-  <p>
-    <label for="phone">Phone</label>
-    <input id="phone" v-model="userdata.basics.phone" type="text" name="phone">
-  </p>
-  <p>
-    <label for="website">Website</label>
-    <input id="website" v-model="userdata.basics.website" type="text" name="website">
-  </p>
-  <p>
-    <label for="summary">Summary</label>
-    <textarea id="summary" v-model="userdata.basics.summary" type="text" name="summary">
-    </textarea>
-  </p>
-  <div class="location">
-    <h3>Location</h3>
-    <p>
-        <label for="address">Address</label>
-        <input class="address" v-model="userdata.basics.location.address"
-         type="text" name="address">
-    </p>
-    <p>
-        <label for="postalCode">PostalCode</label>
-        <input class="postalCode" v-model="userdata.basics.location.postalcode"
-         type="text" name="postalCode">
-    </p>
-    <p>
-        <label for="city">City</label>
-        <input class="city" v-model="userdata.basics.location.city"
-         type="text" name="city">
-    </p>
-    <p>
-        <label for="countryCode">CountryCode</label>
-        <input class="countryCode" v-model="userdata.basics.location.countryCode"
-         type="text" name="countryCode">
-    </p>
-    <p>
-        <label for="region">Region</label>
-        <input class="region" v-model="userdata.basics.location.region"
-         type="text" name="region">
-    </p>
-  </div>
-    <!-- End basics -->
-    <!-- Profiles -->
-  <div class="profiles">
-    <h3>Social profiles</h3>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.basics.profiles[0],userdata.basics.profiles
-        )">Add social profiles</a></p>
-    <div v-for="(item,index) in userdata.basics.profiles" :key="index" class="social-profile">
-      <h3>Social profile {{index+1}}
-          <a href=""
-            @click="removeItem($event,index,userdata.basics.profiles)"
-            >X</a></h3>
-          <!-- <a href="" @click="removeSocialProfile($event,index)">X</a></h3> -->
-    <p>
-        <label for="network">Network</label>
-        <input class="network" v-model="item.network"
-         type="text" name="network">
-    </p>
-    <p>
-        <label for="username">Username</label>
-        <input class="username" v-model="item.username"
-         type="text" name="username">
-    </p>
-    <p>
-        <label for="url">Url</label>
-        <input class="url" v-model="item.url"
-         type="text" name="url">
-    </p>
-    </div>
-  </div>
-    <!-- End Profiles -->
-    <!-- Work -->
-</div>
-    <div id="work">
-    <h2>Work experiences</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.work[0],userdata.work
-        )">Add work</a></p>
-    <div v-for="(item,work_index) in userdata.work" :key="work_index" class="workExperience">
-        <h3>Work {{work_index+1}}
-            <a href=""
-            @click="removeItem($event,work_index,userdata.work)"
-            >X</a></h3>
-        <p>
-            <label for="company">Company</label>
-            <input class="company" v-model="item.company"
-            type="text"
-            name="company">
-        </p>
-        <p>
-            <label for="position">Position</label>
-            <input class="position" v-model="item.position"
-            type="text"
-            name="position">
-        </p>
-        <p>
-            <label for="website">Website</label>
-            <input class="website" v-model="item.website"
-            type="text"
-            name="website">
-        </p>
-        <p>
-            <label for="startDate">StartDate</label>
-            <input class="startDate" v-model="item.startDate"
-            type="date"
-            name="startDate">
-        </p>
-        <p>
-            <label for="endDate">EndDate</label>
-            <input class="endDate" v-model="item.endDate"
-            type="date"
-            name="endDate">
-        </p>
-        <p>
-            <label for="summary">Summary</label>
-            <textarea class="summary" v-model="item.summary"
-            name="summary"></textarea>
-        </p>
-        <!-- <p><a href="" @click="addWorkHighlight($event,work_index)">Add highlight</a></p> -->
-        <p><a href="" @click="addItem(
-            $event, {highlight:''} ,userdata.work[work_index].highlights
-            )">Add highlight</a></p>
-        <p v-for="(subitem,highlight_index) in item.highlights" :key="highlight_index">
-            <label for="highlights"><a href=""
-            @click="removeItem($event,highlight_index,userdata.work[work_index].highlights)"
-            >X</a> Highlight: </label>
-            <input type="text" class="highlights" v-model="subitem.highlight"
-            name="highlights">
-        </p>
-    </div>
-    </div>
-    <!-- End Work -->
-    <!-- Volunteer -->
-   <div id="volunteer">
-    <h2>Volunteer</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.volunteer[0],userdata.volunteer
-        )">Add volunteer</a></p>
-    <div v-for="(item,index) in userdata.volunteer" :key="index" class="volunteer">
-        <h3>Volunteer {{index+1}}
-        <a href=""
-            @click="removeItem($event,index,userdata.volunteer)"
-            >X</a></h3>
-        <p>
-            <label for="organization">Organization</label>
-            <input class="organization" v-model="item.organization"
-            type="text"
-            name="organization">
-        </p>
-        <p>
-            <label for="position">Position</label>
-            <input class="position" v-model="item.position"
-            type="text"
-            name="position">
-        </p>
-        <p>
-            <label for="website">Website</label>
-            <input class="website" v-model="item.website"
-            type="text"
-            name="website">
-        </p>
-        <p>
-            <label for="startDate">StartDate</label>
-            <input class="startDate" v-model="item.startDate"
-            type="date"
-            name="startDate">
-        </p>
-        <p>
-            <label for="endDate">EndDate</label>
-            <input class="endDate" v-model="item.endDate"
-            type="date"
-            name="endDate">
-        </p>
-        <p>
-            <label for="summary">Summary</label>
-            <textarea class="summary" v-model="item.summary"
-            name="userdata.work.summary"></textarea>
-        </p>
-        <p><a href="" @click="addItem(
-            $event, {highlight:''} ,userdata.volunteer[index].highlights
-            )">Add highlight</a></p>
-        <p v-for="(subitem,key,sub_index) in item.highlights" :key="sub_index">
-            <label for="highlights"><a href=""
-            @click="removeItem($event,sub_index,userdata.volunteer[index].highlights)"
-            >X</a> Highlight: </label>
-            <input type="text" class="highlights" v-model="subitem.highlight"
-            name="highlights">
-        </p>
-    </div>
-    </div>
-    <!-- End Volunteer -->
-    <!-- Education -->
-    <div id="education">
-    <h2>Education</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.education[0],userdata.education
-        )">Add education</a></p>
-    <div v-for="(item,index) in userdata.education" :key="index" class="education">
-        <h3>Education {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.education
-                )">X</a></h3>
-        <p>
-            <label for="institution">Institution</label>
-            <input class="institution" v-model="item.institution"
-            type="text"
-            name="institution">
-        </p>
-        <p>
-            <label for="area">Area</label>
-            <input class="area" v-model="item.area"
-            type="text"
-            name="area">
-        </p>
-        <p>
-            <label for="studyType">Study type</label>
-            <input class="studyType" v-model="item.studyType"
-            type="text"
-            name="studyType">
-        </p>
-        <p>
-            <label for="gpa">gpa</label>
-            <input class="gpa" v-model="item.gpa"
-            type="text"
-            name="gpa">
-        </p>
-        <p>
-            <label for="startDate">StartDate</label>
-            <input class="startDate" v-model="item.startDate"
-            type="date"
-            name="startDate">
-        </p>
-        <p>
-            <label for="endDate">EndDate</label>
-            <input class="endDate" v-model="item.endDate"
-            type="date"
-            name="endDate">
-        </p>
-        <p><a href="" @click="addItem(
-            $event, {course:''} ,userdata.education[index].courses
-            )">Add course</a></p>
-        <p v-for="(subitem,sub_index) in item.courses" :key="sub_index">
-            <label for="courses"><a href="" @click="removeItem(
-                $event,sub_index,userdata.education[index].courses
-                )">X</a> Course: </label>
-            <input type="text" class="courses" v-model="subitem.course"
-            name="courses">
-        </p>
-    </div>
-    </div>
-    <!-- End Education -->
-    <!-- Awards -->
-    <div id="awards">
-    <h2>Awards</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.awards[0],userdata.awards
-        )">Add award</a></p>
-    <div v-for="(item,index) in userdata.awards" :key="index" class="award">
-        <h3>Award {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.awards
-                )">X</a></h3>
-        <p>
-            <label for="title">Title</label>
-            <input class="title" v-model="item.title"
-            type="text"
-            name="title">
-        </p>
-        <p>
-            <label for="date">Date</label>
-            <input class="date" v-model="item.date"
-            type="date"
-            name="date">
-        </p>
-        <p>
-            <label for="awarder">Awarder</label>
-            <input class="awarder" v-model="item.awarder"
-            type="text"
-            name="awarder">
-        </p>
-        <p>
-            <label for="summary">Summary</label>
-            <textarea class="summary" v-model="item.summary"
-            name="summary"></textarea>
-        </p>
-    </div>
-    </div>
-    <!-- End Awards -->
-    <!-- Publications -->
-    <div id="publications">
-    <h2>Publications</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.publications[0],userdata.publications
-        )">Add publication</a></p>
-    <div v-for="(item,index) in userdata.publications" :key="index" class="publication">
-        <h3>Publication {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.publications
-                )">X</a></h3>
-        <p>
-            <label for="name">Name</label>
-            <input class="name" v-model="item.name"
-            type="text"
-            name="name">
-        </p>
-        <p>
-            <label for="publisher">Publisher</label>
-            <input class="publisher" v-model="item.publisher"
-            type="text"
-            name="publisher">
-        </p>
-        <p>
-            <label for="releaseDate">Release date</label>
-            <input class="releaseDate" v-model="item.releaseDate"
-            type="date"
-            name="releaseDate">
-        </p>
-        <p>
-            <label for="website">Website</label>
-            <input class="website" v-model="item.website"
-            type="text"
-            name="website">
-        </p>
-        <p>
-            <label for="summary">Summary</label>
-            <textarea class="summary" v-model="item.summary"
-            name="summary"></textarea>
-        </p>
-    </div>
-    </div>
-    <!-- End publications -->
-    <!-- Skills -->
-    <div id="skills">
-    <h2>Skills</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.skills[0],userdata.skills
-        )">Add skill</a></p>
-    <div v-for="(item,index) in userdata.skills" :key="index" class="skills">
-        <h3>Skill {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.skills
-                )">X</a></h3>
-        <p>
-            <label for="name">Name</label>
-            <input class="name" v-model="item.name"
-            type="text"
-            name="name">
-        </p>
-        <p>
-            <label for="level">Level</label>
-            <input class="level" v-model="item.level"
-            type="text"
-            name="level">
-        </p>
-        <p><a href="" @click="addItem(
-            $event, {keyword:''} ,userdata.skills[index].keywords
-            )">Add keyword</a></p>
-        <p v-for="(subitem,key,sub_index) in item.keywords" :key="sub_index">
-            <label for="keywords"><a href="" @click="removeItem(
-                $event,sub_index,userdata.skills[index].keywords
-                )">X</a>Keyword: </label>
-            <input type="text" class="keywords" v-model="subitem.keyword"
-            name="keywords">
-        </p>
-    </div>
-    </div>
-    <!-- End skills -->
-    <!-- Languages -->
-    <div id="languages">
-    <h2>Languages</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.languages[0],userdata.languages
-        )">Add language</a></p>
-    <div v-for="(item,index) in userdata.languages" :key="index" class="languages">
-        <h3>Language {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.languages
-                )">X</a></h3>
-        <p>
-            <label for="language">Language</label>
-            <input class="language" v-model="item.language"
-            type="text"
-            name="language">
-        </p>
-        <p>
-            <label for="fluency">Fluency</label>
-            <input class="fluency" v-model="item.fluency"
-            type="text"
-            name="fluency">
-        </p>
-    </div>
-    </div>
-    <!-- End languages -->
-    <!-- Interests -->
-    <div id="interests">
-    <h2>Interests</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.interests[0],userdata.interests
-        )">Add interest</a></p>
-    <div v-for="(item,index) in userdata.interests" :key="index" class="interests">
-        <h3>Interest {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.interests
-                )">X</a></h3>
-        <p>
-            <label for="name">Name</label>
-            <input class="name" v-model="item.name"
-            type="text"
-            name="name">
-        </p>
-        <p><a href="" @click="addItem(
-            $event, {keyword:''} ,item.keywords
-            )">Add keyword</a></p>
-        <p v-for="(subitem,sub_index) in item.keywords" :key="sub_index">
-            <label for="keywords"><a href="" @click="removeItem(
-                $event,sub_index,userdata.interests[index].keywords
-                )">X</a>Keyword: </label>
-            <input type="text" class="keywords" v-model="subitem.keyword"
-            name="keywords">
-        </p>
-    </div>
-    </div>
-    <!-- End interests -->
-    <!-- References -->
-    <div id="references">
-    <h2>References</h2>
-    <p><a href="" @click="addItem(
-        $event,newEmptyData.references[0],userdata.references
-        )">Add reference</a></p>
-    <div v-for="(item,index) in userdata.references" :key="index" class="references">
-        <h3>Reference {{index+1}}
-            <a href="" @click="removeItem(
-                $event,index,userdata.references
-                )">X</a></h3>
-        <p>
-            <label for="name">Name</label>
-            <input class="name" v-model="item.name"
-            type="text"
-            name="name">
-        </p>
-        <p>
-            <label for="reference">Reference</label>
-            <input class="reference" v-model="item.reference"
-            type="text"
-            name="reference">
-        </p>
-    </div>
-    </div>
-    <!-- End references -->
-</form>
-</div>
+    <v-container xs12>
+      <v-layout row wrap>
+        <v-flex xs12 sm6 md4>
+          <v-btn color="info" @click="cancelEdit"><span>Cancel </span>
+      <v-icon>cancel</v-icon></v-btn>
+      <v-btn color="info" @click="saveEdit"><span>Save </span>
+      <v-icon>save</v-icon></v-btn>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <!-- Basics -->
+        <UserFormBasics :data="userFormData.basics" />
+        <UserFormLocation :data="userFormData.basics.location" />
+        <UserFormSocial :data="userFormData.basics.profiles" />
+        <UserFormWork :data="userFormData.work" />
+        <UserFormVolunteer :data="userFormData.volunteer" />
+        <UserFormEducation :data="userFormData.education" />
+        <UserFormAwards :data="userFormData.awards" />
+        <UserFormPublications :data="userFormData.publications" />
+        <UserFormSkills :data="userFormData.skills" />
+        <UserFormLanguages :data="userFormData.languages" />
+        <UserFormInterests :data="userFormData.interests" />
+        <UserFormReferences :data="userFormData.references" />
+      </v-layout>
+    </v-container>
+  </v-form>
 </template>
 
-<script>
-import templeateData from '@/assets/templeateData.json';
 
+<script>
+// import templateData from '@/assets/templeateData.json';
+import axios from 'axios';
+import UserFormBasics from './UserForm/UserFormBasics.vue';
+import UserFormLocation from './UserForm/UserFormLocation.vue';
+import UserFormSocial from './UserForm/UserFormSocial.vue';
+import UserFormWork from './UserForm/UserFormWork.vue';
+import UserFormVolunteer from './UserForm/UserFormVolunteer.vue';
+import UserFormEducation from './UserForm/UserFormEducation.vue';
+import UserFormAwards from './UserForm/UserFormAwards.vue';
+import UserFormPublications from './UserForm/UserFormPublications.vue';
+import UserFormSkills from './UserForm/UserFormSkills.vue';
+import UserFormLanguages from './UserForm/UserFormLanguages.vue';
+import UserFormInterests from './UserForm/UserFormInterests.vue';
+import UserFormReferences from './UserForm/UserFormReferences.vue';
 
 export default {
+  $_veeValidate: {
+    validator: 'new',
+  },
+  components: {
+    UserFormBasics,
+    UserFormLocation,
+    UserFormSocial,
+    UserFormWork,
+    UserFormVolunteer,
+    UserFormEducation,
+    UserFormAwards,
+    UserFormPublications,
+    UserFormSkills,
+    UserFormLanguages,
+    UserFormInterests,
+    UserFormReferences,
+  },
   props: {
     userdata: {
       type: Object,
     },
+    isEditing: Boolean,
   },
   data() {
     return {
-      errors: [],
-      newEmptyData: templeateData,
+      selectedImage: null,
+      userFormData: this.userdata,
+      isEdit: this.isEditing,
     };
   },
+  computed: {
+  },
   methods: {
+    test() {
+      console.log(this.userFormData);
+    },
     // Generic add item
     addItem(e, source, target) {
       e.preventDefault();
@@ -510,18 +102,48 @@ export default {
       e.preventDefault();
       target.splice(index, 1);
     },
-    test(e, v1, v2, v3, v4) {
-      e.preventDefault();
-      console.log(`v1: ${v1}`);
-      console.log(`v2: ${v2}`);
-      console.log(`v3: ${v3}`);
-      console.log(`v4: ${v4}`);
+    pickImage() {
+      this.$refs.image.click();
+    },
+    onImageSelected({ target: { files } }) {
+      const [image] = files;
+      this.selectedImage = image;
+    },
+    onImageUpload() {
+      const url = 'https://api.cloudinary.com/v1_1/fredhawk/image/upload';
+      const fd = new FormData();
+      fd.append('api_key', process.env.CLOUDINARY_API);
+      fd.append('api_secret', process.env.CLOUDINARY_SECRET);
+      fd.append('file', this.selectedImage);
+      fd.append('upload_preset', 'resume');
+      axios.post(url, fd).then((res) => {
+        this.userFormData.basics.picture = res.data.secure_url;
+      });
+    },
+    cancelEdit() {
+      this.isEdit = !this.isEdit;
+      this.$emit('toggle-edit', this.isEdit);
+    },
+    saveEdit() {
+      console.log('errors Form', this.errors);
+      this.$validator.validateAll().then((isValid) => {
+        if (isValid) {
+          console.log('got here', isValid);
+          // console.log('errors=message', errors-message)
+          this.isEdit = !this.isEdit;
+          this.$emit('toggle-edit', this.isEdit);
+          this.$emit('save-form', this.userFormData);
+        } else {
+          console.log('errors in form');
+        }
+      }).catch(err => console.error(err));
     },
   },
 };
 </script>
 
 <style scoped>
-
-
+.card {
+  align-items: stretch;
+}
 </style>
