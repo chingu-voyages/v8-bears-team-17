@@ -24,9 +24,9 @@
 
 <script>
 // @ is an alias to /src
+
 import JSONUploader from '@/components/JSONUploader.vue';
 import nullData from '@/assets/nullData.json';
-// import UserInputForm from '@/components/UserInputForm.vue';
 import UserInputForm from '@/components/UserInputForm.vue';
 import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
 import Userinfo from '@/components/Userinfo.vue';
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       fileContent: null,
+
       mainUserData: nullData,
       keys: Array,
       isEditing: false,
@@ -61,10 +62,12 @@ export default {
       console.log(e, 'main user data');
       this.mainUserData = e;
     },
+
   },
   watch: {
     // whenever fileContent changes, this function will run
     fileContent(val) {
+
       console.log(`name object: ${typeof val}`);
       console.log(`name basics: ${typeof val.basics}`);
       console.log(`name type: ${typeof val.basics.name}`);
