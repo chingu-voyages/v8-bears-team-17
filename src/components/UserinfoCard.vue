@@ -7,7 +7,9 @@
         :key="index">
           <p class="label-text text-uppercase"
           >{{ capitalizeFirstLetter(key) }}</p>
-          <p class="body-2">{{ value }}</p>
+          <v-img v-if="key === 'picture' && value.length > 0"
+            :src="value" alt="selfportrait"></v-img>
+          <p v-else class="body-2">{{ value }}</p>
           <v-divider></v-divider>
         </v-card-text>
         <v-spacer></v-spacer>

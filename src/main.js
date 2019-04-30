@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import './plugins/vuelidate';
+import './plugins/veevalidate';
 import './plugins/vuetify';
 import './registerServiceWorker';
 import router from './router';

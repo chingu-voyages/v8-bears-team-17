@@ -12,7 +12,7 @@
       :isEditing="isEditing" @toggle-edit="toggleEdit"
       @save-form="saveForm" v-if="isEditing === true"></UserInputForm>
     </v-flex>
-    <v-flex>
+    <v-flex v-if="isEditing === false">
       <DownloadJSONFile
         ButtonText="Download json file"
         fileName="userdata"
@@ -26,6 +26,7 @@
 // @ is an alias to /src
 import JSONUploader from '@/components/JSONUploader.vue';
 import nullData from '@/assets/nullData.json';
+// import UserInputForm from '@/components/UserInputForm.vue';
 import UserInputForm from '@/components/UserInputForm.vue';
 import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
 import Userinfo from '@/components/Userinfo.vue';
@@ -55,8 +56,10 @@ export default {
       this.isEditing = e;
       console.log(this.isEditing, 'isEditing in Resume');
     },
-    saveForm() {
+    saveForm(e) {
       // Set data here too when saving.
+      console.log(e, 'main user data');
+      this.mainUserData = e;
     },
   },
   watch: {
