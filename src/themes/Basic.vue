@@ -1,19 +1,19 @@
 <template>
-<div>
     <div>
-        <v-btn @click="exportPDF">Export as PDF</v-btn>
-    </div>
+        <div>
+            <v-btn @click="exportPDF">Export as PDF</v-btn>
+        </div>
 
-    <div id="preview" class="basic-theme">
+        <div id="preview" class="basic-theme">
 
             <!-- PERSONAL DATA -->
             <section class="personal-data">
                 <div class="img-names-location">
                     <div class="resume-image">
-            <img src="previewData.basics.picture" alt="Picture">
+                        <img src="previewData.basics.picture" alt="Picture">
                     </div>
                     <div class="names-and-location">
-            <h1 class="names">{{previewData.basics.name}}</h1>
+                        <h1 class="names">{{previewData.basics.name}}</h1>
                         <p class="location">
                             {{previewData.basics.location.address}},
                             {{previewData.basics.location.city}},
@@ -26,20 +26,20 @@
                     </div>
                 </div>
 
-            <section class="contact-details">
+                <section class="contact-details">
                     <p class="email">Email: {{previewData.basics.email}}</p>
                     <p class="phone">Phone: {{previewData.basics.phone}}</p>
                     <p class="website">Website: {{previewData.basics.website}}</p>
-            </section>
+                </section>
 
-            <section class="social-profiles">
+                <section class="social-profiles">
                     <p :class="profile.network"
                     v-for="profile in previewData.basics.profiles"
                     :key="profile.name">
                         {{profile.network}}: {{profile.url}}
                     </p>
+                </section>
             </section>
-        </section>
 
             <!-- WORK EXPERIENCE -->
             <section class="work-experience">
@@ -53,7 +53,7 @@
                         <li class="job-hightlight">{{highlight.highlight}}</li>
                     </ul>
                 </article>
-                </section>
+            </section>
 
             <!-- VOLUNTEER EXPERIENCE -->
             <section class="volunteer-experience">
@@ -65,12 +65,12 @@
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
                     <ul v-for="highlight in experience.highlights" :key="highlight">
                         <li class="job-hightlight">{{highlight.highlight}}</li>
-                </ul>
-            </article>
-        </section>
+                    </ul>
+                </article>
+            </section>
 
             <!-- EDUCATION -->
-        <section class="relevant-education">
+            <section class="relevant-education">
                 <article class="education" v-for="education in previewData.education" :key="education.institution">
                     <p class="institution">{{education.institution}}</p>
                     <p class="area">{{education.area}}</p>
@@ -80,74 +80,74 @@
 
                     <ul class="courses" v-for="course in education.courses" :key="course">
                         <li class="course">{{course.course}}</li>
-                </ul>
-            </article>
-        </section>
+                    </ul>
+                </article>
+            </section>
 
             <!-- AWARDS -->
-        <section class="awards">
+            <section class="awards">
                 <article class="award" v-for="award in previewData.awards" :key="award.title">
                     <p class="title">{{award.title}}</p>
                     <p class="date">{{award.date}}</p>
                     <p class="awarder">{{award.awarder}}</p>
                     <p class="summary">{{award.summary}}</p>
-            </article>
-        </section>
+                </article>
+            </section>
 
             <!-- PUBLICATIONS -->
-        <section class="publications">
+            <section class="publications">
                 <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
                     <p class="name">{{publication.name}}</p>
-                <section class="publisher-details">
+                    <section class="publisher-details">
                         <p class="publisher-name">{{publication.publisher}}</p>
                         <p class="publisher-website">{{publication.website}}</p>
-                </section>
+                    </section>
                     <p class="release-date">{{publication.releaseDate}}</p>
                     <p class="summary">{{publication.summary}}</p>
-            </article>
-        </section>
+                </article>
+            </section>
 
             <!-- SKILLS -->
-        <section class="skills">
+            <section class="skills">
                 <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
                     <p class="skill">{{skill.name}}</p>
                     <p class="skill-level">{{skill.level}}</p>
                     <ul class="keywords" v-for="keyword in skill.keywords" :key="keyword">
                         <li class="keyword">{{keyword.keyword}}</li>
-                </ul>
-            </article>
-        </section>
+                    </ul>
+                </article>
+            </section>
 
             <!-- LANGUAGES -->
-        <section class="languages">
+            <section class="languages">
                 <article class="language" v-for="language in previewData.languages" :key="language.language">
                     <p class="language-name">{{language.language}}</p>
                     <p class="language-fluency">{{language.fluency}}</p>
-            </article>
-        </section>
+                </article>
+            </section>
 
             <!-- INTERESTS -->
-        <section class="interests">
+            <section class="interests">
                 <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
                     <p class="name-of-interest">{{interest.name}}</p>
                     <ul class="keywords" v-for="keyword in interest.keywords" :key="keyword">
                         <li class="keyword">{{keyword.keyword}}</li>
-                </ul>
-            </article>
-        </section>
+                    </ul>
+                </article>
+            </section>
 
             <!-- REFERENCES -->
-        <section class="references">
+            <section class="references">
                 <article class="reference" v-for="reference in previewData.references" :key="reference.name">
                     <p class="name-of-reference">{{reference.name}}</p>
                     <p class="contact-of-reference">{{reference.reference}}</p>
-            </article>
-        </section>
-        <section>
+                </article>
+            </section>
+            <section>
 
             </section>
+        </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -181,4 +181,19 @@ export default {
 </script>
 
 <style scoped>
+.basic-theme {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.personal-data .img-names-location {
+    display: flex;
+}
+.resume-image {
+    height: 10em;
+    width: 10em;
+    border-radius: 10px;
+    background-color: red;
+}
 </style>
