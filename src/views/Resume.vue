@@ -9,14 +9,21 @@
 
     <!-- Userinfo -->
     <v-flex>
-      <Userinfo :userdata="mainUserData"
-      :isEditing="isEditing" @toggle-edit="toggleEdit"
-      v-if="isEditing === false"></Userinfo>
+      <Userinfo
+        :userdata="mainUserData"
+        :isEditing="isEditing"
+        @toggle-edit="toggleEdit"
+        v-if="isEditing === false"
+      ></Userinfo>
 
       <!-- UserInputFrom -->
-      <UserInputForm v-bind:userdata="mainUserData"
-      :isEditing="isEditing" @toggle-edit="toggleEdit"
-      @save-form="saveForm" v-if="isEditing === true"></UserInputForm>
+      <UserInputForm
+        v-bind:userdata="mainUserData"
+        :isEditing="isEditing"
+        @toggle-edit="toggleEdit"
+        @save-form="saveForm"
+        v-if="isEditing === true"
+      ></UserInputForm>
     </v-flex>
 
     <!-- DownLoadJSON -->
@@ -27,7 +34,7 @@
         :downloadData="mainUserData"
       ></DownloadJSONFile>
 
-      
+      <!-- UserInputForm - again -->
       <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </v-flex>
   </v-layout>
@@ -35,19 +42,19 @@
 
 <script>
 // @ is an alias to /src
-import JSONUploader from '@/components/JSONUploader.vue';
-import nullData from '@/assets/nullData.json';
-import UserInputForm from '@/components/UserInputForm.vue';
-import DownloadJSONFile from '@/components/DownloadJSONFile.vue';
-import Userinfo from '@/components/Userinfo.vue';
+import JSONUploader from "@/components/JSONUploader.vue";
+import nullData from "@/assets/nullData.json";
+import UserInputForm from "@/components/UserInputForm.vue";
+import DownloadJSONFile from "@/components/DownloadJSONFile.vue";
+import Userinfo from "@/components/Userinfo.vue";
 
 export default {
-  name: 'resume',
+  name: "resume",
   components: {
     JSONUploader,
     UserInputForm,
     DownloadJSONFile,
-    Userinfo,
+    Userinfo
   },
   data() {
     return {
@@ -55,24 +62,23 @@ export default {
 
       mainUserData: nullData,
       keys: Array,
-      isEditing: false,
+      isEditing: false
     };
   },
   methods: {
     testFun() {
-      this.mainUserData.personalData.name = 'Luca Gessi';
+      this.mainUserData.personalData.name = "Luca Gessi";
       this.keys = Object.keys(this.mainUserData);
     },
     toggleEdit(e) {
       this.isEditing = e;
-      console.log(this.isEditing, 'isEditing in Resume');
+      console.log(this.isEditing, "isEditing in Resume");
     },
     saveForm(e) {
       // Set data here too when saving.
-      console.log(e, 'main user data');
+      console.log(e, "main user data");
       this.mainUserData = e;
-    },
-
+    }
   },
   watch: {
     // whenever fileContent changes, this function will run
@@ -81,7 +87,7 @@ export default {
       console.log(`name basics: ${typeof val.basics}`);
       console.log(`name type: ${typeof val.basics.name}`);
       this.mainUserData = this.fileContent;
-    },
-  },
+    }
+  }
 };
 </script>
