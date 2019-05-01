@@ -27,19 +27,19 @@
                 </div>
 
                 <div class="contact">
-                <section class="contact-details">
-                    <p class="email">Email: {{previewData.basics.email}}</p>
-                    <p class="phone">Phone: {{previewData.basics.phone}}</p>
-                    <p class="website">Website: {{previewData.basics.website}}</p>
-                </section>
+                    <section class="contact-details">
+                        <p class="email">Email: {{previewData.basics.email}}</p>
+                        <p class="phone">Phone: {{previewData.basics.phone}}</p>
+                        <p class="website">Website: {{previewData.basics.website}}</p>
+                    </section>
 
-                <section class="social-profiles">
-                    <p :class="profile.network"
-                    v-for="profile in previewData.basics.profiles"
-                    :key="profile.name">
-                        {{profile.network}}: {{profile.url}}
-                    </p>
-                </section>
+                    <section class="social-profiles">
+                        <p :class="profile.network"
+                        v-for="profile in previewData.basics.profiles"
+                        :key="profile.name">
+                            {{profile.network}}: {{profile.url}}
+                        </p>
+                    </section>
                 </div>
             </section>
 
@@ -201,16 +201,60 @@ export default {
 </script>
 
 <style scoped>
-.basic-theme {
-    width: 85%;
+main {
+    width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    border-radius: 2px solid grey;
 }
-.personal-data .img-names-location {
-    display: flex;
+
+h1 {
+    font-size: 39.2141px;
 }
+
+h2 {
+    margin-top: 1em;
+}
+
+hr {
+    margin: 10px 0 20px 0;
+}
+
+.basic-theme {
+    width: 70%;
+    margin: 2em auto 1em auto;
+    /* background-color: blue; */
+    border-radius: 10px;
+}
+
+.img-names-location, .contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type {
+    display: grid;
+}
+
+.img-names-location, .contact {
+    margin-bottom: 2em;
+}
+
+.img-names-location {
+    grid-template-columns: 35% 65%;
+}
+
+.contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.contact-details {
+    text-align: left;
+}
+
+.social-profiles {
+    text-align: right;
+}
+
 .resume-image {
     height: 10em;
     width: 10em;
