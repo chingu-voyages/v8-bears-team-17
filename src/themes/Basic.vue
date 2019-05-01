@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <main>
         <div>
             <v-btn @click="exportPDF">Export as PDF</v-btn>
         </div>
@@ -26,6 +26,7 @@
                     </div>
                 </div>
 
+                <div class="contact">
                 <section class="contact-details">
                     <p class="email">Email: {{previewData.basics.email}}</p>
                     <p class="phone">Phone: {{previewData.basics.phone}}</p>
@@ -39,6 +40,7 @@
                         {{profile.network}}: {{profile.url}}
                     </p>
                 </section>
+                </div>
             </section>
 
             <!-- WORK EXPERIENCE -->
@@ -147,7 +149,7 @@
 
             </section>
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
