@@ -51,11 +51,9 @@
         <p>{{work.endDate}}</p>
         <p>{{work.summary}}</p>
         <!--work highlights  -->
-        <div v-for="highlight in previewData.work.highlights" :key="highlight">
-          <ul>
-            <li>{{highlight}}</li>
-          </ul>
-        </div>
+        <ul>
+          <li v-for="highlight in work.highlights" :key="highlight">{{highlight.highlight}}</li>
+        </ul>
       </div>
     </section>
 
@@ -70,11 +68,9 @@
         <p>{{experience.endDate}}</p>
         <p>{{experience.summary}}</p>
         <!--volunteer highlights  -->
-        <div v-for="highlight in previewData.volunteer.highlights" :key="highlight">
-          <ul>
-            <li>{{highlight}}</li>
-          </ul>
-        </div>
+        <ul>
+          <li v-for="highlight in experience.highlights" :key="highlight">{{highlight.highlight}}</li>
+        </ul>
       </div>
     </section>
 
@@ -93,11 +89,10 @@
         <p>{{education.endDate}}</p>
         <p>{{education.gpa}}</p>
         <!--education courses  -->
-        <div v-for="course in previewData.education.courses" :key="course">
-          <ul>
-            <li>{{course}}</li>
-          </ul>
-        </div>
+        <h3>Courses</h3>
+        <ul>
+          <li v-for="course in education.courses" :key="course">{{course.course}}</li>
+        </ul>
       </div>
     </section>
     <!-- Awards -->
@@ -162,9 +157,6 @@
         <p>{{reference.name}} | {{reference.reference}}</p>
       </div>
     </section>
-
-    <!-- Just for overview -->
-    <section>{{previewData}}</section>
   </div>
 </template>
 
@@ -197,6 +189,11 @@ export default {
   box-shadow: 5px 5px 5px 5px grey;
   margin: 40px auto;
   display: grid;
+
+  /*grid layout*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-column-gap: 1cm;
 
   /*overflow:hidden;*/
   /**********************/
