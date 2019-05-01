@@ -128,9 +128,9 @@
         <p>{{skill.name}}</p>
         <p>{{skill.level}}</p>
         <!--skill keywords  -->
-        <div v-for="keyword in previewData.skills.keywords">
+        <div>
           <ul>
-            <li>{{keyword.keyword}}</li>
+            <li v-for="keyword in skill.keywords">{{keyword.keyword}}</li>
           </ul>
         </div>
       </div>
@@ -150,7 +150,7 @@
       <div v-for="interest in previewData.interests" :key="interest">
         <p>{{interest.name}}</p>
         <ul>
-          <li v-for="keyword in previewData.interests.keywords">{{keyword.keyword}}</li>
+          <li v-for="keyword in interest.keywords">{{keyword.keyword}}</li>
         </ul>
       </div>
     </section>
