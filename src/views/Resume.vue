@@ -18,7 +18,6 @@
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
-      <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </v-flex>
   </v-layout>
 </template>
