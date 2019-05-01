@@ -49,8 +49,8 @@
                         <p>{{experience.startDate}} - {{experience.startDate}}</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
-                    <ul v-for="highlight in experience.highlights" :key="highlight">
-                        <li class="job-hightlight">{{highlight.highlight}}</li>
+                    <ul>
+                        <li v-for="highlight in experience.highlights" :key="highlight" class="job-hightlight">{{highlight.highlight}}</li>
                     </ul>
                 </article>
             </section>
@@ -63,8 +63,8 @@
                         <p>{{experience.startDate}} - {{experience.startDate}}</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
-                    <ul v-for="highlight in experience.highlights" :key="highlight">
-                        <li class="job-hightlight">{{highlight.highlight}}</li>
+                    <ul>
+                        <li v-for="highlight in experience.highlights" :key="highlight" class="job-hightlight">{{highlight.highlight}}</li>
                     </ul>
                 </article>
             </section>
@@ -78,8 +78,8 @@
                     <p class="gpa">{{education.gpa}}</p>
                     <p class="duration">{{education.startDate}} - {{education.endDate}}</p>
 
-                    <ul class="courses" v-for="course in education.courses" :key="course">
-                        <li class="course">{{course.course}}</li>
+                    <ul class="courses">
+                        <li class="course" v-for="course in education.courses" :key="course">{{course.course}}</li>
                     </ul>
                 </article>
             </section>
@@ -112,8 +112,8 @@
                 <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
                     <p class="skill">{{skill.name}}</p>
                     <p class="skill-level">{{skill.level}}</p>
-                    <ul class="keywords" v-for="keyword in skill.keywords" :key="keyword">
-                        <li class="keyword">{{keyword.keyword}}</li>
+                    <ul class="keywords">
+                        <li class="keyword" v-for="keyword in skill.keywords" :key="keyword">{{keyword.keyword}}</li>
                     </ul>
                 </article>
             </section>
@@ -130,8 +130,8 @@
             <section class="interests">
                 <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
                     <p class="name-of-interest">{{interest.name}}</p>
-                    <ul class="keywords" v-for="keyword in interest.keywords" :key="keyword">
-                        <li class="keyword">{{keyword.keyword}}</li>
+                    <ul class="keywords">
+                        <li class="keyword" v-for="keyword in interest.keywords" :key="keyword">{{keyword.keyword}}</li>
                     </ul>
                 </article>
             </section>
