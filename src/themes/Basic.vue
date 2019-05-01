@@ -1,8 +1,13 @@
 <template>
-    <div class="basic-theme">
-        <section class="personal-data">
-            <img src="" alt="Picture">
-            <h1 class="names"></h1>
+<div>
+    <div>
+        <v-btn @click="exportPDF">Export as PDF</v-btn>
+    </div>
+    <div id="preview" class="basic-theme">
+        <h1>{{previewData.basics.name}}</h1>
+        <!-- <section class="personal-data">
+            <img src="previewData.basics.picture" alt="Picture">
+            <h1 class="names">{{previewData.basics.name}}</h1>
             <p class="location"></p>
 
             <section class="contact-details">
@@ -98,11 +103,13 @@
         </section>
         <section>
 
-        </section>
+        </section> -->
     </div>
+</div>
 </template>
 
 <script>
+import jsPDF from 'jspdf';
 
 export default {
   props: {
@@ -116,6 +123,16 @@ export default {
       const dData = JSON.stringify(this.previewData, null, 2);
       console.log(dData);
       return dData;
+    },
+  },
+  methods: {
+    exportPDF() {
+      // eslint-disable-next-line
+      const doc = new jsPDF();
+      const source = window.document.getElementById('preview');
+      console.log('Source', source);
+      doc.fromHTML(source, 10, 10);
+      doc.save('resume.pdf');
     },
   },
 };
