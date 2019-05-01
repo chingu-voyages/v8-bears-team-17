@@ -1,23 +1,33 @@
 <template>
   <v-layout column align-center>
     <h1>Upload or input your resume here</h1>
+
+    <!-- UPLOAD -->
     <v-flex>
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
     </v-flex>
+
+    <!-- Userinfo -->
     <v-flex>
       <Userinfo :userdata="mainUserData"
       :isEditing="isEditing" @toggle-edit="toggleEdit"
       v-if="isEditing === false"></Userinfo>
+
+      <!-- UserInputFrom -->
       <UserInputForm v-bind:userdata="mainUserData"
       :isEditing="isEditing" @toggle-edit="toggleEdit"
       @save-form="saveForm" v-if="isEditing === true"></UserInputForm>
     </v-flex>
+
+    <!-- DownLoadJSON -->
     <v-flex v-if="isEditing === false">
       <DownloadJSONFile
         ButtonText="Download json file"
         fileName="userdata"
         :downloadData="mainUserData"
       ></DownloadJSONFile>
+
+      
       <UserInputForm v-bind:userdata="mainUserData"></UserInputForm>
     </v-flex>
   </v-layout>
