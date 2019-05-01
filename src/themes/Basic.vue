@@ -222,9 +222,10 @@ hr {
 
 .basic-theme {
     width: 70%;
-    margin: 2em auto 1em auto;
-    /* background-color: blue; */
+    margin: 2em auto 2.5em auto;
+    padding: 4em;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px grey;
 }
 
 .img-names-location, .contact,
@@ -247,11 +248,15 @@ hr {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.contact-details {
+.contact-details,
+.work-experience > article > div:first-of-type > p:first-of-type,
+.volunteer-experience > article > div:first-of-type > p:first-of-type {
     text-align: left;
 }
 
-.social-profiles {
+.social-profiles,
+.work-experience > article > div:first-of-type > p:nth-of-type(2),
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2) {
     text-align: right;
 }
 
