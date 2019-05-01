@@ -45,6 +45,8 @@
 
             <!-- WORK EXPERIENCE -->
             <section class="work-experience">
+                <h2>Work Experience</h2>
+                <hr>
                 <article v-for="experience in previewData.work" :key="experience.company">
                     <div>
                         <p>{{experience.position}} @ {{experience.company}} ({{experience.website}})</p>
@@ -59,6 +61,8 @@
 
             <!-- VOLUNTEER EXPERIENCE -->
             <section class="volunteer-experience">
+                <h2>Volunteer Experience</h2>
+                <hr>
                 <article v-for="experience in previewData.volunteer" :key="experience.organization">
                     <div>
                         <p>{{experience.position}} @ {{experience.organization}} ({{experience.website}})</p>
@@ -73,6 +77,8 @@
 
             <!-- EDUCATION -->
             <section class="relevant-education">
+                <h2>Education</h2>
+                <hr>
                 <article class="education" v-for="education in previewData.education" :key="education.institution">
                     <p class="institution">{{education.institution}}</p>
                     <p class="area">{{education.area}}</p>
@@ -88,6 +94,8 @@
 
             <!-- AWARDS -->
             <section class="awards">
+                <h2>Awards</h2>
+                <hr>
                 <article class="award" v-for="award in previewData.awards" :key="award.title">
                     <p class="title">{{award.title}}</p>
                     <p class="date">{{award.date}}</p>
@@ -98,6 +106,8 @@
 
             <!-- PUBLICATIONS -->
             <section class="publications">
+                <h2>Publications</h2>
+                <hr>
                 <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
                     <p class="name">{{publication.name}}</p>
                     <section class="publisher-details">
@@ -111,6 +121,8 @@
 
             <!-- SKILLS -->
             <section class="skills">
+                <h2>Skills</h2>
+                <hr>
                 <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
                     <p class="skill">{{skill.name}}</p>
                     <p class="skill-level">{{skill.level}}</p>
@@ -122,6 +134,8 @@
 
             <!-- LANGUAGES -->
             <section class="languages">
+                <h2>Languages</h2>
+                <hr>
                 <article class="language" v-for="language in previewData.languages" :key="language.language">
                     <p class="language-name">{{language.language}}</p>
                     <p class="language-fluency">{{language.fluency}}</p>
@@ -130,6 +144,8 @@
 
             <!-- INTERESTS -->
             <section class="interests">
+                <h2>Other Interests</h2>
+                <hr>
                 <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
                     <p class="name-of-interest">{{interest.name}}</p>
                     <ul class="keywords">
@@ -140,6 +156,8 @@
 
             <!-- REFERENCES -->
             <section class="references">
+                <h2>References</h2>
+                <hr>
                 <article class="reference" v-for="reference in previewData.references" :key="reference.name">
                     <p class="name-of-reference">{{reference.name}}</p>
                     <p class="contact-of-reference">{{reference.reference}}</p>
