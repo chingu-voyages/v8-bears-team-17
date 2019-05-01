@@ -182,10 +182,11 @@ export default {
 
 <style scoped>
 .basic-theme {
-    width: 100%;
+    width: 85%;
     height: 100%;
     margin: 0;
     padding: 0;
+    border-radius: 2px solid grey;
 }
 .personal-data .img-names-location {
     display: flex;
