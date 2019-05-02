@@ -1,24 +1,33 @@
 <template>
+  <div>
     <!-- <a :href="loadBasicTheme">
         {{ButtonText}}
-    </a> -->
-    <v-btn :to="{ name: 'Basic', params: { previewData } }"
-    color="success get-started">Preview resume</v-btn>
+    </a>-->
+
+    <v-btn
+      :to="{ name: 'Elegant', params: { previewData } }"
+      color="success get-started"
+    >Preview elegant resume</v-btn>
+    <v-btn
+      :to="{ name: 'Basic', params: { previewData } }"
+      color="success get-started"
+    >Preview resume</v-btn>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'PreviewResume',
+  name: "PreviewResume",
   props: {
     ButtonText: {
       type: String,
-      required: true,
+      required: true
     },
     previewData: {
       type: Object,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 
