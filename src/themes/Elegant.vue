@@ -99,7 +99,9 @@
     <div class="right-col">
       <!-- Skills -->
       <section class="skills">
-        <h2>Skills</h2>
+        <h2>
+          <i class="fas fa-tools"></i>Skills
+        </h2>
         <div v-for="skill in previewData.skills" :key="skill">
           <span>
             <p>
@@ -113,36 +115,32 @@
           <v-chip dark class="pink" v-for="keyword in skill.keywords">{{keyword.keyword}}</v-chip>
         </div>
       </section>
-      <!-- Work experience -->
+      <!-- Work experience -------------------------------------------------------------------------------->
       <section class="work">
-        <h2>Work experience</h2>
+        <h2>
+          <i class="fas fa-briefcase"></i>Work experience
+        </h2>
         <div v-for="work in previewData.work" :key="work">
-          <v-container>
-            <span>
-              {{work.position}} | {{work.company}}
-              <v-spacer></v-spacer>
-              {{work.startDate}} - {{work.endDate}}
-            </span>
-          </v-container>
+          <span class="subheading">{{work.position}} | {{work.company}}</span>
+          <span class="date">{{work.startDate}} - {{work.endDate}}</span>
 
           <p>{{work.summary}}</p>
-          <!--work highlights  -->
+          <!--work highlights  ----------------------------------------------------------------------->
           <ul>
             <li v-for="highlight in work.highlights" :key="highlight">{{highlight.highlight}}</li>
           </ul>
         </div>
       </section>
-      <!-- Education -->
+      <!-- Education -------------------------------------------------------------------------------------------->
       <section class="education">
-        <h2>Education</h2>
+        <h2>
+          <i class="fas fa-graduation-cap"></i>Education
+        </h2>
         <div v-for="education in previewData.education" :key="education">
-          <span>
-            <strong>{{education.studyType}} in {{education.area}}</strong>
-          </span>
+          <span class="subheading">{{education.studyType}} in {{education.area}}</span>
           <p>{{education.institution}}</p>
-          <span>
-            <p>{{education.startDate}}- {{education.endDate}}</p>
-          </span>
+
+          <span class="date">{{education.startDate}}- {{education.endDate}}</span>
           <!--education courses  -->
           <h3>Courses</h3>
           <ul>
@@ -152,14 +150,12 @@
       </section>
       <!-- Volunteer experience -->
       <section class="experience">
-        <h2>Volunteer experience</h2>
+        <h2>
+          <i class="fas fa-hands-helping"></i>Volunteer experience
+        </h2>
         <div v-for="experience in previewData.volunteer" :key="experience">
-          <span>
-            <strong>{{experience.position}} | {{experience.company}}</strong>
-          </span>
-          <span>
-            <p>{{experience.startDate}} - {{experience.endDate}}</p>
-          </span>
+          <span class="subheading">{{experience.position}} | {{experience.company}}</span>
+          <span class="date">{{experience.startDate}} - {{experience.endDate}}</span>
           <p>{{experience.summary}}</p>
           <!--volunteer highlights  -->
           <ul>
@@ -170,14 +166,12 @@
 
       <!-- Publications -->
       <section class="publications">
-        <h2>Publications</h2>
+        <h2>
+          <i class="far fa-newspaper"></i>Publications
+        </h2>
         <div v-for="publication in previewData.publications" :key="publication">
-          <span>
-            <strong>{{publication.name}} | {{publication.publisher}}</strong>
-          </span>
-          <span>
-            <p>{{publication.releaseDate}} | {{publication.website}}</p>
-          </span>
+          <span class="subheading">{{publication.name}} | {{publication.publisher}}</span>
+          <span class="date">{{publication.releaseDate}} | {{publication.website}}</span>
           <p>{{publication.summary}}</p>
         </div>
       </section>
@@ -191,6 +185,15 @@ export default {
     previewData: {
       type: Object,
       required: true
+    }
+  },
+  //TODO: format date to month/year
+  filters: {
+    dateFormat: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      let dateFormatted = "";
+      console.log(value);
     }
   },
   created() {},
@@ -217,28 +220,30 @@ export default {
   margin: 40px auto;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 1cm;
 }
 
 .summary {
-  grid-column: 2/4;
+  grid-column: 3/6;
+  padding-right: 4cm;
 }
 .summary h2 {
   margin: 0;
 }
 img {
-  grid-column: 1/2;
+  grid-column: 1/3;
   border-radius: 50%;
   display: flex;
   align-content: center;
   justify-content: center;
 }
 #left-col {
-  grid-column: 1/2;
+  grid-column: 1/3;
 }
 #right-col {
-  grid-column: 2/4;
+  grid-column: 3/6;
+  padding-right: 4cm;
 }
 /* Font & text props */
 h1,
@@ -247,12 +252,17 @@ h2 {
   color: cyan;
   font-weight: 400;
 }
+.subheading {
+  color: black;
+}
 a {
   text-decoration: none;
   color: rgb(212, 42, 136);
   cursor: pointer;
 }
-
+.date {
+  font-size: 10pt;
+}
 i {
   margin-right: 5px;
 }
@@ -269,19 +279,27 @@ i {
 .work {
   width: 13cm;
 }
+.work::before {
+  border-bottom: 1px solid pink;
+}
+
 .work > div {
   display: flex;
   flex-direction: column;
-  background-color: pink;
 }
+
 /* Print styles */
 
 @media print {
   nav {
     display: none !important;
+    margin: 0;
+    padding: 0;
   }
   footer {
     display: none !important;
+    margin: 0;
+    padding: 0;
   }
   .elegant {
     background-color: #fff;
@@ -307,10 +325,6 @@ i {
 
   @page {
     size: a4;
-    margin-top: 1cm;
-    margin-bottom: 1cm;
-    margin-left: 1cm;
-    margin-right: 1cm;
   }
 }
 </style>
