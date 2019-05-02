@@ -57,25 +57,6 @@
         </address>
       </section>
 
-      <!-- Skills -->
-      <section class="skills">
-        <h2>Skills</h2>
-        <div v-for="skill in previewData.skills" :key="skill">
-          <span>
-            <p>
-              {{skill.name}} |
-              {{skill.level}}
-            </p>
-          </span>
-
-          <!--skill keywords  -->
-          <div>
-            <ul>
-              <li v-for="keyword in skill.keywords">{{keyword.keyword}}</li>
-            </ul>
-          </div>
-        </div>
-      </section>
       <!-- Languages -->
       <section class="languages">
         <h2>Language skills</h2>
@@ -95,19 +76,54 @@
           <p>{{award.summary}}</p>
         </div>
       </section>
+      <!-- References -->
+      <section class="references">
+        <h2>References</h2>
+        <div v-for="reference in previewData.references" :key="reference">
+          <p>{{reference.name}} | {{reference.reference}}</p>
+        </div>
+      </section>
+      <!-- Interests -->
+      <section class="interests">
+        <h2>Interests</h2>
+        <div v-for="interest in previewData.interests" :key="interest">
+          <p>{{interest.name}}</p>
+          <ul>
+            <li v-for="keyword in interest.keywords">{{keyword.keyword}}</li>
+          </ul>
+        </div>
+      </section>
     </div>
+    <!-- End right-col -->
 
     <div class="right-col">
+      <!-- Skills -->
+      <section class="skills">
+        <h2>Skills</h2>
+        <div v-for="skill in previewData.skills" :key="skill">
+          <span>
+            <p>
+              {{skill.name}} |
+              {{skill.level}}
+            </p>
+          </span>
+
+          <!--skill keywords  -->
+
+          <v-chip dark class="pink" v-for="keyword in skill.keywords">{{keyword.keyword}}</v-chip>
+        </div>
+      </section>
       <!-- Work experience -->
       <section class="work">
         <h2>Work experience</h2>
         <div v-for="work in previewData.work" :key="work">
-          <span>
-            <strong>{{work.position}} | {{work.company}}</strong>
-          </span>
-          <span>
-            <p>{{work.startDate}} - {{work.endDate}}</p>
-          </span>
+          <v-container>
+            <span>
+              {{work.position}} | {{work.company}}
+              <v-spacer></v-spacer>
+              {{work.startDate}} - {{work.endDate}}
+            </span>
+          </v-container>
 
           <p>{{work.summary}}</p>
           <!--work highlights  -->
@@ -116,25 +132,6 @@
           </ul>
         </div>
       </section>
-
-      <!-- Volunteer experience -->
-      <section class="experience">
-        <h2>Volunteer experience</h2>
-        <div v-for="experience in previewData.volunteer" :key="experience">
-          <span>
-            <strong>{{experience.position}} | {{experience.company}}</strong>
-          </span>
-          <span>
-            <p>{{experience.startDate}} - {{experience.endDate}}</p>
-          </span>
-          <p>{{experience.summary}}</p>
-          <!--volunteer highlights  -->
-          <ul>
-            <li v-for="highlight in experience.highlights" :key="highlight">{{highlight.highlight}}</li>
-          </ul>
-        </div>
-      </section>
-
       <!-- Education -->
       <section class="education">
         <h2>Education</h2>
@@ -153,6 +150,23 @@
           </ul>
         </div>
       </section>
+      <!-- Volunteer experience -->
+      <section class="experience">
+        <h2>Volunteer experience</h2>
+        <div v-for="experience in previewData.volunteer" :key="experience">
+          <span>
+            <strong>{{experience.position}} | {{experience.company}}</strong>
+          </span>
+          <span>
+            <p>{{experience.startDate}} - {{experience.endDate}}</p>
+          </span>
+          <p>{{experience.summary}}</p>
+          <!--volunteer highlights  -->
+          <ul>
+            <li v-for="highlight in experience.highlights" :key="highlight">{{highlight.highlight}}</li>
+          </ul>
+        </div>
+      </section>
 
       <!-- Publications -->
       <section class="publications">
@@ -165,25 +179,6 @@
             <p>{{publication.releaseDate}} | {{publication.website}}</p>
           </span>
           <p>{{publication.summary}}</p>
-        </div>
-      </section>
-
-      <!-- Interests -->
-      <section class="interests">
-        <h2>Interests</h2>
-        <div v-for="interest in previewData.interests" :key="interest">
-          <p>{{interest.name}}</p>
-          <ul>
-            <li v-for="keyword in interest.keywords">{{keyword.keyword}}</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- References -->
-      <section class="references">
-        <h2>References</h2>
-        <div v-for="reference in previewData.references" :key="reference">
-          <p>{{reference.name}} | {{reference.reference}}</p>
         </div>
       </section>
     </div>
@@ -212,6 +207,7 @@ export default {
 <style scoped>
 /* Simulate A4 */
 .elegant {
+  font-family: "Roboto" !important;
   padding: 10mm;
   width: 210mm;
   height: 297mm;
@@ -222,6 +218,7 @@ export default {
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1cm;
 }
 
 .summary {
@@ -237,37 +234,46 @@ img {
   align-content: center;
   justify-content: center;
 }
+#left-col {
+  grid-column: 1/2;
+}
+#right-col {
+  grid-column: 2/4;
+}
 /* Font & text props */
 h1,
 h2 {
   margin-top: 1em;
   color: cyan;
+  font-weight: 400;
 }
 a {
   text-decoration: none;
   color: rgb(212, 42, 136);
+  cursor: pointer;
 }
+
 i {
   margin-right: 5px;
 }
 
-.location,
-nav,
-footer {
+.location {
   display: none;
 }
-#left-col {
-  grid-column: 1/2;
-}
-#right-col {
-  grid-column: 2/3;
-}
+
 .contact-info ul,
 .social-profiles ul {
   list-style: none;
   padding: 0;
 }
-
+.work {
+  width: 13cm;
+}
+.work > div {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+}
 /* Print styles */
 
 @media print {
@@ -277,10 +283,13 @@ footer {
   footer {
     display: none !important;
   }
+  .elegant {
+    background-color: #fff;
+    box-shadow: none;
+  }
   h1,
   h2,
   h3 {
-    font-weight: bold;
     page-break-after: avoid;
     page-break-inside: avoid;
   }
@@ -291,7 +300,9 @@ footer {
     page-break-before: avoid;
   }
   p {
+    font-weight: 300;
     font-size: 10pt;
+    line-height: 17pt;
   }
 
   @page {
