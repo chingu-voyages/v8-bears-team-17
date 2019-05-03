@@ -1,20 +1,21 @@
 {
-    "basics": {
-      "name": "John Doe",
-      "label": "Programmer",
-      "picture": "",
-      "email": "john@gmail.com",
-      "phone": "(912) 555-4321",
-      "website": "http://johndoe.com",
-      "summary": "A summary of John Doe...",
-      "location": {
-        "address": "2712 Broadway St",
-        "postalCode": "CA 94115",
-        "city": "San Francisco",
-        "countryCode": "US",
-        "region": "California"
-      },
-      "profiles": [{
+  "basics": {
+    "name": "John Doe",
+    "label": "Programmer",
+    "picture": "https://res.cloudinary.com/fredhawk/image/upload/v1556794515/resume/mb4olv5ye1wnjjrbnhiz.jpg",
+    "email": "john@gmail.com",
+    "phone": "(912) 555-4321",
+    "website": "http://johndoe.com",
+    "summary": "A summary of John Doe...",
+    "location": {
+      "address": "2712 Broadway St",
+      "postalCode": "CA 94115",
+      "city": "San Francisco",
+      "countryCode": "US",
+      "region": "California"
+    },
+    "profiles": [
+      {
         "network": "Twitter",
         "username": "john",
         "url": "http://twitter.com/john"
@@ -23,9 +24,11 @@
         "network": "Chingu",
         "username": "john",
         "url": "http://Chingu.com/john"
-      }]
-    },
-    "work": [{
+      }
+    ]
+  },
+  "work": [
+    {
       "company": "Company",
       "position": "President",
       "website": "http://company.com",
@@ -33,10 +36,17 @@
       "endDate": "2014-01-01",
       "summary": "Description...",
       "highlights": [
-        {"highlight":"Started the company"},{"highlight":"Watching TV all the day"}
+        {
+          "highlight": "Started the company"
+        },
+        {
+          "highlight": "Watching TV all the day"
+        }
       ]
-    }],
-    "volunteer": [{
+    }
+  ],
+  "volunteer": [
+    {
       "organization": "Organization",
       "position": "Volunteer",
       "website": "http://organization.com/",
@@ -44,10 +54,17 @@
       "endDate": "2013-01-01",
       "summary": "Description...",
       "highlights": [
-        {"highlight":"Started the company"},{"highlight":"Watching TV all the day"}
+        {
+          "highlight": "Started the company"
+        },
+        {
+          "highlight": "Watching TV all the day"
+        }
       ]
-    }],
-    "education": [{
+    }
+  ],
+  "education": [
+    {
       "institution": "University",
       "area": "Software Development",
       "studyType": "Bachelor",
@@ -55,45 +72,72 @@
       "endDate": "2013-01-01",
       "gpa": "4.0",
       "courses": [
-        {"course":"DB1101 - Basic SQL"},{"course":"Javascript"}
+        {
+          "course": "DB1101 - Basic SQL"
+        },
+        {
+          "course": "Javascript"
+        }
       ]
-    }],
-    "awards": [{
+    }
+  ],
+  "awards": [
+    {
       "title": "Award",
       "date": "2014-11-01",
       "awarder": "Company",
       "summary": "There is no spoon."
-    }],
-    "publications": [{
+    }
+  ],
+  "publications": [
+    {
       "name": "Publication",
       "publisher": "Company",
       "releaseDate": "2014-10-01",
       "website": "http://publication.com",
       "summary": "Description..."
-    }],
-    "skills": [{
+    }
+  ],
+  "skills": [
+    {
       "name": "Web Development",
       "level": "Master",
       "keywords": [
-        {"keyword":"HTML"},
-        {"keyword":"CSS"},
-        {"keyword":"Javascript"}
+        {
+          "keyword": "HTML"
+        },
+        {
+          "keyword": "CSS"
+        },
+        {
+          "keyword": "Javascript"
+        }
       ]
-    }],
-    "languages": [{
+    }
+  ],
+  "languages": [
+    {
       "language": "English",
       "fluency": "Native speaker"
-    }],
-    "interests": [{
+    }
+  ],
+  "interests": [
+    {
       "name": "Wildlife",
       "keywords": [
-        {"keyword":"Ferrets"},
-        {"keyword":"Unicorns"}
+        {
+          "keyword": "Ferrets"
+        },
+        {
+          "keyword": "Unicorns"
+        }
       ]
-    }],
-    "references": [{
+    }
+  ],
+  "references": [
+    {
       "name": "Jane Doe",
       "reference": "Reference..."
-    }]
-  }
-  
+    }
+  ]
+}
