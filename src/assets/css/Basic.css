@@ -1,6 +1,6 @@
 main {
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -39,7 +39,7 @@ a {
     color:#000000;
 }
 
-@page {
+/* @page {
     size: A4;
 }
 
@@ -49,7 +49,7 @@ a {
 
 @page :right {
   margin-left: 4cm;
-}
+} */
 
 .basic-theme {
     width: 70%;
@@ -65,7 +65,10 @@ a {
 
 .img-names-location, .contact,
 .work-experience > article > div:first-of-type,
-.volunteer-experience > article > div:first-of-type {
+.volunteer-experience > article > div:first-of-type,
+.relevant-education > article > div:first-of-type,
+.awards > article > div:first-of-type,
+.publications > article > div:first-of-type {
     display: grid;
 }
 
@@ -77,27 +80,35 @@ a {
     grid-template-columns: 35% 65%;
 }
 
-.work-experience > article,
-.volunteer-experience > article {
+.basic-theme article {
     width: 100%;
     max-width: 100%;
 }
 
 .contact,
 .work-experience > article > div:first-of-type,
-.volunteer-experience > article > div:first-of-type {
+.volunteer-experience > article > div:first-of-type,
+.relevant-education > article > div:first-of-type,
+.awards > article > div:first-of-type,
+.publications > article > div:first-of-type {
     grid-template-columns: repeat(2, 1fr);
 }
 
 .contact-details,
 .work-experience > article > div:first-of-type > p:first-of-type,
-.volunteer-experience > article > div:first-of-type > p:first-of-type {
+.volunteer-experience > article > div:first-of-type > p:first-of-type,
+.relevant-education > article > div:first-of-type > p:first-of-type,
+.awards > article > div:first-of-type > p:first-of-type,
+.publications > article > div:first-of-type > p:first-of-type {
     text-align: left;
 }
 
 .social-profiles,
 .work-experience > article > div:first-of-type > p:nth-of-type(2),
-.volunteer-experience > article > div:first-of-type > p:nth-of-type(2) {
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2),
+.relevant-education > article > div:first-of-type > p:nth-of-type(2),
+.awards > article > div:first-of-type > p:nth-of-type(2),
+.publications > article > div:first-of-type > p:nth-of-type(2)  {
     text-align: right;
 }
 

@@ -17,11 +17,9 @@
                         <p class="location">
                             {{previewData.basics.location.address}},
                             {{previewData.basics.location.city}},
-                            {{previewData.basics.location.region}}
-                            <br />
-                            Country Code: {{previewData.basics.location.countryCode}}
-                            <br />
-                            Postal Code: {{previewData.basics.location.postalCode}}
+                            {{previewData.basics.location.region}},
+                            {{previewData.basics.location.countryCode}},
+                            {{previewData.basics.location.postalCode}}
                         </p>
                     </div>
                 </div>
@@ -50,7 +48,7 @@
                 <article v-for="experience in previewData.work" :key="experience.company">
                     <div>
                         <p>{{experience.position}} @ {{experience.company}} ({{experience.website}})</p>
-                        <p>{{experience.startDate}} - {{experience.startDate}}</p>
+                        <p>({{experience.startDate}} - {{experience.startDate}})</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
                     <ul>
@@ -66,7 +64,7 @@
                 <article v-for="experience in previewData.volunteer" :key="experience.organization">
                     <div>
                         <p>{{experience.position}} @ {{experience.organization}} ({{experience.website}})</p>
-                        <p>{{experience.startDate}} - {{experience.startDate}}</p>
+                        <p>({{experience.startDate}} - {{experience.startDate}})</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
                     <ul>
@@ -80,11 +78,12 @@
                 <h2>Education</h2>
                 <hr>
                 <article class="education" v-for="education in previewData.education" :key="education.institution">
-                    <p class="institution">{{education.institution}}</p>
-                    <p class="area">{{education.area}}</p>
-                    <p class="study-type">{{education.studyType}}</p>
-                    <p class="gpa">{{education.gpa}}</p>
-                    <p class="duration">{{education.startDate}} - {{education.endDate}}</p>
+                    <div>
+                        <p>{{education.institution}}
+                            <br/><em>{{education.studyType}}</em>, {{education.area}}, {{education.gpa}} GPA
+                        </p>
+                        <p>({{education.startDate}} - {{education.endDate}})</p>
+                    </div>
 
                     <ul class="courses">
                         <li class="course" v-for="course in education.courses" :key="course">{{course.course}}</li>
@@ -97,9 +96,10 @@
                 <h2>Awards</h2>
                 <hr>
                 <article class="award" v-for="award in previewData.awards" :key="award.title">
-                    <p class="title">{{award.title}}</p>
-                    <p class="date">{{award.date}}</p>
-                    <p class="awarder">{{award.awarder}}</p>
+                    <div>
+                        <p>{{award.title}}<br/>{{award.awarder}}</p>
+                        <p>({{award.date}})</p>
+                    </div>
                     <p class="summary">{{award.summary}}</p>
                 </article>
             </section>
@@ -109,12 +109,10 @@
                 <h2>Publications</h2>
                 <hr>
                 <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
-                    <p class="name">{{publication.name}}</p>
-                    <section class="publisher-details">
-                        <p class="publisher-name">{{publication.publisher}}</p>
-                        <p class="publisher-website">{{publication.website}}</p>
-                    </section>
-                    <p class="release-date">{{publication.releaseDate}}</p>
+                    <div>
+                        <p>{{publication.name}}<br/>{{publication.publisher}}, {{publication.website}}</p>
+                        <p>({{publication.releaseDate}})</p>
+                    </div>
                     <p class="summary">{{publication.summary}}</p>
                 </article>
             </section>
@@ -123,12 +121,8 @@
             <section class="skills">
                 <h2>Skills</h2>
                 <hr>
-                <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
-                    <p class="skill">{{skill.name}}</p>
-                    <p class="skill-level">{{skill.level}}</p>
-                    <ul class="keywords">
-                        <li class="keyword" v-for="keyword in skill.keywords" :key="keyword">{{keyword.keyword}}</li>
-                    </ul>
+                <article v-for="skill in previewData.skills" :key="skill.name">
+                    <p>{{skill.name}}: {{getListOfSkills()}}</p>
                 </article>
             </section>
 
@@ -137,8 +131,7 @@
                 <h2>Languages</h2>
                 <hr>
                 <article class="language" v-for="language in previewData.languages" :key="language.language">
-                    <p class="language-name">{{language.language}}</p>
-                    <p class="language-fluency">{{language.fluency}}</p>
+                    <p>{{language.language}}, {{language.fluency}}</p>
                 </article>
             </section>
 
@@ -196,6 +189,17 @@ export default {
       doc.fromHTML(source, 10, 10);
       doc.save('resume.pdf');
     },
+    getListOfSkills() {
+        let listOfSkills = [];
+        const data = this.previewData,
+            skillsArray = data.skills;
+        skillsArray.forEach(function(skill) {
+            skill.keywords.forEach(function(keyword) {
+                listOfSkills.push(keyword.keyword);
+            })
+        });
+        return listOfSkills.join(", ");
+    }
   },
 };
 </script>
