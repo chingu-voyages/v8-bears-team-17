@@ -17,7 +17,7 @@
                 label="Postal Code"
                 type="text"
                 placeholder="e.g."
-                v-model="info.postalcode"
+                v-model="info.postalCode"
                 :error-messages="errors.collect('postalcode')"
                 v-validate.continues="{required: true, regex: /^[a-zåäöA-ZÅÄÖ0-9- ]*$/}"
               ></v-text-field>
@@ -35,7 +35,7 @@
                 label="Country Code"
                 type="text"
                 placeholder="e.g. "
-                v-model="info.countrycode"
+                v-model="info.countryCode"
                 :error-messages="errors.collect('countrycode')"
                 v-validate.continues="{required: true, regex: /^[A-ZÅÄÖ]*$/}"
               ></v-text-field>

@@ -1,108 +1,181 @@
 <template>
-    <div class="basic-theme">
-        <section class="personal-data">
-            <img src="" alt="Picture">
-            <h1 class="names"></h1>
-            <p class="location"></p>
+    <main>
+        <div>
+            <v-btn @click="exportPDF">Export as PDF</v-btn>
+        </div>
 
-            <section class="contact-details">
-                <p class="contact"></p>
+        <div id="preview" class="basic-theme">
+
+            <!-- PERSONAL DATA -->
+            <section class="personal-data">
+                <div class="img-names-location">
+                    <div class="resume-image">
+                        <img :src="previewData.basics.picture" alt="Picture">
+                    </div>
+                    <div class="names-and-location">
+                        <h1 class="names">{{previewData.basics.name}}</h1>
+                        <p class="location">
+                            {{previewData.basics.location.address}},
+                            {{previewData.basics.location.city}},
+                            {{previewData.basics.location.region}}
+                            <br />
+                            Country Code: {{previewData.basics.location.countryCode}}
+                            <br />
+                            Postal Code: {{previewData.basics.location.postalCode}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact">
+                    <section class="contact-details">
+                        <p class="email">Email: {{previewData.basics.email}}</p>
+                        <p class="phone">Phone: {{previewData.basics.phone}}</p>
+                        <p class="website">Website: {{previewData.basics.website}}</p>
+                    </section>
+
+                    <section class="social-profiles">
+                        <p :class="profile.network"
+                        v-for="profile in previewData.basics.profiles"
+                        :key="profile.name">
+                            {{profile.network}}: {{profile.url}}
+                        </p>
+                    </section>
+                </div>
             </section>
 
-            <section class="social-profiles">
-                <p class="profile"></p>
+            <!-- WORK EXPERIENCE -->
+            <section class="work-experience">
+                <h2>Work Experience</h2>
+                <hr>
+                <article v-for="experience in previewData.work" :key="experience.company">
+                    <div>
+                        <p>{{experience.position}} @ {{experience.company}}
+                            ({{experience.website}})</p>
+                        <p>{{experience.startDate}} - {{experience.startDate}}</p>
+                    </div>
+                    <p class="summary-of-responsibilities">{{experience.summary}}</p>
+                    <ul
+                    v-for="highlight in experience.highlights"
+                    :key="highlight">
+                        <li class="job-hightlight">{{highlight.highlight}}</li>
+                    </ul>
+                </article>
             </section>
-        </section>
 
-        <section class="work-volunteer-experience">
-            <article class="experience">
-                <p class="position"></p>
-                <p class="duration"></p>
-                <section class="company-details">
-                    <p class="company-name"></p>
-                    <p class="company-website"></p>
-                </section>
-                <p class="summary-of-responsibilities"></p>
-                <ul class="job-highlights">
-                    <li class="job-hightlight"></li>
-                </ul>
-            </article>
-        </section>
+            <!-- VOLUNTEER EXPERIENCE -->
+            <section class="volunteer-experience">
+                <h2>Volunteer Experience</h2>
+                <hr>
+                <article v-for="experience in previewData.volunteer" :key="experience.organization">
+                    <div>
+                        <p>{{experience.position}} @ {{experience.organization}}
+                            ({{experience.website}})</p>
+                        <p>{{experience.startDate}} - {{experience.startDate}}</p>
+                    </div>
+                    <p class="summary-of-responsibilities">{{experience.summary}}</p>
+                    <ul>
+                        <li v-for="highlight in experience.highlights" :key="highlight" class="job-hightlight">{{highlight.highlight}}</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section class="relevant-education">
-            <article class="education">
-                <p class="institution"></p>
-                <p class="area"></p>
-                <p class="study-type"></p>
-                <p class="gpa"></p>
-                <p class="duration"></p>
+            <!-- EDUCATION -->
+            <section class="relevant-education">
+                <h2>Education</h2>
+                <hr>
+                <article class="education" v-for="education in previewData.education" :key="education.institution">
+                    <p class="institution">{{education.institution}}</p>
+                    <p class="area">{{education.area}}</p>
+                    <p class="study-type">{{education.studyType}}</p>
+                    <p class="gpa">{{education.gpa}}</p>
+                    <p class="duration">{{education.startDate}} - {{education.endDate}}</p>
 
-                <ul class="courses">
-                    <li class="course"></li>
-                </ul>
-            </article>
-        </section>
+                    <ul class="courses">
+                        <li class="course" v-for="course in education.courses" :key="course">{{course.course}}</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section class="awards">
-            <article class="award">
-                <p class="title"></p>
-                <p class="date"></p>
-                <p class="awarder"></p>
-                <p class="summary"></p>
-            </article>
-        </section>
+            <!-- AWARDS -->
+            <section class="awards">
+                <h2>Awards</h2>
+                <hr>
+                <article class="award" v-for="award in previewData.awards" :key="award.title">
+                    <p class="title">{{award.title}}</p>
+                    <p class="date">{{award.date}}</p>
+                    <p class="awarder">{{award.awarder}}</p>
+                    <p class="summary">{{award.summary}}</p>
+                </article>
+            </section>
 
-        <section class="publications">
-            <article class="publication">
-                <p class="name"></p>
-                <section class="publisher-details">
-                    <p class="publisher-name"></p>
-                    <p class="publisher-website"></p>
-                </section>
-                <p class="release-date"></p>
-                <p class="summary"></p>
-            </article>
-        </section>
+            <!-- PUBLICATIONS -->
+            <section class="publications">
+                <h2>Publications</h2>
+                <hr>
+                <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
+                    <p class="name">{{publication.name}}</p>
+                    <section class="publisher-details">
+                        <p class="publisher-name">{{publication.publisher}}</p>
+                        <p class="publisher-website">{{publication.website}}</p>
+                    </section>
+                    <p class="release-date">{{publication.releaseDate}}</p>
+                    <p class="summary">{{publication.summary}}</p>
+                </article>
+            </section>
 
-        <section class="skills">
-            <article class="skill">
-                <p class="skill"></p>
-                <p class="skill-level"></p>
-                <ul class="keywords">
-                    <li class="keyword"></li>
-                </ul>
-            </article>
-        </section>
+            <!-- SKILLS -->
+            <section class="skills">
+                <h2>Skills</h2>
+                <hr>
+                <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
+                    <p class="skill">{{skill.name}}</p>
+                    <p class="skill-level">{{skill.level}}</p>
+                    <ul class="keywords">
+                        <li class="keyword" v-for="keyword in skill.keywords" :key="keyword">{{keyword.keyword}}</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section class="languages">
-            <article class="language">
-                <p class="language-name"></p>
-                <p class="language-fluency"></p>
-            </article>
-        </section>
+            <!-- LANGUAGES -->
+            <section class="languages">
+                <h2>Languages</h2>
+                <hr>
+                <article class="language" v-for="language in previewData.languages" :key="language.language">
+                    <p class="language-name">{{language.language}}</p>
+                    <p class="language-fluency">{{language.fluency}}</p>
+                </article>
+            </section>
 
-        <section class="interests">
-            <article class="interest">
-                <p class="name-of-interest"></p>
-                <ul class="keywords">
-                    <li class="keyword"></li>
-                </ul>
-            </article>
-        </section>
+            <!-- INTERESTS -->
+            <section class="interests">
+                <h2>Other Interests</h2>
+                <hr>
+                <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
+                    <p class="name-of-interest">{{interest.name}}</p>
+                    <ul class="keywords">
+                        <li class="keyword" v-for="keyword in interest.keywords" :key="keyword">{{keyword.keyword}}</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section class="references">
-            <article class="reference">
-                <p class="name-of-reference"></p>
-                <p class="contact-of-reference"></p>
-            </article>
-        </section>
-        <section>
+            <!-- REFERENCES -->
+            <section class="references">
+                <h2>References</h2>
+                <hr>
+                <article class="reference" v-for="reference in previewData.references" :key="reference.name">
+                    <p class="name-of-reference">{{reference.name}}</p>
+                    <p class="contact-of-reference">{{reference.reference}}</p>
+                </article>
+            </section>
+            <section>
 
-        </section>
-    </div>
+            </section>
+        </div>
+    </main>
 </template>
 
 <script>
+import jsPDF from 'jspdf';
 
 export default {
   props: {
@@ -118,8 +191,22 @@ export default {
       return dData;
     },
   },
+  methods: {
+    exportPDF() {
+      // eslint-disable-next-line
+      const doc = new jsPDF();
+      const source = window.document.getElementById('preview');
+      console.log('Source', source);
+      doc.fromHTML(source, 10, 10, {
+
+      }, () => {
+        doc.save('resume.pdf');
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
+@import "../assets/css/Basic.css";
 </style>
