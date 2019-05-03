@@ -10,7 +10,7 @@
             <section class="personal-data">
                 <div class="img-names-location">
                     <div class="resume-image">
-                        <img src="previewData.basics.picture" alt="Picture">
+                        <img :src="previewData.basics.picture" alt="Picture">
                     </div>
                     <div class="names-and-location">
                         <h1 class="names">{{previewData.basics.name}}</h1>
@@ -43,13 +43,18 @@
 
             <!-- WORK EXPERIENCE -->
             <section class="work-experience">
-                <article v-for="experience in previewData.work" :key="experience.company">
+                <article
+                v-for="experience in previewData.work"
+                :key="experience.company">
                     <div>
-                        <p>{{experience.position}} @ {{experience.company}} ({{experience.website}})</p>
+                        <p>{{experience.position}} @ {{experience.company}}
+                            ({{experience.website}})</p>
                         <p>{{experience.startDate}} - {{experience.startDate}}</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
-                    <ul v-for="highlight in experience.highlights" :key="highlight">
+                    <ul
+                    v-for="highlight in experience.highlights"
+                    :key="highlight">
                         <li class="job-hightlight">{{highlight.highlight}}</li>
                     </ul>
                 </article>
@@ -57,9 +62,12 @@
 
             <!-- VOLUNTEER EXPERIENCE -->
             <section class="volunteer-experience">
-                <article v-for="experience in previewData.volunteer" :key="experience.organization">
+                <article
+                v-for="experience in previewData.volunteer"
+                :key="experience.organization">
                     <div>
-                        <p>{{experience.position}} @ {{experience.organization}} ({{experience.website}})</p>
+                        <p>{{experience.position}} @ {{experience.organization}}
+                            ({{experience.website}})</p>
                         <p>{{experience.startDate}} - {{experience.startDate}}</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
@@ -71,7 +79,9 @@
 
             <!-- EDUCATION -->
             <section class="relevant-education">
-                <article class="education" v-for="education in previewData.education" :key="education.institution">
+                <article class="education"
+                v-for="education in previewData.education"
+                :key="education.institution">
                     <p class="institution">{{education.institution}}</p>
                     <p class="area">{{education.area}}</p>
                     <p class="study-type">{{education.studyType}}</p>
@@ -86,7 +96,9 @@
 
             <!-- AWARDS -->
             <section class="awards">
-                <article class="award" v-for="award in previewData.awards" :key="award.title">
+                <article class="award"
+                v-for="award in previewData.awards"
+                :key="award.title">
                     <p class="title">{{award.title}}</p>
                     <p class="date">{{award.date}}</p>
                     <p class="awarder">{{award.awarder}}</p>
@@ -96,7 +108,9 @@
 
             <!-- PUBLICATIONS -->
             <section class="publications">
-                <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
+                <article class="publication"
+                v-for="publication in previewData.publications"
+                :key="publication.name">
                     <p class="name">{{publication.name}}</p>
                     <section class="publisher-details">
                         <p class="publisher-name">{{publication.publisher}}</p>
@@ -109,10 +123,13 @@
 
             <!-- SKILLS -->
             <section class="skills">
-                <article class="skill" v-for="skill in previewData.skills" :key="skill.name">
+                <article class="skill"
+                v-for="skill in previewData.skills"
+                :key="skill.name">
                     <p class="skill">{{skill.name}}</p>
                     <p class="skill-level">{{skill.level}}</p>
-                    <ul class="keywords" v-for="keyword in skill.keywords" :key="keyword">
+                    <ul class="keywords"
+                    v-for="keyword in skill.keywords" :key="keyword">
                         <li class="keyword">{{keyword.keyword}}</li>
                     </ul>
                 </article>
@@ -120,7 +137,9 @@
 
             <!-- LANGUAGES -->
             <section class="languages">
-                <article class="language" v-for="language in previewData.languages" :key="language.language">
+                <article class="language"
+                v-for="language in previewData.languages"
+                :key="language.language">
                     <p class="language-name">{{language.language}}</p>
                     <p class="language-fluency">{{language.fluency}}</p>
                 </article>
@@ -128,7 +147,9 @@
 
             <!-- INTERESTS -->
             <section class="interests">
-                <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
+                <article class="interest"
+                v-for="interest in previewData.interests"
+                :key="interest.name">
                     <p class="name-of-interest">{{interest.name}}</p>
                     <ul class="keywords" v-for="keyword in interest.keywords" :key="keyword">
                         <li class="keyword">{{keyword.keyword}}</li>
@@ -138,7 +159,9 @@
 
             <!-- REFERENCES -->
             <section class="references">
-                <article class="reference" v-for="reference in previewData.references" :key="reference.name">
+                <article class="reference"
+                v-for="reference in previewData.references"
+                :key="reference.name">
                     <p class="name-of-reference">{{reference.name}}</p>
                     <p class="contact-of-reference">{{reference.reference}}</p>
                 </article>
@@ -173,27 +196,35 @@ export default {
       const doc = new jsPDF();
       const source = window.document.getElementById('preview');
       console.log('Source', source);
-      doc.fromHTML(source, 10, 10);
-      doc.save('resume.pdf');
+      doc.fromHTML(source, 10, 10, {
+
+      }, () => {
+        doc.save('resume.pdf');
+      });
     },
   },
 };
 </script>
 
 <style scoped>
+img {
+  width: 200px;
+  height: 200px;
+}
+
 .basic-theme {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 .personal-data .img-names-location {
-    display: flex;
+  display: flex;
 }
 .resume-image {
-    height: 10em;
-    width: 10em;
-    border-radius: 10px;
-    background-color: red;
+  height: 10em;
+  width: 10em;
+  border-radius: 10px;
+  background-color: red;
 }
 </style>
