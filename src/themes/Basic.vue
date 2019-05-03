@@ -47,7 +47,7 @@
                 <hr>
                 <article v-for="experience in previewData.work" :key="experience.company">
                     <div>
-                        <p>{{experience.position}} @ {{experience.company}} ({{experience.website}})</p>
+                        <p><span class="bold">{{experience.position}}</span> @ {{experience.company}} ({{experience.website}})</p>
                         <p>({{experience.startDate}} - {{experience.startDate}})</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
@@ -63,7 +63,7 @@
                 <hr>
                 <article v-for="experience in previewData.volunteer" :key="experience.organization">
                     <div>
-                        <p>{{experience.position}} @ {{experience.organization}} ({{experience.website}})</p>
+                        <p><span class="bold">{{experience.position}}</span> @ {{experience.organization}} ({{experience.website}})</p>
                         <p>({{experience.startDate}} - {{experience.startDate}})</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
@@ -79,7 +79,7 @@
                 <hr>
                 <article class="education" v-for="education in previewData.education" :key="education.institution">
                     <div>
-                        <p>{{education.institution}}
+                        <p><span class="bold">{{education.institution}}</span>
                             <br/><em>{{education.studyType}}</em>, {{education.area}}, {{education.gpa}} GPA
                         </p>
                         <p>({{education.startDate}} - {{education.endDate}})</p>
@@ -97,7 +97,7 @@
                 <hr>
                 <article class="award" v-for="award in previewData.awards" :key="award.title">
                     <div>
-                        <p>{{award.title}}<br/>{{award.awarder}}</p>
+                        <p><span class="bold">{{award.title}}</span><br/>{{award.awarder}}</p>
                         <p>({{award.date}})</p>
                     </div>
                     <p class="summary">{{award.summary}}</p>
@@ -110,7 +110,7 @@
                 <hr>
                 <article class="publication" v-for="publication in previewData.publications" :key="publication.name">
                     <div>
-                        <p>{{publication.name}}<br/>{{publication.publisher}}, {{publication.website}}</p>
+                        <p><span class="bold">{{publication.name}}</span><br/>{{publication.publisher}}, {{publication.website}}</p>
                         <p>({{publication.releaseDate}})</p>
                     </div>
                     <p class="summary">{{publication.summary}}</p>
@@ -122,7 +122,7 @@
                 <h2>Skills</h2>
                 <hr>
                 <article v-for="skill in previewData.skills" :key="skill.name">
-                    <p>{{skill.name}}: {{getListOfSkills()}}</p>
+                    <p><span class="bold">{{skill.name}}:</span> {{getListOfSkills()}}</p>
                 </article>
             </section>
 
@@ -140,7 +140,7 @@
                 <h2>Other Interests</h2>
                 <hr>
                 <article class="interest" v-for="interest in previewData.interests" :key="interest.name">
-                    <p class="name-of-interest">{{interest.name}}</p>
+                    <p class="name-of-interest bold">{{interest.name}}</p>
                     <ul class="keywords">
                         <li class="keyword" v-for="keyword in interest.keywords" :key="keyword">{{keyword.keyword}}</li>
                     </ul>
