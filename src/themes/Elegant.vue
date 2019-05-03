@@ -1,21 +1,16 @@
 <template>
-  <div class="elegant">
-    <section class="img">
-      <!-- Profile pic, name and job title -->
-      <img
-        v-if="previewData.basics.picture"
-        :src="previewData.basics.picture"
-        alt="profile picture"
-      >
-    </section>
-
-    <!-- keeping summary in seperate section for layout flexibility -->
-    <section class="summary">
-      <h2>Summary</h2>
-      <p>{{previewData.basics.summary}}</p>
-    </section>
-
+  <div class="elegant container">
+    <!-- left-col------------------------------------------------------------------------------------- -->
     <div id="left-col">
+      <section class="img">
+        <!-- Profile pic, name and job title -->
+        <img
+          v-if="previewData.basics.picture"
+          :src="previewData.basics.picture"
+          alt="profile picture"
+        >
+      </section>
+
       <!-- Contact info - let's use font-awesome(will implement later) -->
       <h1>{{previewData.basics.name}}</h1>
       <h2>{{previewData.basics.label}}</h2>
@@ -94,9 +89,16 @@
         </div>
       </section>
     </div>
-    <!-- End right-col -->
+    <!-- End left-col -->
+
+    <!-- right-col------------------------------------------------------------------------- -->
 
     <div class="right-col">
+      <!-- keeping summary in seperate section for layout flexibility -->
+      <section class="summary">
+        <h2>Summary</h2>
+        <p>{{previewData.basics.summary}}</p>
+      </section>
       <!-- Skills -->
       <section class="skills">
         <h2>
@@ -112,7 +114,7 @@
 
           <!--skill keywords  -->
 
-          <v-chip dark class="pink" v-for="keyword in skill.keywords">{{keyword.keyword}}</v-chip>
+          <v-chip outline class="pink" v-for="keyword in skill.keywords">{{keyword.keyword}}</v-chip>
         </div>
       </section>
       <!-- Work experience -------------------------------------------------------------------------------->
@@ -208,47 +210,47 @@ export default {
 </script>
 
 <style scoped>
-/* Simulate A4 */
-.elegant {
-  font-family: "Roboto" !important;
-  padding: 10mm;
+/* Simulates A4 for preview */
+.container {
   width: 210mm;
   height: 297mm;
-
+  margin: 40px auto;
   background-color: #fff;
   box-shadow: 5px 5px 5px 5px grey;
-  margin: 40px auto;
-
+}
+.elegant {
+  font-family: "Roboto" !important;
+  padding: 1cm;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1cm;
 }
 
 .summary {
-  grid-column: 3/6;
-  padding-right: 4cm;
+  padding-right: 15%;
+  margin-bottom: 0;
 }
 .summary h2 {
   margin: 0;
 }
 img {
-  grid-column: 1/3;
+  margin-top: 5px;
   border-radius: 50%;
   display: flex;
   align-content: center;
   justify-content: center;
+  border: 1px solid cyan;
 }
 #left-col {
-  grid-column: 1/3;
+  grid-column: 1/2;
 }
 #right-col {
-  grid-column: 3/6;
-  padding-right: 4cm;
+  grid-column: 2/4;
 }
 /* Font & text props */
+
 h1,
 h2 {
-  margin-top: 1em;
   color: cyan;
   font-weight: 400;
 }
@@ -279,7 +281,7 @@ i {
 .work {
   width: 13cm;
 }
-.work::before {
+.work:before {
   border-bottom: 1px solid pink;
 }
 
