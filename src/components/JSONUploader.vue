@@ -12,7 +12,7 @@
     <label class="selected">
       <!-- https://alligator.io/vuejs/file-select-component/  > used ref instead!!!-->
       <!-- We can't use a normal button element here,
-      as it would become the target of the label. -->
+      as it would become the target of the label.-->
 
       <!-- Display the filename if a file has been selected. -->
       <span v-if="fileTitle">Uploaded file: {{fileTitle}}</span>
@@ -23,38 +23,38 @@
 
 <script>
 export default {
-  name: 'JSONUploader',
+  name: "JSONUploader",
   props: {
     // Using value here allows us to be v-model compatible.
     // value: File
     // uploadedData: Object,
-    ButtonText: String,
+    ButtonText: String
   },
   data() {
     return {
-      fileTitle: null,
+      fileTitle: null
     };
   },
   methods: {
     handleFileChange(ev) {
-      console.log('On handleFileChange');
+      console.log("On handleFileChange");
       const file = ev.target.files[0];
       const reader = new FileReader();
       const mainScope = this;
-      reader.onload = function (e) {
-        console.log('onload event!');
+      reader.onload = function(e) {
+        console.log("onload event!");
         try {
           const JSONFile = JSON.parse(e.target.result);
-          mainScope.$emit('input', JSONFile);
+          mainScope.$emit("input", JSONFile);
           mainScope.fileTitle = file.name;
           // mainScope.rawData = JSONFile;
         } catch (err) {
-          console.log('Error during parsing');
+          console.log("Error during parsing: " + err.message);
         }
       };
       reader.readAsText(file);
-    },
-  },
+    }
+  }
 };
 </script>
 

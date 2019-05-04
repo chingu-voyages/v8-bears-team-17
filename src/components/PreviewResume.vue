@@ -2,24 +2,28 @@
     <div>
     <v-btn :to="{ name: 'DesignC', params: { previewData } }"
     color="success get-started">Preview Design C</v-btn>
+    <v-btn
+      :to="{ name: 'Elegant', params: { previewData } }"
+      color="success get-started"
+    >Preview Design B</v-btn>
     <v-btn :to="{ name: 'Basic', params: { previewData } }"
     color="success get-started">Preview Design A</v-btn>
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'PreviewResume',
+  name: "PreviewResume",
   props: {
     ButtonText: {
       type: String,
-      required: true,
+      required: true
     },
     previewData: {
       type: Object,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 
