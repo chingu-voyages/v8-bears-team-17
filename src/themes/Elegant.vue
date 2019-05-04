@@ -39,7 +39,7 @@
           </ul>
         </section>
         <!-- SOCIAL PROFILES-->
-        <section class="social-profiles">
+        <section v-if="previewData.basics.profiles > 0" class="social-profiles">
           <ul v-for="(profile, index) in previewData.basics.profiles" :key="index">
             <li>
               <!-- TODO: make dynamic -->
@@ -59,7 +59,7 @@
           </address>
         </section>
         <!-- LANGUAGES -->
-        <section class="languages">
+        <section v-if="previewData.languages > 0" class="languages">
           <h2>Language skills</h2>
           <div v-for="(language, index) in previewData.languages" :key="index">
             <p>
@@ -69,7 +69,7 @@
           </div>
         </section>
         <!-- AWARDS -->
-        <section class="awards">
+        <section v-if="previewData.awards > 0" class="awards">
           <h2>Awards</h2>
           <div v-for="(award, index) in previewData.awards" :key="index">
             <p>
@@ -87,7 +87,7 @@
           </div>
         </section>
         <!-- REFERENCES -->
-        <section class="references">
+        <section v-if="previewData.references > 0" class="references">
           <h2>References</h2>
           <div v-for="(reference, index) in previewData.references" :key="index">
             <p>
@@ -97,7 +97,7 @@
           </div>
         </section>
         <!-- INTERESTS -->
-        <section class="interests">
+        <section v-if="previewData.interests > 0" class="interests">
           <h2>Interests</h2>
           <div v-for="(interest, index) in previewData.interests" :key="index">
             <p>{{interest.name}}</p>
@@ -119,7 +119,7 @@
           <p>{{previewData.basics.summary}}</p>
         </section>
         <!-- SKILLS -->
-        <section class="skills">
+        <section v-if="previewData.skills > 0" class="skills">
           <h2>
             <i class="fas fa-tools"></i>Skills
           </h2>
@@ -134,7 +134,7 @@
           </div>
         </section>
         <!-- WORK-->
-        <section class="work">
+        <section v-if="previewData.work > 0" class="work">
           <h2>
             <i class="fas fa-briefcase"></i>Work experience
           </h2>
@@ -153,7 +153,7 @@
           </div>
         </section>
         <!-- EDUCATION-->
-        <section class="education">
+        <section v-if="previewData.education > 0" class="education">
           <h2>
             <i class="fas fa-graduation-cap"></i>Education
           </h2>
@@ -172,7 +172,7 @@
           </div>
         </section>
         <!-- VOLUNTEER -->
-        <section class="experience">
+        <section v-if="previewData.volunteer > 0" class="experience">
           <h2>
             <i class="fas fa-hands-helping"></i>Volunteer experience
           </h2>
@@ -193,7 +193,7 @@
           </div>
         </section>
         <!-- PUBLICATIONS -->
-        <section class="publications">
+        <section v-if="previewData.publications > 0" class="publications">
           <h2>
             <i class="far fa-newspaper"></i>Publications
           </h2>
