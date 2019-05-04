@@ -70,4 +70,9 @@ a.primary--text {
 .nav-item span {
   color: #24a4b3 !important;
 }
+@media print {
+  .no-print {
+    display: none;
+  }
+}
 </style>

@@ -307,7 +307,7 @@ p,
 li {
   font-weight: 300;
   font-size: 10pt;
-  line-height: 17pt;
+  line-height: 15pt;
 }
 h1,
 h2 {
@@ -347,6 +347,12 @@ i {
 /* Print styles */
 
 @media print {
+  nav,
+  aside,
+  footer {
+    visibility: hidden;
+    display: none;
+  }
   .no-print {
     visibility: hidden;
     display: none !important;

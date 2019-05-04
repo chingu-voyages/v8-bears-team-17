@@ -30,8 +30,7 @@ export default {
 }
 @media print {
   .no-print {
-    display: none !important;
-    margin: 0 !important;
+    display: none;
   }
 }
 </style>
