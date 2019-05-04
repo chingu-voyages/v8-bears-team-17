@@ -249,7 +249,7 @@ export default {
 
     downloadPDF() {
       this.createPDF();
-      this.pdfObj.open();
+      this.pdfObj.download();
     }
   },
 };
