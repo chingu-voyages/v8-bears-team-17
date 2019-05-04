@@ -126,8 +126,6 @@ a {
 }
 
 .resume-image {
-    height: 10em;
-    width: 10em;
-    border-radius: 10px;
-    background-color: red;
+    max-width: 150px;
 }
+

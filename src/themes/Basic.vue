@@ -166,33 +166,16 @@
 </template>
 
 <script>
-import jsPDF from 'jspdf';
-
 export default {
-  props: {
-    previewData: {
-      type: Object,
-      required: true,
-    },
-  },
-  computed: {
-    test() {
-      const dData = JSON.stringify(this.previewData, null, 2);
-      console.log(dData);
-      return dData;
-    },
-  },
-  methods: {
     exportPDF() {
-      // eslint-disable-next-line
-      const doc = new jsPDF();
-      const source = window.document.getElementById('preview');
-      console.log('Source', source);
-      doc.fromHTML(source, 10, 10, {
-
-      }, () => {
+        // eslint-disable-next-line
+        const doc = new jsPDF();
+        const source = window.document.getElementById('preview');
+        console.log('Source', source);
+        doc.fromHTML(source, 10, 10, {
+        }, () => {
         doc.save('resume.pdf');
-      });
+        });
     },
     getListOfSkills() {
         let listOfSkills = [];
@@ -205,10 +188,8 @@ export default {
         });
         return listOfSkills.join(", ");
     }
-  },
-};
+}
 </script>
 
-<style scoped>
-@import "../assets/css/Basic.css";
+<style>
 </style>

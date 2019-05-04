@@ -1,0 +1,105 @@
+@media print {
+main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 39.2141px;
+}
+
+h2 {
+    margin-top: 1em;
+}
+
+
+h1, h2, h3, h4, h5 {
+   break-after: avoid-page;
+}
+
+hr {
+    margin: 10px 0 20px 0;
+    break-before: avoid-page;
+    break-after: avoid-page;
+}
+
+table, figure, ul, img {
+    break-inside: avoid;
+}
+
+thead {
+    display:table-header-group;
+}
+
+.no-print {
+    visibility:hidden;
+    display:none;
+}
+
+a {
+    color:#000;
+}
+
+img {
+    max-width: 100% !important;
+}
+
+nav, aside, button {
+    display: none !important;
+}
+
+@page {
+    size: A4;
+    margin: 2cm;
+}
+
+.personal-data .contact p {
+    margin: 3px;
+}
+
+.img-names-location, .contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type {
+    display: grid;
+}
+
+.img-names-location, .contact {
+    margin-bottom: 2em;
+}
+
+.img-names-location {
+    grid-template-columns: 35% 65%;
+}
+
+.work-experience > article,
+.volunteer-experience > article {
+    width: 100%;
+    max-width: 100%;
+}
+
+.contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.contact-details,
+.work-experience > article > div:first-of-type > p:first-of-type,
+.volunteer-experience > article > div:first-of-type > p:first-of-type {
+    text-align: left;
+}
+
+.social-profiles,
+.work-experience > article > div:first-of-type > p:nth-of-type(2),
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2) {
+    text-align: right;
+}
+
+.work-experience > article > div:first-of-type > p:nth-of-type(2),
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2) {
+    font-style: italic;
+}
+
+}

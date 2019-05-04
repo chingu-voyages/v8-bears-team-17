@@ -1,9 +1,13 @@
 <template>
-  <div>
+    <div>
+    <v-btn :to="{ name: 'DesignC', params: { previewData } }"
+    color="success get-started">Preview Design C</v-btn>
     <v-btn
       :to="{ name: 'Elegant', params: { previewData } }"
       color="success get-started"
-    >Preview elegant resume</v-btn>
+    >Preview Design B</v-btn>
+    <v-btn :to="{ name: 'Basic', params: { previewData } }"
+    color="success get-started">Preview Design A</v-btn>
   </div>
 </template>
 
