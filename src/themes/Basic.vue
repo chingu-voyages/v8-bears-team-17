@@ -1,7 +1,7 @@
 <template>
     <main>
         <div>
-            <v-btn @click="exportPDF">Export as PDF</v-btn>
+            <v-btn @click="downloadPDF">Export as PDF</v-btn>
         </div>
 
         <div id="preview" class="basic-theme">
@@ -164,7 +164,8 @@
 </template>
 
 <script>
-import jsPDF from 'jspdf';
+
+const pdfMake = window.pdfMake;
 
 export default {
   props: {
@@ -172,6 +173,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data: function() {
+      return {
+        pdfObj: {},
+        basics: this.previewData.basics,
+      }
   },
   computed: {
     test() {
@@ -199,6 +206,50 @@ export default {
             })
         });
         return listOfSkills.join(", ");
+    },
+    image2URI() {
+        const canvas = document.createElement("canvas"),
+            context = canvas.getContext('2d');
+
+        (function make_base() {
+            const base_image = new Image();
+            base_image.src = '../assets/img4.jpg';
+            context.drawImage(base_image, 200, 100);
+        })();
+        return (canvas.toDataURL("image/jpeg"));
+    },
+    createPDF() {
+        const docDefinition = {
+            header: [
+                { image: this.image2URI()},
+                { text: this.basics.name, style: 'header'}
+            ],
+            content: [
+                { text: this.basics.name, style: 'header'}
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                },
+                subheader: {
+                    fontSize: 14,
+                    bold: true,
+                    margin: [0, 15, 0, 0]
+                },
+                story: {
+                    italic: true,
+                    alignment: 'center',
+                    width: '50%',
+                },
+            },
+        }
+        this.pdfObj = pdfMake.createPdf(docDefinition);
+    },
+
+    downloadPDF() {
+      this.createPDF();
+      this.pdfObj.open();
     }
   },
 };
