@@ -220,17 +220,152 @@ export default {
     },
     createPDF() {
         const docDefinition = {
+            pageSize: 'A4',
+            pageMargins: [ 40, 60, 40, 60 ],
             header: [
-                { image: this.image2URI()},
-                { text: this.basics.name, style: 'header'}
+                // { image: this.image2URI()},
+                { text: this.basics.name, style: 'header'},
             ],
             content: [
-                { text: this.basics.name, style: 'header'}
+                { text: `${this.basics.location.address}, ${this.basics.location.city}, ${this.basics.location.region}, ${this.basics.location.countryCode}, ${this.basics.location.postalCode}`, alignment: 'center' },
+
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+
+                { text: 'Work Experience', style: 'subheader'},
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Volunteer Experience', style: 'subheader'},
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Education', style: 'subheader'},
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Awards', style: 'subheader'},
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+
+                { text: 'Publications', style: 'subheader'},
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+
+                { text: 'Skills', style: 'subheader'},
+                { text: [
+                    { text: 'Skill: ', bold: true },
+                    'This paragraph is defined as an array of elements to make it possible to ',
+                ]},
+
+                { text: 'Languages', style: 'subheader'},
+                'Description',
+
+                { text: 'Interests', style: 'subheader'},
+                'Description',
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'References', style: 'subheader'},
+                'Name',
+                'Reference',
+
             ],
             styles: {
                 header: {
                     fontSize: 18,
                     bold: true,
+                    alignment: 'center',
+                    margin: [15, 0, 0, 0]
                 },
                 subheader: {
                     fontSize: 14,
