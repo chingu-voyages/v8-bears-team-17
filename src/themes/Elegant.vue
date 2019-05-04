@@ -40,7 +40,7 @@
         </section>
         <!-- SOCIAL PROFILES-->
         <section class="social-profiles">
-          <ul v-for="profile in previewData.basics.profiles" :key="profile">
+          <ul v-for="(profile, index) in previewData.basics.profiles" :key="index">
             <li>
               <!-- TODO: make dynamic -->
               <i :class="icons"></i>
@@ -61,7 +61,7 @@
         <!-- LANGUAGES -->
         <section class="languages">
           <h2>Language skills</h2>
-          <div v-for="language in previewData.languages" :key="language">
+          <div v-for="(language, index) in previewData.languages" :key="index">
             <p>
               <b>{{language.language}}</b>
             </p>
@@ -71,7 +71,7 @@
         <!-- AWARDS -->
         <section class="awards">
           <h2>Awards</h2>
-          <div v-for="award in previewData.awards" :key="award">
+          <div v-for="(award, index) in previewData.awards" :key="index">
             <p>
               <b>{{award.title}}</b>
             </p>
@@ -89,7 +89,7 @@
         <!-- REFERENCES -->
         <section class="references">
           <h2>References</h2>
-          <div v-for="reference in previewData.references" :key="reference">
+          <div v-for="(reference, index) in previewData.references" :key="index">
             <p>
               <b>{{reference.name}}</b>
             </p>
@@ -99,10 +99,10 @@
         <!-- INTERESTS -->
         <section class="interests">
           <h2>Interests</h2>
-          <div v-for="interest in previewData.interests" :key="interest">
+          <div v-for="(interest, index) in previewData.interests" :key="index">
             <p>{{interest.name}}</p>
 
-            <v-chip outline class="pink" v-for="keyword in interest.keywords">{{keyword.keyword}}</v-chip>
+            <v-chip outline class="pink" v-for="(keyword, index) in interest.keywords" :key="index">{{keyword.keyword}}</v-chip>
           </div>
         </section>
       </div>
@@ -123,14 +123,14 @@
           <h2>
             <i class="fas fa-tools"></i>Skills
           </h2>
-          <div v-for="skill in previewData.skills" :key="skill">
+          <div v-for="(skill, index) in previewData.skills" :key="index">
             <span>
               <p>{{skill.name}}</p>
             </span>
 
             <!--skill keywords  -->
 
-            <v-chip outline class="pink" v-for="keyword in skill.keywords">{{keyword.keyword}}</v-chip>
+            <v-chip outline class="pink" v-for="(keyword, index) in skill.keywords" :key="index">{{keyword.keyword}}</v-chip>
           </div>
         </section>
         <!-- WORK-->
@@ -138,7 +138,7 @@
           <h2>
             <i class="fas fa-briefcase"></i>Work experience
           </h2>
-          <div v-for="work in previewData.work" :key="work">
+          <div v-for="(work, index) in previewData.work" :key="index">
             <span class="subheading">{{work.position}}</span>
             <div>
               <p>{{work.company}}</p>
@@ -148,7 +148,7 @@
             <p>{{work.summary}}</p>
             <!--WORK HIGHTLIGHTS-->
             <ul>
-              <li v-for="highlight in work.highlights" :key="highlight">{{highlight.highlight}}</li>
+              <li v-for="(highlight, index) in work.highlights" :key="index">{{highlight.highlight}}</li>
             </ul>
           </div>
         </section>
@@ -157,7 +157,7 @@
           <h2>
             <i class="fas fa-graduation-cap"></i>Education
           </h2>
-          <div v-for="education in previewData.education" :key="education">
+          <div v-for="(education, index) in previewData.education" :key="index">
             <span class="subheading">{{education.studyType}} in {{education.area}}</span>
             <div>
               <p>{{education.institution}}</p>
@@ -167,7 +167,7 @@
             <!--education courses  -->
             <span class=".body-2">Courses</span>
             <ul>
-              <li v-for="course in education.courses" :key="course">{{course.course}}</li>
+              <li v-for="(course, index) in education.courses" :key="index">{{course.course}}</li>
             </ul>
           </div>
         </section>
@@ -176,7 +176,7 @@
           <h2>
             <i class="fas fa-hands-helping"></i>Volunteer experience
           </h2>
-          <div v-for="experience in previewData.volunteer" :key="experience">
+          <div v-for="(experience, index) in previewData.volunteer" :key="index">
             <span class="subheading">{{experience.position}}</span>
             <div>
               <p>{{experience.organization}}</p>
@@ -186,8 +186,8 @@
             <!--volunteer highlights  -->
             <ul>
               <li
-                v-for="highlight in experience.highlights"
-                :key="highlight"
+                v-for="(highlight, index) in experience.highlights"
+                :key="index"
               >{{highlight.highlight}}</li>
             </ul>
           </div>
@@ -197,7 +197,7 @@
           <h2>
             <i class="far fa-newspaper"></i>Publications
           </h2>
-          <div v-for="publication in previewData.publications" :key="publication">
+          <div v-for="(publication, index) in previewData.publications" :key="index">
             <span class="subheading">{{publication.name}}</span>
             <div>
               <p>{{publication.publisher}}</p>
@@ -349,7 +349,7 @@ i {
   aside,
   footer {
     visibility: hidden;
-    display: none;
+    display: none !important;
   }
   .no-print {
     visibility: hidden;
