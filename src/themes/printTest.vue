@@ -10,7 +10,7 @@
             <section class="personal-data">
                 <div class="img-names-location">
                     <div class="resume-image">
-                        <img :src="previewData.basics.picture" alt="Picture">
+                        <img :src="previewData.basics.picture" alt="Picture" class="resume-image">
                     </div>
                     <div class="names-and-location">
                         <h1 class="names">{{previewData.basics.name}}</h1>
@@ -167,16 +167,11 @@
                     <p class="contact-of-reference">{{reference.reference}}</p>
                 </article>
             </section>
-            <section>
-
-            </section>
         </div>
     </main>
 </template>
 
 <script>
-import jsPDF from 'jspdf';
-
 export default {
   props: {
     previewData: {
@@ -184,24 +179,11 @@ export default {
       required: true,
     },
   },
-  computed: {
-    test() {
-      const dData = JSON.stringify(this.previewData, null, 2);
-      console.log(dData);
-      return dData;
-    },
-  },
   methods: {
     exportPDF() {
       // eslint-disable-next-line
-      const doc = new jsPDF();
-      const source = window.document.getElementById('preview');
-      console.log('Source', source);
-      doc.fromHTML(source, 10, 10, {
-
-      }, () => {
-        doc.save('resume.pdf');
-      });
+    window.print()
+      console.log('got here');
     },
   },
 };
@@ -209,4 +191,5 @@ export default {
 
 <style scoped>
 @import "../assets/css/Basic.css";
+@import "../assets/css/print.css";
 </style>

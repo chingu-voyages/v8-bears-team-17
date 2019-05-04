@@ -1,9 +1,10 @@
 <template>
-    <!-- <a :href="loadBasicTheme">
-        {{ButtonText}}
-    </a> -->
+    <div>
     <v-btn :to="{ name: 'Basic', params: { previewData } }"
     color="success get-started">Preview resume</v-btn>
+    <v-btn :to="{ name: 'printTest', params: { previewData } }"
+    color="success get-started">Preview Test</v-btn>
+    </div>
 </template>
 
 <script>
