@@ -167,9 +167,15 @@
 
 <script>
 export default {
-      }, () => {
+    exportPDF() {
+        // eslint-disable-next-line
+        const doc = new jsPDF();
+        const source = window.document.getElementById('preview');
+        console.log('Source', source);
+        doc.fromHTML(source, 10, 10, {
+        }, () => {
         doc.save('resume.pdf');
-      });
+        });
     },
     getListOfSkills() {
         let listOfSkills = [];
@@ -182,8 +188,7 @@ export default {
         });
         return listOfSkills.join(", ");
     }
-  },
-};
+}
 </script>
 
 <style>
