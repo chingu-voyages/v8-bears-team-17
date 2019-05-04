@@ -1,8 +1,7 @@
 <template>
-  <nav>
+  <nav class="no-print">
     <v-toolbar flat app>
-      <v-toolbar-side-icon @click="drawer = !drawer"
-      class="hidden-md-and-up menu-icon"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click="drawer = !drawer" class="hidden-md-and-up menu-icon"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase hidden-sm-and-down">
         <span class="logo-title">Resume Builder</span>
       </v-toolbar-title>
@@ -41,16 +40,16 @@
 
 <script>
 export default {
-  name: 'Navigation',
+  name: "Navigation",
   data() {
     return {
       drawer: false,
       links: [
-        { icon: 'home', text: 'Home', route: '/' },
-        { icon: 'dashboard', text: 'Get started', route: '/resume' },
-      ],
+        { icon: "home", text: "Home", route: "/" },
+        { icon: "dashboard", text: "Get started", route: "/resume" }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -70,5 +69,10 @@ a.primary--text {
 .menu-icon,
 .nav-item span {
   color: #24a4b3 !important;
+}
+@media print {
+  .no-print {
+    display: none;
+  }
 }
 </style>
