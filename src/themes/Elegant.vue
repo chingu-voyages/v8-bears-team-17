@@ -3,7 +3,7 @@
     <div>
       <v-btn @click="exportPDF">Export as PDF</v-btn>
     </div>
-    <div id="preview" class="elegant container">
+    <div class="elegant container">
       <!-- left-col------------------------------------------------------------------------------------- -->
       <div id="left-col">
         <section class="img">
@@ -14,8 +14,7 @@
             alt="profile picture"
           >
         </section>
-
-        <!-- Contact info - let's use font-awesome(will implement later) -->
+        <!-- Contact info------------------------------------------------->
         <h1>{{previewData.basics.name}}</h1>
         <h2>{{previewData.basics.label}}</h2>
         <section class="contact-info">
@@ -55,7 +54,6 @@
             <p>{{previewData.basics.location.countryCode}}</p>
           </address>
         </section>
-
         <!-- Languages -->
         <section class="languages">
           <h2>Language skills</h2>
@@ -64,7 +62,6 @@
             <p>{{language.fluency}}</p>
           </div>
         </section>
-
         <!-- Awards -->
         <section class="awards">
           <h2>Awards</h2>
@@ -172,7 +169,6 @@
             </ul>
           </div>
         </section>
-
         <!-- Publications -->
         <section class="publications">
           <h2>
@@ -231,14 +227,12 @@ export default {
 }
 .elegant {
   font-family: "Roboto" !important;
-  padding: 1cm;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1cm;
 }
 
 .summary {
-  padding-right: 15%;
   margin-bottom: 0;
 }
 .summary h2 {
@@ -254,9 +248,13 @@ img {
 }
 #left-col {
   grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
 }
 #right-col {
   grid-column: 2/4;
+  display: flex;
+  flex-direction: column;
 }
 /* Font & text props */
 
@@ -306,16 +304,18 @@ i {
 @media print {
   nav {
     display: none !important;
+    visibility: hidden;
     margin: 0;
     padding: 0;
   }
   footer {
     display: none !important;
+    visibility: hidden;
+
     margin: 0;
     padding: 0;
   }
   .elegant {
-    background-color: #fff;
     box-shadow: none;
   }
   h1,
