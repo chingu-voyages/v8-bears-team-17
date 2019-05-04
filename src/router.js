@@ -26,10 +26,10 @@ export default new Router({
       name: 'resume',
       component: () => import('./views/Resume.vue'),
     },
-    
-    path: '/test' ,
-      name: 'printTest',
-      component: () => import('./themes/printTest.vue'),
+    {
+      path: '/design',
+      name: 'DesignC',
+      component: () => import('./themes/DesignC.vue'),
       props: true,
     },
   ],
