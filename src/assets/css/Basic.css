@@ -1,0 +1,133 @@
+main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 39.2141px;
+}
+
+h2 {
+    margin-top: 1em;
+}
+
+
+h1, h2, h3, h4, h5 {
+   page-break-after: avoid;
+}
+
+hr {
+    margin: 10px 0 20px 0;
+}
+
+table, figure {
+    page-break-inside: avoid;
+}
+
+thead {
+    display:table-header-group;
+}
+
+.no-print {
+    visibility:hidden;
+    display:none;
+}
+
+a {
+    color:#000000;
+}
+
+/* @page {
+    size: A4;
+}
+
+@page :left {
+  margin-left: 3cm;
+}
+
+@page :right {
+  margin-left: 4cm;
+} */
+
+.bold {
+    font-weight: bold;
+}
+
+.basic-theme {
+    width: 70%;
+    margin: 2em auto 2.5em auto;
+    padding: 4em;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px grey;
+}
+
+.personal-data .contact p {
+    margin: 3px;
+}
+
+.img-names-location, .contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type,
+.relevant-education > article > div:first-of-type,
+.awards > article > div:first-of-type,
+.publications > article > div:first-of-type {
+    display: grid;
+}
+
+.img-names-location, .contact {
+    margin-bottom: 2em;
+}
+
+.img-names-location {
+    grid-template-columns: 35% 65%;
+}
+
+.basic-theme article {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1em;
+}
+
+.contact,
+.work-experience > article > div:first-of-type,
+.volunteer-experience > article > div:first-of-type,
+.relevant-education > article > div:first-of-type,
+.awards > article > div:first-of-type,
+.publications > article > div:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.contact-details,
+.work-experience > article > div:first-of-type > p:first-of-type,
+.volunteer-experience > article > div:first-of-type > p:first-of-type,
+.relevant-education > article > div:first-of-type > p:first-of-type,
+.awards > article > div:first-of-type > p:first-of-type,
+.publications > article > div:first-of-type > p:first-of-type {
+    text-align: left;
+}
+
+.social-profiles,
+.work-experience > article > div:first-of-type > p:nth-of-type(2),
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2),
+.relevant-education > article > div:first-of-type > p:nth-of-type(2),
+.awards > article > div:first-of-type > p:nth-of-type(2),
+.publications > article > div:first-of-type > p:nth-of-type(2)  {
+    text-align: right;
+}
+
+.work-experience > article > div:first-of-type > p:nth-of-type(2),
+.volunteer-experience > article > div:first-of-type > p:nth-of-type(2),
+.relevant-education > article > div:first-of-type > p:nth-of-type(2),
+.awards > article > div:first-of-type > p:nth-of-type(2),
+.publications > article > div:first-of-type > p:nth-of-type(2) {
+    font-style: italic;
+}
+
+.resume-image {
+    height: 10em;
+    width: 10em;
+    border-radius: 10px;
+    background-color: red;
+}
