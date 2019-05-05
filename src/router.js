@@ -32,7 +32,7 @@ export default new Router({
       component: () => import('./themes/Basic.vue'),
       props: true,
     },
-     {
+    {
       path: '/designb',
       name: 'Elegant',
       component: () => import('./themes/Elegant.vue'),

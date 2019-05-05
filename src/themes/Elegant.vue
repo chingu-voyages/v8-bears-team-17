@@ -231,7 +231,6 @@ export default {
     exportPDF() {
       // eslint-disable-next-line
       window.print();
-      console.log("got here");
     }
   }
 };
@@ -351,10 +350,7 @@ i {
     visibility: hidden;
     display: none !important;
   }
-  .no-print {
-    visibility: hidden;
-    display: none !important;
-  }
+
   .elegant {
     box-shadow: none;
     height: 100%;

@@ -45,11 +45,6 @@ thead {
     display:table-header-group;
 }
 
-.no-print {
-    visibility:hidden;
-    display:none;
-}
-
 a {
     color:#000000;
 }
@@ -142,8 +137,6 @@ section article > :first-child {
     color: var(--primary-color)
 }
 
-
-
 .skills .keywords {
     display: flex;
     list-style: none;
@@ -153,8 +146,6 @@ section article > :first-child {
     padding: 1rem;
     
 }
-
-
 
 /* Print styling */
 @media print {
@@ -190,11 +181,6 @@ table, figure, ul, img {
 
 thead {
     display:table-header-group;
-}
-
-.no-print {
-    visibility:hidden;
-    display:none;
 }
 
 a {

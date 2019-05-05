@@ -63,26 +63,18 @@ export default {
     };
   },
   methods: {
-    testFun() {
-      this.mainUserData.personalData.name = "Luca Gessi";
-      this.keys = Object.keys(this.mainUserData);
-    },
     toggleEdit(e) {
       this.isEditing = e;
       console.log(this.isEditing, "isEditing in Resume");
     },
     saveForm(e) {
       // Set data here too when saving.
-      console.log(e, "main user data");
       this.mainUserData = e;
     }
   },
   watch: {
     // whenever fileContent changes, this function will run
     fileContent(val) {
-      console.log(`name object: ${typeof val}`);
-      console.log(`name basics: ${typeof val.basics}`);
-      console.log(`name type: ${typeof val.basics.name}`);
       this.mainUserData = this.fileContent;
     }
   }

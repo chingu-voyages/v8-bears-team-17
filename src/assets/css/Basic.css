@@ -30,11 +30,6 @@ thead {
     display:table-header-group;
 }
 
-.no-print {
-    visibility:hidden;
-    display:none;
-}
-
 a {
     color:#000000;
 }
