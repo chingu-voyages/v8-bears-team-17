@@ -28,20 +28,14 @@ export default new Router({
     },
     {
       path: '/designa',
-      name: 'Basic',
-      component: () => import('./themes/Basic.vue'),
+      name: 'DesignA',
+      component: () => import('./themes/DesignA.vue'),
       props: true,
     },
     {
       path: '/designb',
       name: 'DesignB',
-      component: () => import('./themes/DesignB.vue'),
-      props: true,
-    },
-    {
-      path: '/designc',
-      name: 'DesignC',
-      component: () => import('./themes/DesignC.vue'),
+      component: () => import('./themes/DesignB.vue'), 
       props: true,
     },
   ],

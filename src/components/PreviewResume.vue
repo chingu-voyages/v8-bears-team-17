@@ -1,13 +1,10 @@
 <template>
     <div>
-    <v-btn :to="{ name: 'DesignC', params: { previewData } }"
-    color="success get-started">Preview Design C</v-btn>
-    <v-btn
-      :to="{ name: 'DesignB', params: { previewData } }"
+    <v-btn :to="{ name: 'DesignA', params: { previewData } }"
+    color="success get-started">Preview Design A</v-btn>
+    <v-btn :to="{ name: 'DesignB', params: { previewData } }"
       color="success get-started"
     >Preview Design B</v-btn>
-    <v-btn :to="{ name: 'Basic', params: { previewData } }"
-    color="success get-started">Preview Design A</v-btn>
   </div>
 </template>
 
