@@ -5,7 +5,7 @@
         <span>Edit</span>
         <v-icon>edit</v-icon>
       </v-btn>
-      <PreviewResume ButtonText="Preview resume" :previewData="userdata"></PreviewResume>
+      <PreviewResume ButtonText="Preview resume" :previewData="userdata" v-if="userdata.basics.name !== ''"></PreviewResume>
     </v-layout>
     <v-layout row wrap>
       <UserinfoCard

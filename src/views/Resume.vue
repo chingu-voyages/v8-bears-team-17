@@ -7,10 +7,10 @@
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
     <!-- DownLoadJSON -->
     <v-flex v-if="isEditing === false">
-      <DownloadJSONFile
+      <DownloadJSONFile v-if="mainUserData ? mainUserData : ''"
         ButtonText="Download json file"
         fileName="userdata"
-        :downloadData="mainUserData"
+        :downloadData="mainUserData ? mainUserData : tempData"
       ></DownloadJSONFile>
     </v-flex>
     </v-flex>
@@ -18,7 +18,7 @@
     <!-- Userinfo -->
     <v-flex>
       <Userinfo
-        :userdata="mainUserData"
+        :userdata="mainUserData ? mainUserData : tempData"
         :isEditing="isEditing"
         @toggle-edit="toggleEdit"
         v-if="isEditing === false"
@@ -26,7 +26,7 @@
 
       <!-- UserInputFrom -->
       <UserInputForm
-        v-bind:userdata="mainUserData"
+        v-bind:userdata="mainUserData ? mainUserData : tempData"
         :isEditing="isEditing"
         @toggle-edit="toggleEdit"
         @save-form="saveForm"
@@ -41,6 +41,7 @@
 // @ is an alias to /src
 import JSONUploader from "@/components/JSONUploader.vue";
 import nullData from "@/assets/nullData.json";
+import tempData from "@/assets/templateData.json";
 import UserInputForm from "@/components/UserInputForm.vue";
 import DownloadJSONFile from "@/components/DownloadJSONFile.vue";
 import Userinfo from "@/components/Userinfo.vue";
@@ -56,10 +57,10 @@ export default {
   data() {
     return {
       fileContent: null,
-
-      mainUserData: nullData,
+      mainUserData: null,
       keys: Array,
-      isEditing: false
+      isEditing: false,
+      tempData: tempData
     };
   },
   methods: {
