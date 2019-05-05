@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="design">
     <div>
       <v-btn class="no-print" @click="exportPDF">Export as PDF</v-btn>
     </div>
@@ -39,7 +39,7 @@
           </ul>
         </section>
         <!-- SOCIAL PROFILES-->
-        <section v-if="previewData.basics.profiles > 0" class="social-profiles">
+        <section v-if="previewData.basics.profiles.length > 0" class="social-profiles">
           <ul v-for="(profile, index) in previewData.basics.profiles" :key="index">
             <li>
               <!-- TODO: make dynamic -->
@@ -59,7 +59,7 @@
           </address>
         </section>
         <!-- LANGUAGES -->
-        <section v-if="previewData.languages > 0" class="languages">
+        <section v-if="previewData.languages.length > 0" class="languages">
           <h2>Language skills</h2>
           <div v-for="(language, index) in previewData.languages" :key="index">
             <p>
@@ -69,7 +69,7 @@
           </div>
         </section>
         <!-- AWARDS -->
-        <section v-if="previewData.awards > 0" class="awards">
+        <section v-if="previewData.awards.length > 0" class="awards">
           <h2>Awards</h2>
           <div v-for="(award, index) in previewData.awards" :key="index">
             <p>
@@ -87,7 +87,7 @@
           </div>
         </section>
         <!-- REFERENCES -->
-        <section v-if="previewData.references > 0" class="references">
+        <section v-if="previewData.references.length > 0" class="references">
           <h2>References</h2>
           <div v-for="(reference, index) in previewData.references" :key="index">
             <p>
@@ -97,7 +97,7 @@
           </div>
         </section>
         <!-- INTERESTS -->
-        <section v-if="previewData.interests > 0" class="interests">
+        <section v-if="previewData.interests.length > 0" class="interests">
           <h2>Interests</h2>
           <div v-for="(interest, index) in previewData.interests" :key="index">
             <p>{{interest.name}}</p>
@@ -119,7 +119,7 @@
           <p>{{previewData.basics.summary}}</p>
         </section>
         <!-- SKILLS -->
-        <section v-if="previewData.skills > 0" class="skills">
+        <section v-if="previewData.skills.length > 0" class="skills">
           <h2>
             <i class="fas fa-tools"></i>Skills
           </h2>
@@ -134,7 +134,7 @@
           </div>
         </section>
         <!-- WORK-->
-        <section v-if="previewData.work > 0" class="work">
+        <section v-if="previewData.work.length > 0" class="work">
           <h2>
             <i class="fas fa-briefcase"></i>Work experience
           </h2>
@@ -153,7 +153,7 @@
           </div>
         </section>
         <!-- EDUCATION-->
-        <section v-if="previewData.education > 0" class="education">
+        <section v-if="previewData.education.length > 0" class="education">
           <h2>
             <i class="fas fa-graduation-cap"></i>Education
           </h2>
@@ -172,7 +172,7 @@
           </div>
         </section>
         <!-- VOLUNTEER -->
-        <section v-if="previewData.volunteer > 0" class="experience">
+        <section v-if="previewData.volunteer.length > 0" class="experience">
           <h2>
             <i class="fas fa-hands-helping"></i>Volunteer experience
           </h2>
@@ -193,7 +193,7 @@
           </div>
         </section>
         <!-- PUBLICATIONS -->
-        <section v-if="previewData.publications > 0" class="publications">
+        <section v-if="previewData.publications.length > 0" class="publications">
           <h2>
             <i class="far fa-newspaper"></i>Publications
           </h2>
@@ -210,7 +210,7 @@
         </section>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -231,12 +231,22 @@ export default {
     exportPDF() {
       // eslint-disable-next-line
       window.print();
-    }
+    },
   }
 };
 </script>
 
 <style scoped>
+.design {
+  width: 70%;
+  margin: 0 auto;
+  padding: 0;
+  color: #333;
+}
+
+.design > :first-child {
+  margin-bottom: 3rem;
+}
 /* Simulates A4 for preview */
 .container {
   width: 210mm;
@@ -250,6 +260,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1cm;
+  width: 100%;
 }
 
 .summary {
@@ -257,6 +268,9 @@ export default {
 }
 .summary h2 {
   margin: 0;
+}
+.img {
+  max-width: 150px;
 }
 img {
   margin-top: 5px;
@@ -342,15 +356,14 @@ i {
 }
 
 /* Print styles */
-
+@import "../assets/css/print.css";
 @media print {
-  nav,
-  aside,
-  footer {
-    visibility: hidden;
-    display: none !important;
+  .design {
+    width: 100%;
   }
-
+  .design > :first-child {
+    margin-bottom: 0;
+  }
   .elegant {
     box-shadow: none;
     height: 100%;
@@ -372,8 +385,6 @@ i {
   }
 
   @page {
-    size: a4;
-    margin: 2cm;
     margin-top: 0;
   }
 }

@@ -189,4 +189,16 @@ export default {
 
 <style scoped>
 @import "../assets/css/designc.css";
+@import "../assets/css/print.css";
+@media print {
+  .design {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .design > :first-child {
+    margin-bottom: 0;
+  }
+}
 </style>

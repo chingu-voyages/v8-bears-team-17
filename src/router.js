@@ -34,8 +34,8 @@ export default new Router({
     },
     {
       path: '/designb',
-      name: 'Elegant',
-      component: () => import('./themes/Elegant.vue'),
+      name: 'DesignB',
+      component: () => import('./themes/DesignB.vue'),
       props: true,
     },
     {
