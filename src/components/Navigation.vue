@@ -1,13 +1,17 @@
 <template>
-  <nav class="no-print">
+  <nav>
     <v-toolbar flat app>
       <v-toolbar-side-icon @click="drawer = !drawer" class="hidden-md-and-up menu-icon"></v-toolbar-side-icon>
+      <router-link to="/">
       <v-toolbar-title class="headline text-uppercase hidden-sm-and-down">
         <span class="logo-title">Resume Builder</span>
       </v-toolbar-title>
+      </router-link>
+      <router-link to="/">
       <v-toolbar-title class="title text-uppercase hidden-md-and-up">
         <span class="logo-title">Resume Builder</span>
       </v-toolbar-title>
+      </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
@@ -70,9 +74,13 @@ a.primary--text {
 .nav-item span {
   color: #24a4b3 !important;
 }
-@media print {
-  .no-print {
-    display: none;
-  }
+
+.toolbar-title {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.router-link-active {
+  text-decoration: none;
 }
 </style>

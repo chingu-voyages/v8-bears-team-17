@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="auto" class="no-print">
+  <v-footer height="auto">
     <v-layout justify-space-around row wrap class="footer-color">
       <v-card-title>
         <strong>Make your resume shine!</strong>
@@ -27,10 +27,5 @@ export default {
 .footer-color {
   background: #24a4b3;
   color: white;
-}
-@media print {
-  .no-print {
-    display: none;
-  }
 }
 </style>

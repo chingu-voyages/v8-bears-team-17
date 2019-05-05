@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <div class="design">
         <div>
             <v-btn @click="exportPDF">Export as PDF</v-btn>
         </div>
@@ -162,19 +162,26 @@
 
             </section>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>
+import jsPDF from 'jspdf'
 export default {
-    exportPDF() {
-        // eslint-disable-next-line
+    props: {
+        previewData: {
+        type: Object,
+        required: true,
+        },
+    },
+    methods: {
+        exportPDF() {
+            // eslint-disable-next-line
         const doc = new jsPDF();
         const source = window.document.getElementById('preview');
-        console.log('Source', source);
         doc.fromHTML(source, 10, 10, {
-        }, () => {
-        doc.save('resume.pdf');
+            }, () => {
+                doc.save('resume.pdf');
         });
     },
     getListOfSkills() {
@@ -188,8 +195,10 @@ export default {
         });
         return listOfSkills.join(", ");
     }
+    }
 }
 </script>
 
 <style>
+@import "../assets/css/Basic.css";
 </style>

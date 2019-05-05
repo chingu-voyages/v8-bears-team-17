@@ -1,11 +1,12 @@
 <template>
   <v-container xs12>
-    <PreviewResume ButtonText="Preview resume" :previewData="userdata"></PreviewResume>
-
-    <v-btn color="info" @click="onEdit">
-      <span>Edit</span>
-      <v-icon>edit</v-icon>
-    </v-btn>
+    <v-layout row justify-space-between>
+      <v-btn color="info" @click="onEdit">
+        <span>Edit</span>
+        <v-icon>edit</v-icon>
+      </v-btn>
+      <PreviewResume ButtonText="Preview resume" :previewData="userdata" v-if="userdata.basics.name !== ''"></PreviewResume>
+    </v-layout>
     <v-layout row wrap>
       <UserinfoCard
         :info="basicsWithoutLocationProfiles(userdata.basics)"
