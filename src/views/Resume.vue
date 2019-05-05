@@ -5,6 +5,14 @@
     <!-- UPLOAD -->
     <v-flex>
       <JSONUploader v-model="fileContent" ButtonText="Upload json file"></JSONUploader>
+    <!-- DownLoadJSON -->
+    <v-flex v-if="isEditing === false">
+      <DownloadJSONFile
+        ButtonText="Download json file"
+        fileName="userdata"
+        :downloadData="mainUserData"
+      ></DownloadJSONFile>
+    </v-flex>
     </v-flex>
 
     <!-- Userinfo -->
@@ -26,14 +34,6 @@
       ></UserInputForm>
     </v-flex>
 
-    <!-- DownLoadJSON -->
-    <v-flex v-if="isEditing === false">
-      <DownloadJSONFile
-        ButtonText="Download json file"
-        fileName="userdata"
-        :downloadData="mainUserData"
-      ></DownloadJSONFile>
-    </v-flex>
   </v-layout>
 </template>
 
