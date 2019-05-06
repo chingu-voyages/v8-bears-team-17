@@ -244,6 +244,17 @@ export default {
                 },
 
                 { text: 'Work Experience', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ],
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { columns: [
                     {
                         width: '*',
@@ -265,6 +276,17 @@ export default {
                 ]},
 
                 { text: 'Volunteer Experience', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { columns: [
                     {
                         width: '*',
@@ -286,6 +308,17 @@ export default {
                 ]},
 
                 { text: 'Education', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { columns: [
                     {
                         width: '*',
@@ -307,6 +340,17 @@ export default {
                 ]},
 
                 { text: 'Awards', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { columns: [
                     {
                         width: '*',
@@ -323,6 +367,17 @@ export default {
                 "Description",
 
                 { text: 'Publications', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { columns: [
                     {
                         width: '*',
@@ -339,15 +394,48 @@ export default {
                 "Description",
 
                 { text: 'Skills', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 { text: [
                     { text: 'Skill: ', bold: true },
                     'This paragraph is defined as an array of elements to make it possible to ',
                 ]},
 
                 { text: 'Languages', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 'Description',
 
                 { text: 'Interests', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 'Description',
                 { ul: [
                     'Item 1',
@@ -356,6 +444,17 @@ export default {
                 ]},
 
                 { text: 'References', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
                 'Name',
                 'Reference',
 
