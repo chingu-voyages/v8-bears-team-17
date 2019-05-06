@@ -461,10 +461,10 @@ export default {
             ],
             styles: {
                 header: {
-                    fontSize: 18,
+                    fontSize: 20,
                     bold: true,
                     alignment: 'center',
-                    margin: [15, 0, 0, 0]
+                    margin: [0, 35, 0, 0]
                 },
                 subheader: {
                     fontSize: 14,
