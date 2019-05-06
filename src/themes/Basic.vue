@@ -477,7 +477,7 @@ export default {
                     width: '50%',
                 },
             },
-        }
+        };
         this.pdfObj = pdfMake.createPdf(docDefinition);
     },
 
