@@ -222,11 +222,10 @@ export default {
         const docDefinition = {
             pageSize: 'A4',
             pageMargins: [ 40, 60, 40, 60 ],
-            header: [
+            content: [
                 // { image: this.image2URI()},
                 { text: this.basics.name, style: 'header'},
-            ],
-            content: [
+
                 { text: `${this.basics.location.address}, ${this.basics.location.city}, ${this.basics.location.region}, ${this.basics.location.countryCode}, ${this.basics.location.postalCode}`, alignment: 'center', margin: [0, 0, 0, 30] },
 
                 { columns: [
@@ -474,7 +473,7 @@ export default {
                     fontSize: 20,
                     bold: true,
                     alignment: 'center',
-                    margin: [0, 35, 0, 0]
+                    margin: [0, -25, 0, 0]
                 },
                 subheader: {
                     fontSize: 14,
