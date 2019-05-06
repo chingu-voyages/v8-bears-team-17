@@ -231,12 +231,22 @@ export default {
 
                 { columns: [
                     {
+                        stack: [
+                            `Email: ${this.basics.email}`,
+                            `Phone: ${this.basics.phone}`,
+                            `Website: ${this.basics.website}`,
+                        ],
                         width: '*',
-                        text: 'First column'
                     },
+
                     {
                         width: '*',
-                        text: 'Second column',
+                        stack: [ function() {
+                            const profiles = this.basics.profiles;
+                            profiles.forEach(function(profile) {
+                                return `${profile.network}: ${profile.url}` + ",";
+                            });
+                        }],
                         alignment: 'right',
                     },
                 ],
