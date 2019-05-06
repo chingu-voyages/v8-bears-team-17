@@ -227,7 +227,7 @@ export default {
                 { text: this.basics.name, style: 'header'},
             ],
             content: [
-                { text: `${this.basics.location.address}, ${this.basics.location.city}, ${this.basics.location.region}, ${this.basics.location.countryCode}, ${this.basics.location.postalCode}`, alignment: 'center' },
+                { text: `${this.basics.location.address}, ${this.basics.location.city}, ${this.basics.location.region}, ${this.basics.location.countryCode}, ${this.basics.location.postalCode}`, alignment: 'center', margin: [0, 0, 0, 30] },
 
                 { columns: [
                     {
