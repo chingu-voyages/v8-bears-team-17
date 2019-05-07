@@ -240,12 +240,14 @@ export default {
 
                     {
                         width: '*',
-                        stack: [ function() {
-                            const profiles = this.basics.profiles;
+                        stack: (function() {
+                            const profiles = this.previewData.basics.profiles;
+                            let generatedStack = [];
                             profiles.forEach(function(profile) {
-                                return `${profile.network}: ${profile.url}` + ",";
+                                generatedStack.push(`${profile.network}: ${profile.url}`);
                             });
-                        }],
+                            return generatedStack;
+                        }).call(this),
                         alignment: 'right',
                     },
                 ],
