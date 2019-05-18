@@ -1,7 +1,7 @@
 <template>
     <div class="design">
         <div>
-            <v-btn @click="exportPDF">Export as PDF</v-btn>
+            <v-btn @click="downloadPDF">Export as PDF</v-btn>
         </div>
 
         <div id="preview" class="basic-theme">
@@ -166,7 +166,8 @@
 </template>
 
 <script>
-import jsPDF from 'jspdf'
+const pdfMake = window.pdfMake;
+
 export default {
     props: {
         previewData: {
@@ -174,9 +175,23 @@ export default {
         required: true,
         },
     },
-    methods: {
-        exportPDF() {
-            // eslint-disable-next-line
+  },
+  data: function() {
+      return {
+        pdfObj: {},
+        basics: this.previewData.basics,
+      }
+  },
+  computed: {
+    test() {
+      const dData = JSON.stringify(this.previewData, null, 2);
+      console.log(dData);
+      return dData;
+    },
+  },
+  methods: {
+    exportPDF() {
+        // eslint-disable-next-line
         const doc = new jsPDF();
         const source = window.document.getElementById('preview');
         doc.fromHTML(source, 10, 10, {
@@ -194,6 +209,295 @@ export default {
             })
         });
         return listOfSkills.join(", ");
+    },
+    image2URI() {
+        const canvas = document.createElement("canvas"),
+            context = canvas.getContext('2d');
+
+        (function make_base() {
+            const base_image = new Image();
+            base_image.src = '../assets/img4.jpg';
+            context.drawImage(base_image, 200, 100);
+        })();
+        return (canvas.toDataURL("image/jpeg"));
+    },
+    createPDF() {
+        const docDefinition = {
+            pageSize: 'A4',
+            pageMargins: [ 40, 60, 40, 60 ],
+            content: [
+                // { image: this.image2URI()},
+                { text: this.basics.name, style: 'header'},
+
+                { text: `${this.basics.location.address}, ${this.basics.location.city}, ${this.basics.location.region}, ${this.basics.location.countryCode}, ${this.basics.location.postalCode}`, alignment: 'center', margin: [0, 0, 0, 30] },
+
+                { columns: [
+                    {
+                        stack: [
+                            `Email: ${this.basics.email}`,
+                            `Phone: ${this.basics.phone}`,
+                            `Website: ${this.basics.website}`,
+                        ],
+                        width: '*',
+                    },
+
+                    {
+                        width: '*',
+                        stack: (function() {
+                            const profiles = this.previewData.basics.profiles;
+                            let generatedStack = [];
+                            profiles.forEach(function(profile) {
+                                generatedStack.push(`${profile.network}: ${profile.url}`);
+                            });
+                            return generatedStack;
+                        }).call(this),
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+
+                { text: 'Work Experience', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ],
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Volunteer Experience', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Education', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'Awards', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+
+                { text: 'Publications', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { columns: [
+                    {
+                        width: '*',
+                        text: 'First column'
+                    },
+                    {
+                        width: '*',
+                        text: 'Second column',
+                        alignment: 'right',
+                    },
+                ],
+                columnGap: 10
+                },
+                "Description",
+
+                { text: 'Skills', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                { text: [
+                    { text: 'Skill: ', bold: true },
+                    'This paragraph is defined as an array of elements to make it possible to ',
+                ]},
+
+                { text: 'Languages', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                'Description',
+
+                { text: 'Interests', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                'Description',
+                { ul: [
+                    'Item 1',
+                    'Item 2',
+                    'Item 3',
+                ]},
+
+                { text: 'References', style: 'subheader'},
+                { table : {
+                    headerRows : 1,
+                    widths: [520],
+                    body : [
+                            [''],
+                            ['']
+                            ]
+                },
+                layout : 'headerLineOnly',
+                margin: [0, 10, 0, 8],
+                },
+                'Name',
+                'Reference',
+
+            ],
+            styles: {
+                header: {
+                    fontSize: 20,
+                    bold: true,
+                    alignment: 'center',
+                    margin: [0, -25, 0, 0]
+                },
+                subheader: {
+                    fontSize: 14,
+                    bold: true,
+                    margin: [0, 15, 0, 0]
+                },
+                story: {
+                    italic: true,
+                    alignment: 'center',
+                    width: '50%',
+                },
+            },
+        };
+        this.pdfObj = pdfMake.createPdf(docDefinition);
+    },
+
+    downloadPDF() {
+      this.createPDF();
+      this.pdfObj.download();
     }
     }
 }
