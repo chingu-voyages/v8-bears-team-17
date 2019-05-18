@@ -3,14 +3,14 @@
     <v-layout justify-space-around row wrap class="footer-color">
       <v-card-title>
         <strong>Make your resume shine!</strong>
-        <v-divider class="mx-3" inset vertical></v-divider>
-        Email us:
+        <v-divider class="mx-3" inset vertical></v-divider>Email us:
         <v-btn icon>
           <v-icon color="white" size="24px">email</v-icon>
         </v-btn>
       </v-card-title>
       <v-card-actions justify-center>
-        &copy;2019 - <strong>17 BEARS</strong>
+        &copy;2019 -
+        <strong>17 BEARS</strong>
       </v-card-actions>
     </v-layout>
   </v-footer>
@@ -18,9 +18,8 @@
 
 <script>
 export default {
-  name: 'SiteFooter',
-  data: () => ({
-  }),
+  name: "SiteFooter",
+  data: () => ({})
 };
 </script>
 

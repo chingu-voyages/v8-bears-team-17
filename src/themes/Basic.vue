@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <div class="design">
         <div>
             <v-btn @click="downloadPDF">Export as PDF</v-btn>
         </div>
@@ -10,7 +10,7 @@
             <section class="personal-data">
                 <div class="img-names-location">
                     <div class="resume-image">
-                        <img src="previewData.basics.picture" alt="Picture">
+                        <img :src="previewData.basics.picture" alt="Picture">
                     </div>
                     <div class="names-and-location">
                         <h1 class="names">{{previewData.basics.name}}</h1>
@@ -51,8 +51,10 @@
                         <p>({{experience.startDate}} - {{experience.startDate}})</p>
                     </div>
                     <p class="summary-of-responsibilities">{{experience.summary}}</p>
-                    <ul>
-                        <li v-for="highlight in experience.highlights" :key="highlight" class="job-hightlight">{{highlight.highlight}}</li>
+                    <ul
+                    v-for="highlight in experience.highlights"
+                    :key="highlight">
+                        <li class="job-hightlight">{{highlight.highlight}}</li>
                     </ul>
                 </article>
             </section>
@@ -160,18 +162,18 @@
 
             </section>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>
-
 const pdfMake = window.pdfMake;
 
 export default {
-  props: {
-    previewData: {
-      type: Object,
-      required: true,
+    props: {
+        previewData: {
+        type: Object,
+        required: true,
+        },
     },
   },
   data: function() {
@@ -189,12 +191,13 @@ export default {
   },
   methods: {
     exportPDF() {
-      // eslint-disable-next-line
-      const doc = new jsPDF();
-      const source = window.document.getElementById('preview');
-      console.log('Source', source);
-      doc.fromHTML(source, 10, 10);
-      doc.save('resume.pdf');
+        // eslint-disable-next-line
+        const doc = new jsPDF();
+        const source = window.document.getElementById('preview');
+        doc.fromHTML(source, 10, 10, {
+            }, () => {
+                doc.save('resume.pdf');
+        });
     },
     getListOfSkills() {
         let listOfSkills = [];
@@ -496,10 +499,10 @@ export default {
       this.createPDF();
       this.pdfObj.download();
     }
-  },
-};
+    }
+}
 </script>
 
-<style scoped>
-@import '../assets/css/Basic.css';
+<style>
+@import "../assets/css/Basic.css";
 </style>

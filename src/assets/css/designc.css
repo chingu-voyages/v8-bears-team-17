@@ -1,0 +1,148 @@
+:root {
+    --primary-color: #4f91cd;
+    --dark-grey: #333;
+}
+
+.design {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0;
+    color: var(--dark-grey);
+}
+
+.design > :first-child {
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 39.2141px;
+}
+
+h2 {
+    margin-top: 1em;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+
+h1, h2, h3, h4, h5 {
+   page-break-after: avoid;
+}
+
+img {
+    width: 100%;
+}
+
+hr {
+    margin: 10px 0 20px 0;
+}
+
+table, figure {
+    page-break-inside: avoid;
+}
+
+thead {
+    display:table-header-group;
+}
+
+a {
+    color:#000000;
+}
+
+article ul {
+    list-style: none;
+}
+
+article ul li:not(.keyword):before {
+    content: "\2022";
+    color: var(--primary-color);
+    display: inline-block;
+    font-weight: bold;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.designc, .personal, .qualifications {
+    display: grid;
+}
+
+.personal {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.personal > :nth-child(1) {
+    order: 2;
+    place-self: center center;
+}
+
+.personal > :nth-child(2) {
+    order: 1;
+    place-self: center left;
+}
+
+.personal > :nth-child(3) {
+    order: 3;
+    place-self: center right;
+    text-align: right;
+    font-size: 0.8rem;
+    line-height: 0.7;
+}
+
+.names {
+    line-height: 0.2;
+}
+
+.occupation {
+    color: var(--primary-color);
+    text-transform: initial;
+}
+
+.contact {
+    line-height: 0.8;
+}
+
+.contact, .location {
+    font-size: 0.8rem;
+}
+
+.resume-image {
+    max-width: 150px;
+}
+
+.resume-image img {
+    border-radius: 50%;
+}
+
+.qualifications {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.qualifications > :nth-child(1) {
+    order: -3
+}
+.qualifications > :nth-child(3) {
+    order: -1
+}
+.qualifications > :nth-child(6) {
+    order: -2
+}
+
+section article > :first-child {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.date {
+    font-size: 0.7rem;
+    color: var(--primary-color)
+}
+
+.skills .keywords {
+    display: flex;
+    list-style: none;
+}
+
+.skills .keyword {
+    padding: 1rem;
+    
+}
